@@ -1,0 +1,129 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System.Linq;
+
+namespace Spiritrum.Content.Items.Accessories.Addon.Fargowitlas
+{
+    public class BromiumEnchantment : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Bromium Enchantment");
+            // Tooltip.SetDefault("Spawns bouncing bromium circles after being hit.\n" +
+            //     "When paired with the Bromium Enchantment, spawns 4 bromium circles instead and they deal 150% more damage.");
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 28;
+            Item.height = 28;
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Yellow;
+            Item.value = Item.sellPrice(gold: 10);
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.GetModPlayer<BromeCirclePlayer>().EnableBromeCircleAccessory = true;
+        }
+    }
+
+    public class BromeCirclePlayer : ModPlayer
+    {
+        public bool EnableBromeCircleAccessory;
+        
+        public override void ResetEffects()
+        {
+            EnableBromeCircleAccessory = false;
+        }
+
+        public override void OnHurt(Player.HurtInfo info)
+        {
+            if (EnableBromeCircleAccessory)
+            {
+                SpawnBromeCircles(Player);
+            }
+        }
+
+        private void SpawnBromeCircles(Player player)
+        {
+            int circleCount = 2;
+            float damageMultiplier = 1f;
+
+            // Check for Bromium Enchantment
+            if (player.armor.Any(item => item.type == ModContent.ItemType<BromiumEnchantment>()))
+            {
+                circleCount = 4;
+                damageMultiplier = 1.5f;
+            }
+
+            for (int i = 0; i < circleCount; i++)
+            {
+                Vector2 velocity = Main.rand.NextVector2Circular(5f, 5f);
+                int damage = (int)(50 * damageMultiplier);
+                
+                int proj = Projectile.NewProjectile(
+                    Entity.GetSource_FromThis(),
+                    player.Center,
+                    velocity,
+                    ModContent.ProjectileType<BromeCircleProjectile>(),
+                    damage,
+                    1f,
+                    player.whoAmI);
+            }
+        }
+    }
+
+    public class BromeCircleProjectile : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Brome Circle");
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.friendly = true;
+            Projectile.hostile = false;
+            Projectile.penetrate = 1;
+            Projectile.timeLeft = 300;
+            Projectile.tileCollide = true;
+            Projectile.DamageType = DamageClass.Magic;
+        }
+
+        public override void AI()
+        {
+            // Bouncing logic
+            if (Projectile.velocity.Y < 10f)
+            {
+                Projectile.velocity.Y += 0.2f; // Gravity effect
+            }
+
+            // Homing logic
+            NPC target = Main.npc.Where(npc => npc.active && !npc.friendly && npc.Distance(Projectile.Center) < 400f)
+                                  .OrderBy(npc => npc.Distance(Projectile.Center))
+                                  .FirstOrDefault();
+
+            if (target != null)
+            {
+                Vector2 direction = target.Center - Projectile.Center;
+                direction.Normalize();
+                Projectile.velocity = Vector2.Lerp(Projectile.velocity, direction * 10f, 0.1f);
+            }
+        }
+
+        public override bool OnTileCollide(Vector2 oldVelocity)
+        {
+            // Bounce with 80% velocity retention on collision
+            if (Projectile.velocity.X != oldVelocity.X)
+                Projectile.velocity.X = -oldVelocity.X * 0.8f;
+            if (Projectile.velocity.Y != oldVelocity.Y)
+                Projectile.velocity.Y = -oldVelocity.Y * 0.8f;
+            return false;
+        }
+    }
+}

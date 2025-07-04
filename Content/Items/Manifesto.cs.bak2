@@ -1,0 +1,52 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace Spectrum.Content.Items
+{
+    public class Manifesto : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Manifesto");
+            Tooltip.SetDefault("Reduces shop prices by 10%, increases yours and allies' damage by 10%, and movement speed by 5%.");
+        }
+        public override void SetStaticDefaults()
+        {
+            base.SetStaticDefaults();
+            ItemID.Sets.SortingPriorityMaterials[Item.type] = 100; // Ensures the item appears in cheat mod lists
+        }
+        public override void SetDefaults()
+        {
+            Item.width = 28;
+            Item.height = 30;
+            Item.accessory = true;
+            Item.value = Item.buyPrice(gold: 10);
+            Item.rare = ItemRarityID.Orange;
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            // Reduce shop prices by 10%
+            player.discountAvailable = true;
+
+            // Increase player's damage by 10%
+            player.GetDamage(DamageClass.Generic) += 0.10f;
+
+            // Increase allies' damage by 10% (via buffs or multiplayer logic, not directly handled here)
+
+            // Increase movement speed by 5%
+            player.moveSpeed += 0.05f;
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Book, 1);
+            recipe.AddIngredient(ItemID.FallenStar, 3);
+            recipe.AddIngredient(ItemID.Silk, 2);
+            recipe.AddTile(TileID.Bookcases);
+            recipe.Register();
+        }
+    }
+}

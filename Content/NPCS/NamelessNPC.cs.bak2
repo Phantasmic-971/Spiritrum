@@ -1,0 +1,200 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Terraria.GameContent.Bestiary;
+using Terraria.Localization;
+using System.Collections.Generic;
+
+namespace Spiritrum.Content.NPCS // Using the namespace you provided
+{
+    // This class defines the Nameless NPC
+    [AutoloadHead] // This attribute automatically loads the NPC's head texture
+    public class NamelessNPC : ModNPC
+    {
+        public override void SetStaticDefaults()
+        {
+            // Set the NPC's name
+            DisplayName.SetDefaults("The Nameless");
+
+            // These are for the bestiary
+            Main.npcFrameCount[NPC.type] = 25; // Number of frames in the NPC's walking animation (adjust if needed)
+
+            // Optional: uncomment and adjust if needed for custom animations or behavior sets
+            // NPCID.Sets.ExtraFramesCount[NPC.type] = 9; // For extra frames like weapon holding (adjust)
+            // NPCID.Sets.AttackFrameCount[NPC.type] = 4; // For attack frames (adjust)
+            // NPCID.Sets.DangerDetectRange[NPC.type] = 700; // How far the NPC looks for danger (adjust)
+            // NPCID.Sets.AttackType[NPC.type] = 0; // 0 = melee, 1 = ranged, 2 = magic, 3 = summon (adjust)
+            // NPCID.Sets.AttackSpeed[NPC.type] = 0.8f; // Attack speed (adjust)
+            // NPCID.Sets.AttackTime[NPC.type] = 40; // Time between attacks (adjust)
+            // NPCID.Sets.AttackAverageChance[NPC.type] = 30; // Chance to attack (adjust)
+            // NPCID.Sets.HatOffsetY[NPC.type] = 4; // Adjusts hat position (adjust)
+
+            // Town NPCs are immune to all debuffs by default
+            NPCID.Sets.NPCImmunity[Type] = true;
+            NPCID.Sets.CantTakeDamage[Type] = true; // Town NPCs usually can't take damage unless attacked by player
+
+            // Set the NPC's town NPC capabilities
+            NPCID.Sets.IsTownNPC[Type] = true;
+            NPCID.Sets.AllowSharingDeliciousHairStyles[Type] = true; // Allows the stylist to change their hair
+            NPCID.Sets.ActsLikeTownNPC[Type] = true;
+            NPCID.Sets.SpawnsWithCustomName[Type] = true; // Allows custom names
+
+            // Set the NPC's preferred housing biome and tiles (if any)
+            // You would add conditions here if the NPC had specific housing requirements
+            // Example: NPCID.Sets.PreferredBiome[Type] = BiomeID.Forest;
+            // Example: NPCID.Sets.ExtraHousingRequirements[Type] = new HousingRequirement(new TileRequirement(TileID.WorkBenches));
+
+            // Since this NPC has no spawn conditions, we don't need specific spawn code here,
+            // tModLoader handles basic town NPC spawning if IsTownNPC is true.
+        }
+
+        public override void SetDefaults()
+        {
+            NPC.townNPC = true; // Set the NPC as a town NPC
+            NPC.friendly = true; // NPC is friendly
+            NPC.width = 18; // NPC hitbox width (adjust based on sprite)
+            NPC.height = 40; // NPC hitbox height (adjust based on sprite)
+            NPC.aiStyle = 7; // Use the standard town NPC AI style
+            NPC.damage = 10; // Damage (town NPCs can defend themselves)
+            NPC.defense = 15; // Defense
+            NPC.lifeMax = 250; // Maximum health
+            NPC.HitSound = SoundID.NPCHit1; // Sound when hit
+            NPC.DeathSound = SoundID.NPCDeath1; // Sound when dies
+            NPC.knockBackResist = 0.5f; // Knockback resistance
+            // Optional: adjust rarity and value
+            // NPC.rarity = 1;
+            // NPC.value = 100f;
+
+            // Set the NPC's town NPC specific properties
+            AnimationType = NPCID.Guide; // Use the Guide's animation (adjust if you have custom animations)
+            NPC.benevolent = true; // NPC is benevolent (won't attack monsters unless provoked)
+        }
+
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Add the NPC's description to the bestiary
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                // Example spawn condition (remove or change as needed since this NPC has no specific conditions)
+                // BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Surface,
+                new FlavorTextBestiaryInfoElement("A mysterious figure with no name, offering unique wares to those who seek them out."), // NPC's flavor text
+            });
+        }
+
+        // This method defines the dialogue options for the NPC
+        public override string GetChat()
+        {
+            // You would add different dialogue options here based on conditions (time, boss defeated, etc.)
+            switch (Main.rand.Next(3)) // Randomly choose one of 3 dialogue options
+            {
+                case 0:
+                    return "Greetings, traveler. My name is... well, I don't seem to have one. But I have things you might find useful.";
+                case 1:
+                    return "The world is ever-changing. My inventory changes with it.";
+                case 2:
+                    return "Need something? Take a look. I acquire things from places most wouldn't dare to tread.";
+                default:
+                    return "Hello.";
+            }
+        }
+
+        // This method defines what happens when the player clicks the "Shop" button
+        // CORRECTED method signature for tModLoader
+        public override void ModifyActiveShop(Chest shop, ref int nextSlot)
+        {
+            // Add items to the shop based on game progression
+
+            // Echo Charm - Available after Skeletron
+            if (NPC.downedBoss_1) // Check if Skeletron has been defeated (NPC.downedBoss_1 is for Skeletron)
+            {
+                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<EchoCharm>()); // Set the item type
+                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 5); // Set example price
+                 nextSlot++; // Increment the slot for the next item
+            }
+
+            // Shimmering Dust - Available after entering Hardmode AND in the Aether
+            // Assuming AetherBiome is a custom ModBiome you have defined elsewhere in your mod
+            if (Main.hardMode && Main.LocalPlayer.InModBiome<AetherBiome>()) // Check Hardmode and Aether biome
+            {
+                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<ShimmeringDust>()); // Set the item type
+                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(silver: 50); // Set example price
+                 nextSlot++; // Increment the slot for the next item
+            }
+
+            // Nameless Emblem - Available post-Mech Bosses
+            if (NPC.downedMechBossAny) // Check if any Mechanical Boss has been defeated
+            {
+                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<NamelessEmblem>()); // Set the item type
+                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(platinum: 1); // Set platinum price
+                 nextSlot++; // Increment the slot for the next item
+            }
+
+            // Whispering Blade - Available Post-Plantera
+            if (NPC.downedPlantBoss) // Check if Plantera has been defeated
+            {
+                 shop.item[nextSlot].SetDefaults(ModContent.ItemType<WhisperingBlade>()); // Set the item type
+                 shop.item[nextSlot].shopCustomPrice = Item.buyPrice(gold: 50); // Set example price
+                 nextSlot++; // Increment the slot for the next item
+            }
+
+            // You would add other items here if needed
+            // Remember to increment nextSlot after adding each item
+        }
+
+        // This method defines the NPC's town NPC conditions (when it can spawn)
+        // Since this NPC has no conditions, this method can be left with default implementation,
+        // or you could explicitly return true if you wanted to ensure it always attempts to spawn.
+        public override bool CanTownNPCSpawn(int numTownNPCs, int livingTownNPCs)
+        {
+            // This NPC has no specific spawn conditions, so it can always potentially spawn
+            return true;
+        }
+
+        // This method defines the NPC's attack behavior (if they have one)
+        // public override void TownNPCAttackStrength(ref int damage, ref float knockback) { /* ... */ }
+        // public override void TownNPCAttackSwing(ref int itemWidth, ref int itemHeight) { /* ... */ }
+        // public override void TownNPCAttackProj(ref int projType, ref int attackDelay) { /* ... */ }
+        // public override void TownNPCAttackProjSpeed(ref float speed, ref float norProjSpeed) { /* ... */ }
+
+        // You would add code here for custom AI if needed, but AIStyle 7 is usually sufficient for a basic town NPC
+        // public override void AI() { /* ... */ }
+
+        // You would add code here for custom drawing if needed
+        // public override void DrawEffects(ref Color drawColor) { /* ... */ }
+    }
+
+    // You would need to define the AetherBiome if it's a custom biome
+    // Example (requires creating a ModBiome class in a separate file, e.g., AetherBiome.cs):
+    /*
+    using Terraria.ModLoader;
+    using Terraria.ID;
+    using Terraria;
+    using Microsoft.Xna.Framework;
+
+    namespace Spiritrum.Content.Biomes // Example namespace for biomes
+    {
+        public class AetherBiome : ModBiome
+        {
+            public override int BiomeTorchItemType => ItemID.BlueTorch; // Example torch
+            public override int BiomeCampfireItemType => ItemID.Campfire; // Example campfire
+            public override string BestiaryIcon => "Spiritrum/Assets/Biomes/AetherBiomeIcon"; // Path to icon (adjust)
+            public override string MapBackground => BackgroundTexture; // Path to map background (adjust)
+            public override string MapColors => MapColor; // Map colors (adjust)
+
+            public override bool IsBiomeActive(Player player)
+            {
+                // Define the conditions for being in the Aether biome
+                // This is a placeholder, you need actual logic based on your biome's tiles/location/background
+                // Example: Check if player is in the underground layer and near world edge
+                bool inAether = false;
+                if (player.ZoneRockLayerHeight && (player.position.X < Main.maxTilesX * 0.1f * 16 || player.position.X > Main.maxTilesX * 0.9f * 16))
+                {
+                     inAether = true; // Placeholder logic
+                }
+                // Add more specific checks here based on your biome's design
+
+                return inAether;
+            }
+        }
+    }
+    */
+}

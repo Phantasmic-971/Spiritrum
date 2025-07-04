@@ -1,0 +1,44 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TheAMod.Content.Items
+{
+    public class LaserBlaster : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Laser Blaster");
+            Tooltip.SetDefault("A post-Plantera magic gun, upgraded from the Laser Gun.");
+        }
+
+        public override void SetDefaults()
+        {
+            Item.damage = 50; // Base damage of the Laser Blaster
+            Item.DamageType = DamageClass.Magic; // Magic weapon
+            Item.mana = 5; // Mana cost per use
+            Item.width = 40; // Sprite width
+            Item.height = 20; // Sprite height
+            Item.useTime = 15; // Speed of use
+            Item.useAnimation = 15; // Animation speed
+            Item.useStyle = ItemUseStyleID.Shoot; // Gun style
+            Item.noMelee = true; // Does not deal melee damage
+            Item.knockBack = 3; // Knockback
+            Item.value = Item.buyPrice(gold: 10); // Value in coins
+            Item.rare = ItemRarityID.Lime; // Post-Plantera rarity
+            Item.UseSound = SoundID.Item33; // Laser sound
+            Item.autoReuse = true; // Automatically reuses
+            Item.shoot = ProjectileID.PurpleLaser; // Shoots purple lasers
+            Item.shootSpeed = 10f; // Speed of the lasers
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.LaserRifle, 1); // Requires 1 Laser Rifle
+            recipe.AddIngredient(ItemID.SpectreBar, 10); // Requires 10 Spectre Bars
+            recipe.AddTile(TileID.MythrilAnvil); // Crafted at a Mythril or Orichalcum Anvil
+            recipe.Register();
+        }
+    }
+}

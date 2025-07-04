@@ -1,0 +1,139 @@
+using System;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria;
+using Terraria.GameContent;
+using Terraria.ModLoader;
+using Terraria.UI;
+using Spiritrum.Players;
+using Spiritrum.Config;
+
+namespace Spiritrum.UI
+{
+    /// <summary>
+    /// Main UI state that manages the custom Mode Slot interface.
+    /// </summary>
+    public class ModeSlotUI : UIState
+    {
+        // The actual slot element that will be displayed
+        private ModeSlotItemSlot modeSlotItemSlot;
+        // The position of the slot on the screen
+        private Vector2 slotPosition = new Vector2(1665f, 700f); // Default position
+
+        /// <summary>
+        /// Called every frame to update the UI state
+        /// </summary>
+        public override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+            this.RemoveAllChildren();
+            if (Main.playerInventory)
+            {
+                // Slot position is updated from config
+                Append(modeSlotItemSlot);
+            }
+        }
+
+        /// <summary>
+        /// Called once when the UI is first initialized
+        /// </summary>
+        public override void OnInitialize()
+        {
+            // Create the item slot element
+            modeSlotItemSlot = new ModeSlotItemSlot(this);
+            
+            // Try to load position from config, fall back to default if config not available
+            float xPosition = 1665f; // Default
+            var config = ModContent.GetInstance<SpiritrumConfig>();
+            if (config != null)
+            {
+                xPosition = config.ModeSlotXPosition;
+            }
+            
+            // Set its initial position
+            modeSlotItemSlot.Left.Set(xPosition, 0f);
+            modeSlotItemSlot.Top.Set(slotPosition.Y, 0f);
+        }
+        
+        /// <summary>
+        /// Updates the UI position based on the config value
+        /// </summary>
+        public void UpdatePosition(int xPosition)
+        {
+            if (modeSlotItemSlot != null)
+            {
+                // Update the slot's X position
+                modeSlotItemSlot.Left.Set(xPosition, 0f);
+                
+                // Keep the original Y position
+                modeSlotItemSlot.Top.Set(slotPosition.Y, 0f);
+                
+                // Force a recalculation of the UI element
+                Recalculate();
+            }
+        }
+    }
+
+    /// <summary>
+    /// The actual item slot UI element
+    /// </summary>
+    public class ModeSlotItemSlot : UIElement
+    {
+        // Reference to the parent UI
+        private readonly ModeSlotUI parentUI;
+
+        public ModeSlotItemSlot(ModeSlotUI parent)
+        {
+            parentUI = parent;
+            Width.Set(52f, 0f);
+            Height.Set(52f, 0f);
+        }
+
+        public override void Draw(SpriteBatch spriteBatch)
+        {
+            base.Draw(spriteBatch);
+            Player player = Main.LocalPlayer;
+            var modPlayer = player.GetModPlayer<ModeSlotPlayer>();
+            CalculatedStyle dimensions = GetDimensions();
+            float slotX = dimensions.X;
+            float slotY = dimensions.Y;
+
+            // Draw slot background
+            spriteBatch.Draw(TextureAssets.InventoryBack.Value, new Vector2(slotX, slotY), Color.White);
+
+            // Draw item if present
+            if (!modPlayer.modeSlotItem.IsAir)
+            {
+                Texture2D itemTexture = TextureAssets.Item[modPlayer.modeSlotItem.type].Value;
+                float scale = 1f;
+                int slotSize = 52;
+                if (itemTexture.Width > 0 && itemTexture.Height > 0)
+                {
+                    scale = Math.Min((float)slotSize / itemTexture.Width, (float)slotSize / itemTexture.Height) * 0.8f;
+                }
+                Vector2 iconPos = new Vector2(
+                    slotX + (slotSize - itemTexture.Width * scale) / 2f,
+                    slotY + (slotSize - itemTexture.Height * scale) / 2f
+                );
+                spriteBatch.Draw(itemTexture, iconPos, null, Color.White, 0f, Vector2.Zero, scale, SpriteEffects.None, 0f);
+            }
+
+            // Handle mouse interaction
+            if (IsMouseHovering)
+            {
+                Main.hoverItemName = modPlayer.modeSlotItem.IsAir ? "Mode Accessory Slot" : modPlayer.modeSlotItem.Name;
+                
+                // Handle item swap
+                if (Main.mouseLeftRelease && Main.mouseLeft)
+                {
+                    if (Main.mouseItem.IsAir || (Main.mouseItem.accessory && Main.mouseItem.Name.Contains("Mode")))
+                    {
+                        Utils.Swap(ref modPlayer.modeSlotItem, ref Main.mouseItem);
+                    }
+                }
+            }
+        }
+
+        public override int CompareTo(object obj) => 0;
+    }
+}

@@ -1,0 +1,36 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TheAMod.Content.Items
+{
+    public class GelaticCrown : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Gelatic Crown");
+            Tooltip.SetDefault("RARE DROP! Increases movement speed and jump speed by 30% and grants immunity to fall damage");
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 28; // Adjust to match the sprite dimensions
+            Item.height = 28; // Adjust to match the sprite dimensions
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Pink; // Rarity matching post-King Slime items
+            Item.value = Item.buyPrice(gold: 5); // Adjust value as needed
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.moveSpeed += 0.3f; // Increases movement speed by 30%
+            player.jumpSpeedBoost += 3f; // Increases jump speed significantly
+            player.noFallDmg = true; // Grants immunity to fall damage
+        }
+
+        public override void AddRecipes()
+        {
+            // No recipe as it is a drop from King Slime
+        }
+    }
+}

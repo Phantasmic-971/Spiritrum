@@ -1,0 +1,121 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System;
+
+namespace Spiritrum.Content.Items.Weapons // Replace YourModNamespace with your mod's actual namespace
+{
+    // This class defines the Whispering Blade melee weapon
+    public class WhisperingBlade : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Whispering Blade"); // Old way
+            DisplayName.SetDefaults("Whispering Blade"); // Set the item's name
+            Tooltip.SetDefault("Each strike has a chance to confuse enemies.\nOccasionally releases a piercing shadowy projectile that inflicts Shadowflame."); // Set the item's tooltip
+
+            // This makes the item a melee weapon
+            ItemID.Sets.ToolTipDamageMultiplier[Type] = 1f; // Adjust tooltip damage multiplier if needed
+            ItemID.Sets.ItemsThatAllowUnlimitedCraftingThroughAMaterialThatIsInTheEntireGame[Type] = true; // Example, not necessary
+        }
+
+        public override void SetDefaults()
+        {
+            Item.damage = 80; // Base damage (adjust for Hardmode, Post-Plantera)
+            Item.DamageType = DamageClass.Melee; // Set damage type to melee
+            Item.width = 40; // Item texture width (adjust)
+            Item.height = 40; // Item texture height (adjust)
+            Item.useTime = 20; // Use time (how fast it swings)
+            Item.useAnimation = 20; // Use animation time
+            Item.useStyle = ItemUseStyleID.Swing; // Use a swinging animation
+            Item.knockBack = 6; // Knockback value
+            Item.crit = 4; // Base critical strike chance
+            Item.rare = ItemRarityID.Lime; // Set rarity (Lime is typically Post-Plantera)
+            Item.value = Item.sellPrice(gold: 50); // Set sell price (adjust)
+            Item.UseSound = SoundID.Item1; // Sound when used (swinging sound)
+            Item.autoReuse = true; // Can hold down to swing continuously
+
+            // Projectile properties
+            Item.shoot = ModContent.ProjectileType<WhisperingBladeProjectile>(); // Set the projectile type to shoot
+            Item.shootSpeed = 10f; // Speed of the projectile (adjust)
+        }
+
+        // This method is called when the weapon hits an NPC
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // 15% chance to inflict Confused debuff (adjust chance)
+            if (Main.rand.NextFloat() < 0.15f) // 0.15f = 15% chance
+            {
+                target.AddBuff(BuffID.Confused, 180); // Apply Confused debuff for 3 seconds (180 ticks)
+            }
+        }
+
+        // This method is called when the weapon is used, allowing custom projectile spawning
+        public override bool Shoot(Player player, Terraria.DataStructures.EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback)
+        {
+            // Occasionally release a shadowy projectile (e.g., 30% chance)
+            if (Main.rand.NextFloat() < 0.30f) // 0.30f = 30% chance
+            {
+                // Spawn the projectile
+                Projectile.NewProjectile(source, position, velocity, type, damage, knockback, player.whoAmI);
+            }
+
+            // Return true to allow the default projectile (if Item.shoot is set) to also fire,
+            // or return false if you only want your custom projectile to fire.
+            // Since the projectile is occasional, we return false here to only fire it on the chance.
+            return false;
+        }
+
+        // You would need a ModProjectile class to define the shadowy projectile
+    }
+
+    // This class defines the shadowy projectile fired by the Whispering Blade
+    public class WhisperingBladeProjectile : ModProjectile
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Shadowy Burst"); // Old way
+            DisplayName.SetDefaults("Shadowy Burst"); // Set projectile name
+            ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5; // Number of trail points
+            ProjectileID.Sets.TrailingMode[Projectile.type] = 0; // Trail mode
+        }
+
+        public override void SetDefaults()
+        {
+            Projectile.width = 16; // Projectile hitbox width (adjust)
+            Projectile.height = 16; // Projectile hitbox height (adjust)
+            Projectile.aiStyle = 1; // Use a standard projectile AI (adjust if needed)
+            Projectile.friendly = true; // Projectile damages enemies
+            Projectile.hostile = false; // Projectile does not damage players
+            Projectile.DamageType = DamageClass.Melee; // Projectile scales with melee damage
+            Projectile.penetrate = -1; // Projectile pierces infinitely
+            Projectile.timeLeft = 300; // Projectile lifetime in ticks (5 seconds)
+            Projectile.ignoreWater = true; // Projectile is not affected by water
+            Projectile.tileCollide = true; // Projectile collides with tiles
+            Projectile.extraUpdates = 1; // Makes projectile faster/smoother (adjust)
+
+            AIType = ProjectileID.Bullet; // Use bullet AI as a base (adjust if needed)
+        }
+
+        // This method is called every tick the projectile is active
+        public override void AI()
+        {
+            // You can add custom visual effects here, like dust
+            if (Main.rand.NextBool(2)) // 1 in 2 chance to spawn dust each tick
+            {
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Shadowflame, Projectile.velocity.X * 0.2f, Projectile.velocity.Y * 0.2f, 100, default(Color), 1f);
+            }
+        }
+
+        // This method is called when the projectile hits an NPC
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // Apply the Shadowflame debuff
+            target.AddBuff(BuffID.ShadowFlame, 300); // Apply Shadowflame debuff for 5 seconds (300 ticks)
+        }
+
+        // You can add custom drawing code if needed
+        // public override bool PreDraw(ref Color lightColor) { /* ... */ }
+    }
+}

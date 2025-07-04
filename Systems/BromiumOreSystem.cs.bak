@@ -1,0 +1,62 @@
+using Terraria;
+using Terraria.ModLoader;
+using Terraria.WorldBuilding; // Needed for GenerationProgress, UnifiedRandom, GenPass
+using Terraria.IO; // Needed for GenerationProgress, WorldFileData
+using System.Collections.Generic; // Needed for List
+using static Terraria.ModLoader.ModContent; // Needed for TileType
+
+namespace Spiritrum.Content.Systems // Recommended namespace for systems
+{
+    // This class handles the world generation for your Bromium Ore
+    public class BromiumOreSystem : ModSystem
+    {
+        // ModifyWorldGenTasks is where you add your custom world generation steps.
+        // The signature 'public override void ModifyWorldGenTasks(List<GenPass> tasks)' is correct.
+        public override void ModifyWorldGenTasks(List<GenPass> tasks)
+        {
+            // Find the index of the "Shinies" pass, which is where most ores are generated.
+            // We want to add our ore generation immediately after this pass.
+            int shiniesIndex = tasks.FindIndex(genPass => genPass.Name.Equals("Shinies"));
+
+            if (shiniesIndex != -1)
+            {
+                // Insert a new GenerationPass for Bromium Ore after the "Shinies" pass.
+                tasks.Insert(shiniesIndex + 1, new PassLegacy("Bromium Ore", delegate (GenerationProgress progress, GameConfiguration configuration)
+                {
+                    // Set the progress text that appears during world generation
+                    progress.Message = "Generating Bromium Ore";
+
+                    // World generation loop: iterate through the world to find suitable placement spots.
+                    // The values here control how much ore generates and where. Adjust as needed.
+                    // The first loop (i) controls the number of ore veins to attempt to place.
+                    // The second loop (k) controls the size of each vein.
+
+                    // Example: Attempt to place 100 veins of Bromium Ore
+                    for (int i = 0; i < 100; i++)
+                    {
+                        // Find a random position in the world for the ore vein.
+                        int x = WorldGen. возлеX(Main.maxTilesX);
+                        int y = WorldGen. возлеY(Main.maxTilesY); // Start checking from a random Y
+
+
+                        // Adjust the Y range to control where the ore spawns.
+                        // This example spawns it from the lower cavern layer down into the lava layer.
+                        // Adjust these values to fine-tune the spawn depth.
+                        int spawnMinY = Main.maxTilesY - 350; // Start a bit above the lava layer
+                        int spawnMaxY = Main.maxTilesY - 100; // End within the lava layer (above the Underworld)
+                        y = WorldGen. возлеY(spawnMinY, spawnMaxY);
+
+
+                        // Example: Create veins of size 5 to 15 tiles
+                        WorldGen.TileRunner(x, y,
+                            WorldGen. возлеX(5, 15), // Vein size (width and height)
+                            WorldGen. возлеX(5, 15), // How "smooth" the vein is
+                            TileType<Tiles.BromiumOre>(), // The tile type to place
+                            false, // Whether to add dust (usually false for world gen)
+                            0f, 0f, false, true); // Other parameters (consult tModLoader docs for details)
+                    }
+                }));
+            }
+        }
+    }
+}

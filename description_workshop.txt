@@ -1,0 +1,45 @@
+The Spectrum Mod started as a joke mod that adds a bit of content with old sprites I made in the past years.
+but it soon changed to a regular mod with lore.
+
+Dimensional Shifts, 1.0
+Official release from beta
+Adds:
+-1 Armor set
+-2 Weapon
+-1 Ore
+-1 Bar
+
+Adds:
+114 Items
+42 weapons
+6 tools
+3 armor set
+7 buffs
+34 accesories
+-4 special mode accesories
+-21 Ideologies
+2 new special slots
+-Ideology
+-Mode
+3 ores
+11 materials
+9 consumable
+3 ammunition
+7 tiles
+1 Town NPC
+1 post Lunatic Boss (Still in the works)
+1 enemy
+
+Compatible mods:
+TerMerica
+
+Discord server: https://discord.gg/CsAThSKm
+TerMerica (You should 100% try it out): https://steamcommunity.com/sharedfiles/filedetails/?id=3342472615&searchtext=termerica
+
+
+References:
+Brome
+https://www.youtube.com/@bromex_
+GEoD Mapping
+https://www.youtube.com/@GodEmperorofDrip
+Rebornium (A good friend)

@@ -1,0 +1,720 @@
+Mods: {
+	Spiritrum: {
+		Tiles: {
+			BromiumOre.MapEntry: Bromium Ore
+			VoidHarbingerTrophyTile.MapEntry: Void Harbinger Trophy Tile
+			ReborniumOreTile.MapEntry: Rebornium Ore Tile
+			IBISTile.MapEntry: I B I S Tile
+			ThePhoneTile.MapEntry: The Phone Tile
+			FrozoniteOreTile.MapEntry: Frozonite Ore Tile
+		}
+
+		Items: {
+			Anarchy: {
+				DisplayName: Anarchy
+				Tooltip: ""
+			}
+
+			Autism: {
+				DisplayName: Autism
+				Tooltip: ""
+			}
+
+			BasicPolitics: {
+				DisplayName: Basic Politics
+				Tooltip: ""
+			}
+
+			Brome: {
+				DisplayName: Brome Mode
+				Tooltip: ""
+			}
+
+			BromiumBar: {
+				DisplayName: Bromium Bar
+				Tooltip: ""
+			}
+
+			BromiumSlayer: {
+				DisplayName: Bromium Slayer
+				Tooltip: ""
+			}
+
+			Centralism: {
+				DisplayName: Centralism
+				Tooltip: ""
+			}
+
+			Communism: {
+				DisplayName: Communism
+				Tooltip: ""
+			}
+
+			Conservatism: {
+				DisplayName: Conservatism
+				Tooltip: ""
+			}
+
+			Democracy: {
+				DisplayName: Democracy
+				Tooltip: ""
+			}
+
+			Fascism: {
+				DisplayName: Fascism
+				Tooltip: ""
+			}
+
+			GelaticCrown: {
+				DisplayName: Gelatic Crown
+				Tooltip: ""
+			}
+
+			GEoT: {
+				DisplayName: GEoT Mode
+				Tooltip: ""
+			}
+
+			LaserBlaster: {
+				DisplayName: Laser Blaster
+				Tooltip: ""
+			}
+
+			Liberalism: {
+				DisplayName: Liberalism
+				Tooltip: ""
+			}
+
+			LMG: {
+				DisplayName: L M G
+				Tooltip: ""
+			}
+
+			Manifesto: {
+				DisplayName: Manifesto
+				Tooltip: ""
+			}
+
+			MapleSyrupBurner: {
+				DisplayName: Maple Syrup Burner
+				Tooltip: ""
+			}
+
+			MapleSyrup: {
+				DisplayName: Maple Syrup
+				Tooltip: ""
+			}
+
+			Phantasmic: {
+				DisplayName: Phantasmic
+				Tooltip: ""
+			}
+
+			BromiumOre: {
+				DisplayName: Bromium Ore
+				Tooltip: ""
+			}
+
+			Socialism: {
+				DisplayName: Socialism
+				Tooltip: ""
+			}
+
+			Spectralite: {
+				DisplayName: Spectralite
+				Tooltip: ""
+			}
+
+			SpectreSword: {
+				DisplayName: Spectre Sword
+				Tooltip: ""
+			}
+
+			TerMerica: {
+				DisplayName: TerMerica Mode
+				Tooltip: ""
+			}
+
+			AncientKatana: {
+				DisplayName: Ancient Katana
+				Tooltip: ""
+			}
+
+			Bromecalibur: {
+				DisplayName: Bromecalibur
+				Tooltip: ""
+			}
+
+			TeBromeBlade: {
+				DisplayName: TeBrome Blade
+				Tooltip: ""
+			}
+
+			BromiumStaff: {
+				DisplayName: Bromium Staff
+				Tooltip: ""
+			}
+
+			WhisperingBlade: {
+				Tooltip: ""
+				DisplayName: Whispering Blade
+			}
+
+			NamelessEmblem: {
+				Tooltip: ""
+				DisplayName: Nameless Emblem
+			}
+
+			EchoCharm: {
+				Tooltip: ""
+				DisplayName: Echo Charm
+			}
+
+			ShimmeringDust: {
+				Tooltip: ""
+				DisplayName: Shimmering Dust
+			}
+
+			BrokenBlaster: {
+				DisplayName: Broken Blaster
+				Tooltip: ""
+			}
+
+			BromiumRepeater: {
+				DisplayName: Bromium Repeater
+				Tooltip: ""
+			}
+
+			BromiumRifle: {
+				DisplayName: Bromium Rifle
+				Tooltip: ""
+			}
+
+			Phantasmo: {
+				DisplayName: Phantasmo
+				Tooltip: ""
+			}
+
+			ElBartoMode: {
+				DisplayName: El Barto Mode
+				Tooltip: ""
+			}
+
+			Authoritarianism: {
+				DisplayName: Authoritarianism
+				Tooltip: ""
+			}
+
+			Capitalism: {
+				DisplayName: Capitalism
+				Tooltip: ""
+			}
+
+			Communitarianism: {
+				DisplayName: Communitarianism
+				Tooltip: ""
+			}
+
+			Corporatism: {
+				DisplayName: Corporatism
+				Tooltip: ""
+			}
+
+			Environmentalism: {
+				DisplayName: Environmentalism
+				Tooltip: ""
+			}
+
+			Libertarianism: {
+				DisplayName: Libertarianism
+				Tooltip: ""
+			}
+
+			SocialDemocracy: {
+				DisplayName: Social Democracy
+				Tooltip: ""
+			}
+
+			Transhumanism: {
+				DisplayName: Transhumanism
+				Tooltip: ""
+			}
+
+			EchoingLancer: {
+				DisplayName: Echoing Lancer
+				Tooltip: ""
+			}
+
+			NamelessCodex: {
+				DisplayName: Nameless Codex
+				Tooltip: ""
+			}
+
+			Bolter: {
+				DisplayName: Bolter
+				Tooltip: ""
+			}
+
+			AnthraxGasGrenade: {
+				DisplayName: Anthrax Gas Grenade
+				Tooltip: ""
+			}
+
+			Anthrax: {
+				DisplayName: Anthrax
+				Tooltip: ""
+			}
+
+			TemporalWrench: {
+				Tooltip: ""
+				DisplayName: Temporal Wrench
+			}
+
+			TemporalClock: {
+				DisplayName: Temporal Clock
+				Tooltip: ""
+			}
+
+			TimeLacedThrowingGears: {
+				DisplayName: Time Laced Throwing Gears
+				Tooltip: ""
+			}
+
+			AgeEmblem: {
+				Tooltip: ""
+				DisplayName: Age Emblem
+			}
+
+			PocketwatchCore: {
+				DisplayName: Pocketwatch Core
+				Tooltip: ""
+			}
+
+			ApprenticeChronoVisor: {
+				DisplayName: Apprentice Chrono Visor
+				Tooltip: ""
+			}
+
+			ApprenticeChronoLeggings: {
+				DisplayName: Apprentice Chrono Leggings
+				Tooltip: ""
+			}
+
+			ApprenticeChronoPlating: {
+				Tooltip: ""
+				DisplayName: Apprentice Chrono Plating
+			}
+
+			TemporalElixir: {
+				DisplayName: Temporal Elixir
+				Tooltip: ""
+			}
+
+			TimeFluxCapacitor: {
+				DisplayName: Time Flux Capacitor
+				Tooltip: ""
+			}
+
+			SpectralBrew: {
+				DisplayName: Spectral Brew
+				Tooltip: ""
+			}
+
+			VoidCatalyst: {
+				DisplayName: Void Catalyst
+				Tooltip: ""
+			}
+
+			Futurism: {
+				DisplayName: Futurism
+				Tooltip: ""
+			}
+
+			Technocracy: {
+				DisplayName: Technocracy
+				Tooltip: ""
+			}
+
+			VoidHarbingerTrophy: {
+				DisplayName: Void Harbinger Trophy
+				Tooltip: ""
+			}
+
+			VoidEssence: {
+				DisplayName: Void Essence
+				Tooltip: ""
+			}
+
+			ChronoDisruptor: {
+				DisplayName: Chrono Disruptor
+				Tooltip: ""
+			}
+
+			VoidResonator: {
+				DisplayName: Void Resonator
+				Tooltip: ""
+			}
+
+			AquaEssence: {
+				DisplayName: Aqua Essence
+				Tooltip: ""
+			}
+
+			ChronoFlame: {
+				DisplayName: Chrono Flame
+				Tooltip: ""
+			}
+
+			ClayEssence: {
+				DisplayName: Clay Essence
+				Tooltip: ""
+			}
+
+			FireCrystal: {
+				DisplayName: Fire Crystal
+				Tooltip: ""
+			}
+
+			MagmaCore: {
+				DisplayName: Magma Core
+				Tooltip: ""
+			}
+
+			SteamCrystal: {
+				DisplayName: Steam Crystal
+				Tooltip: ""
+			}
+
+			TemporalFlux: {
+				DisplayName: Temporal Flux
+				Tooltip: ""
+			}
+
+			TerraCore: {
+				DisplayName: Terra Core
+				Tooltip: ""
+			}
+
+			MaterialFusionTable: {
+				DisplayName: Material Fusion Table
+				Tooltip: ""
+			}
+
+			BromiumEnchantment: {
+				DisplayName: Bromium Enchantment
+				Tooltip: ""
+			}
+
+			RebornSword: {
+				Tooltip: ""
+				DisplayName: Reborn Sword
+			}
+
+			UltimateIdeology: {
+				Tooltip: ""
+				DisplayName: Ultimate Ideology
+			}
+
+			WorstIdeology: {
+				Tooltip: ""
+				DisplayName: Worst Ideology
+			}
+
+			KrakenBolt: {
+				Tooltip: ""
+				DisplayName: Kraken Bolt
+			}
+
+			TerBromeBlade: {
+				Tooltip: ""
+				DisplayName: Ter Brome Blade
+			}
+
+			FabMode: {
+				Tooltip: ""
+				DisplayName: Fab Mode
+			}
+
+			ArmBlaster: {
+				Tooltip: ""
+				DisplayName: Arm Blaster
+			}
+
+			ArmBlasterV2: {
+				DisplayName: Arm Blaster V2
+				Tooltip: ""
+			}
+
+			Blaster: {
+				DisplayName: Blaster
+				Tooltip: ""
+			}
+
+			ArmBlasterV3: {
+				Tooltip: ""
+				DisplayName: Arm Blaster V3
+			}
+
+			BlasterV2: {
+				DisplayName: Blaster V2
+				Tooltip: ""
+			}
+
+			BlasterV3: {
+				DisplayName: Blaster V3
+				Tooltip: ""
+			}
+
+			ReborniumHammer: {
+				DisplayName: Rebornium Hammer
+				Tooltip: ""
+			}
+
+			ReborniumAxe: {
+				Tooltip: ""
+				DisplayName: Rebornium Axe
+			}
+
+			ReborniumPickaxe: {
+				DisplayName: Rebornium Pickaxe
+				Tooltip: ""
+			}
+
+			RebornBow: {
+				DisplayName: Reborn Bow
+				Tooltip: ""
+			}
+
+			TheMag: {
+				Tooltip: ""
+				DisplayName: The Mag
+			}
+
+			GoogBlaster: {
+				Tooltip: ""
+				DisplayName: Goog Blaster
+			}
+
+			PeanutButter: {
+				DisplayName: Peanut Butter
+				Tooltip: ""
+			}
+
+			Poutine: {
+				DisplayName: Poutine
+				Tooltip: ""
+			}
+
+			SkiDooKey: {
+				DisplayName: Ski Doo Key
+				Tooltip: ""
+			}
+
+			LumberJaxe: {
+				DisplayName: Lumber Jaxe
+				Tooltip: ""
+			}
+
+			Hockarang: {
+				DisplayName: Hockarang
+				Tooltip: ""
+			}
+
+			GeotMode: {
+				DisplayName: Geot Mode
+				Tooltip: ""
+			}
+
+			AntlerRifle: {
+				DisplayName: Antler Rifle
+				Tooltip: ""
+			}
+
+			RossRifle: {
+				DisplayName: Ross Rifle
+				Tooltip: ""
+			}
+
+			HuotRifle: {
+				DisplayName: Huot Rifle
+				Tooltip: ""
+			}
+
+			CryoCoth: {
+				DisplayName: Cryo Coth
+				Tooltip: ""
+			}
+
+			IBIS: {
+				DisplayName: I B I S
+				Tooltip: ""
+			}
+
+			ThePhone: {
+				Tooltip: ""
+				DisplayName: The Phone
+			}
+
+			TheyStoleEverythingFromUsMode: {
+				DisplayName: They Stole Everything From Us Mode
+				Tooltip: ""
+			}
+
+			IrisBlossomStaff: {
+				Tooltip: ""
+				DisplayName: Iris Blossom Staff
+			}
+
+			IrisCrossShield: {
+				DisplayName: Iris Cross Shield
+				Tooltip: ""
+			}
+
+			SnowyOwlStaff: {
+				DisplayName: Snowy Owl Staff
+				Tooltip: ""
+			}
+
+			Equinox: {
+				DisplayName: Equinox
+				Tooltip: ""
+			}
+
+			FrozoniteChestplate: {
+				Tooltip: ""
+				DisplayName: Frozonite Chestplate
+			}
+
+			FrozoniteHeadgear: {
+				DisplayName: Frozonite Headgear
+				Tooltip: ""
+			}
+
+			FrozoniteSkates: {
+				DisplayName: Frozonite Skates
+				Tooltip: ""
+			}
+
+			FrozoniteBar: {
+				DisplayName: Frozonite Bar
+				Tooltip: ""
+			}
+
+			FrozoniteOre: {
+				DisplayName: Frozonite Ore
+				Tooltip: ""
+			}
+
+			ElectromanBlade: {
+				Tooltip: ""
+				DisplayName: Electroman Blade
+			}
+		}
+
+		Projectiles: {
+			BromiumStaffProjectile.DisplayName: Bromium Staff Projectile
+			WhisperingBladeProjectile.DisplayName: Whispering Blade Projectile
+			EchoingLancerArrow.DisplayName: Echoing Lancer Arrow
+			NamelessCodexProjectile.DisplayName: Nameless Codex Projectile
+			AnthraxProjectile.DisplayName: Anthrax Projectile
+			ChronoPulseProjectile.DisplayName: Chrono Pulse Projectile
+			TimeLacedThrowingGearsProjectile.DisplayName: Time Laced Throwing Gears Projectile
+			VoidHarbingerBossProjectile.DisplayName: Void Harbinger Boss Projectile
+			VoidResonatorProjectile.DisplayName: Void Resonator Projectile
+			VoidExplosionProjectile.DisplayName: Void Explosion Projectile
+			BromiumCircle.DisplayName: Bromium Circle
+			SkeletronFireball.DisplayName: Skeletron Fireball
+			TwinarangFlameProjectile.DisplayName: Twinarang Flame Projectile
+			TwinarangLaserProjectile.DisplayName: Twinarang Laser Projectile
+			TwinarangProjectile.DisplayName: Twinarang Projectile
+			PhantomArrowProjectile.DisplayName: Phantom Arrow Projectile
+			GoogBlast_Projectile.DisplayName: Goog Blast_ Projectile
+			Hockarang_Projectile.DisplayName: Hockarang_ Projectile
+			IrisBlossomStaffProjectile.DisplayName: Iris Blossom Staff Projectile
+			SnowyOwlStaffProjectile.DisplayName: Snowy Owl Staff Projectile
+			EquinoxDrill.DisplayName: Equinox Drill
+			EquinoxSpear.DisplayName: Equinox Spear
+			EquinoxDash.DisplayName: Equinox Dash
+		}
+
+		NPCs: {
+			NamelessNPC: {
+				TownNPCMood: {
+					Princess_LovesNPC: I like {NPCName}.
+					LikeNPC_Princess: I like {NPCName}.
+					HateCrowded: I hate how crowded I am.
+					DislikeCrowded: I dislike how crowded I am.
+					LoveSpace: I love having so much space.
+					FarFromHome: I am too far from home.
+					NoHome: I hate not having a home.
+					Content: I am content.
+				}
+
+				DisplayName: Nameless N P C
+				Census.SpawnCondition: Conditions unknown
+			}
+
+			VoidHarbinger.DisplayName: Void Harbinger
+			EvilGoog.DisplayName: Evil Goog
+		}
+
+		Buffs: {
+			ShimmeringDustBuff: {
+				Description: Mods.Spiritrum.Buffs.ShimmeringDustBuff.Description
+				DisplayName: Shimmering Dust Buff
+			}
+
+			EchoCharmBuff: {
+				Description: Mods.Spiritrum.Buffs.EchoCharmBuff.Description
+				DisplayName: Echo Charm Buff
+			}
+
+			CharmingEcho: {
+				DisplayName: Charming Echo
+				Description: Mods.Spiritrum.Buffs.CharmingEcho.Description
+			}
+
+			ShimmeredDust: {
+				DisplayName: Shimmered Dust
+				Description: Mods.Spiritrum.Buffs.ShimmeredDust.Description
+			}
+
+			TemporalDashCooldown: {
+				DisplayName: Temporal Dash Cooldown
+				Description: Mods.Spiritrum.Buffs.TemporalDashCooldown.Description
+			}
+
+			Accelerated: {
+				DisplayName: Accelerated
+				Description: Mods.Spiritrum.Buffs.Accelerated.Description
+			}
+
+			Spectral: {
+				DisplayName: Spectral
+				Description: Mods.Spiritrum.Buffs.Spectral.Description
+			}
+
+			SkiDooBuff: {
+				DisplayName: Ski Doo Buff
+				Description: Mods.Spiritrum.Buffs.SkiDooBuff.Description
+			}
+
+			BulletEvidence: {
+				DisplayName: Bullet Evidence
+				Description: Mods.Spiritrum.Buffs.BulletEvidence.Description
+			}
+
+			SnowyOwlStaffBuff: {
+				DisplayName: Snowy Owl Staff Buff
+				Description: Mods.Spiritrum.Buffs.SnowyOwlStaffBuff.Description
+			}
+		}
+
+		DamageClasses: {
+			TimeDamageClass.DisplayName: Time Damage Class
+			TimeDamage.DisplayName: Time Damage
+		}
+
+		"Keybinds.Temporal Shift Dash.DisplayName": Temporal  Shift  Dash
+	}
+}

@@ -1,0 +1,46 @@
+# Boss and Items Related to Void Harbinger
+Items: {
+	VoidCatalyst: {
+		DisplayName: Void Catalyst
+		Tooltip:
+			'''
+			Summons the Void Harbinger
+			Only usable at night
+			'An unstable crystallized fragment of the void between dimensions'
+			'''
+	}
+
+	VoidEssence: {
+		DisplayName: Void Essence
+		Tooltip:
+			'''
+			A mysterious substance from another dimension
+			Emanates an otherworldly energy
+			'The raw essence of the void itself'
+			'''
+	}
+
+	VoidHarbingerBanner: {
+		DisplayName: Void Harbinger Banner
+		Tooltip: Nearby players get a bonus against: Void Harbinger
+	}
+
+	VoidHarbingerTrophy: {
+		DisplayName: Void Harbinger Trophy
+		Tooltip: "'A testament to your victory over the cosmic horror'"
+	}
+}
+
+NPCs: {
+	VoidHarbinger: {
+		DisplayName: Void Harbinger
+		BossHeadText: Void Harbinger
+	}
+}
+
+Tiles.VoidHarbingerTrophyTile.MapEntry: Void Harbinger Trophy
+
+Projectiles: {
+	VoidHarbingerProjectile.DisplayName: Void Bolt
+	VoidHarbingerBossProjectile.DisplayName: Void Harbinger Bolt
+}

@@ -1,0 +1,42 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+
+namespace TheAMod.Content.Items
+{
+    public class Democracy : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            DisplayName.SetDefault("Democracy");
+            Tooltip.SetDefault("Grants the power of Democracy: +5 defense, +10% movement speed, -5% damage taken, +2 life regeneration, and +5% critical strike chance.");
+        }
+
+        public override void SetDefaults()
+        {
+            Item.width = 24; // Adjust to match the sprite dimensions
+            Item.height = 24; // Adjust to match the sprite dimensions
+            Item.accessory = true;
+            Item.rare = ItemRarityID.Pink; // Post-Skeletron rarity
+            Item.value = Item.buyPrice(gold: 10); // Adjust value as needed
+        }
+
+        public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+            player.statDefense += 2; // Increases defense by 2
+            player.moveSpeed += 0.5f; // Increases movement speed by 5%
+            player.endurance += 0.05f; // Reduces damage taken by 5%
+            player.lifeRegen += 1; // Increases life regeneration
+            player.GetCritChance(DamageClass.Generic) += 3; // Increases crit chance by 3%
+        }
+
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Bone, 20); // Requires 20 Bones
+            recipe.AddIngredient(ItemID.Silk, 10); // Requires 10 Silk
+            recipe.AddTile(TileID.Anvils); // Crafted at an Anvil
+            recipe.Register();
+        }
+    }
+}

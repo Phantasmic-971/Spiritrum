@@ -1,0 +1,288 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+Items: {
+	SpectreSword: {
+	}
+
+	Democracy: {
+	}
+
+	MapleSyrupBurner: {
+	}
+
+	LaserBlaster: {
+	}
+
+	GelaticCrown: {
+	}
+
+	Communism: {
+	}
+
+	Fascism: {
+	}
+
+	Politics: {
+		Tooltip:
+			'''
+			You are a politician: +5 defense, +15% movement speed, -10% damage taken
+			+4 life regeneration, +5% critical chance, and +12% damage
+			Allies gain +3 defense, +2 life regeneration, and +5% damage.
+			'''
+		DisplayName: Politics
+	}
+
+	TerMerica: {
+	}
+
+	Spectralite: {
+	}
+
+	Anarchy: {
+	}
+
+	BasicPolitics: {
+	}
+
+	Conservatism: {
+	}
+
+	Liberalism: {
+	}
+
+	Socialism: {
+	}
+
+	Centralism: {
+	}
+
+	LMG: {
+	}
+
+	GEoT: {
+	}
+
+	Autism: {
+	}
+
+	Manifesto: {
+	}
+
+	BromeMode: {
+		DisplayName: Brome Mode
+		Tooltip: ""
+	}
+
+	Phantasmic: {
+	}
+
+	BromiumBar: {
+	}
+
+	BromiumOre: {
+	}
+
+	BromiumSlayer: {
+	}
+
+	AncientKatana: {
+	}
+
+	Bromecalibur: {
+	}
+
+	TeBromeBlade: {
+	}
+
+	GEoTMode: {
+		DisplayName: G Eo T Mode
+		Tooltip: ""
+	}
+
+	BromiumPickaxe: {
+		DisplayName: Bromium Pickaxe
+		Tooltip: ""
+	}
+
+	BromiumHelmet: {
+		SetBonus: Mods.Spiritrum.Items.BromiumHelmet.SetBonus
+		DisplayName: Bromium Helmet
+		Tooltip: ""
+	}
+
+	BromiumChestplate: {
+		DisplayName: Bromium Chestplate
+		Tooltip: ""
+	}
+
+	BromiumLeggings: {
+		DisplayName: Bromium Leggings
+		Tooltip: ""
+	}
+
+	BromiumHamAxe: {
+		DisplayName: Bromium Ham Axe
+		Tooltip: ""
+	}
+
+	BromiumBlaster: {
+		DisplayName: Bromium Blaster
+		Tooltip: ""
+	}
+
+	HoneyPot: {
+		Tooltip: ""
+		DisplayName: Honey Pot
+	}
+
+	ChronoPulseEmitter: {
+		DisplayName: Chrono Pulse Emitter
+		Tooltip: ""
+	}
+
+	TheGrimWraith: {
+		DisplayName: The Grim Wraith
+		Tooltip:
+			'''
+			A blade forged from the very essence of darkness
+			Drops from the Void Harbinger
+			Builds up a combo counter with each hit
+			Every third hit triggers a void explosion
+			The void hungers for souls at night
+			'''
+	}
+
+	ReborniumBar: {
+		Tooltip: ""
+		DisplayName: Rebornium Bar
+	}
+
+	ReborniumOre: {
+		DisplayName: Rebornium Ore
+		Tooltip: ""
+	}
+
+	Bolt: {
+		DisplayName: Bolt
+		Tooltip: Standard ammunition for the Bolter
+		Tooltip2: Explodes on impact, dealing additional damage to nearby enemies
+	}
+
+	Twinarang: {
+		DisplayName: Twinarang
+		Tooltip: "'A powerful boomerang infused with the essence of The Twins'"
+		Tooltip2: Left-click: Throws a boomerang that fires cursed flames in four directions
+		Tooltip3: Right-click: Throws a boomerang that rapidly fires lasers in two directions
+		Tooltip4: Has infinite pierce and can pass through tiles
+		Tooltip5: 5% drop chance from The Twins
+	}
+
+	NamelessParasite: {
+		DisplayName: Nameless Parasite
+		Tooltip: Summons a crimson parasite to fight for you
+		Tooltip2: An otherworldly organism that seems to feed on your enemies' blood
+	}
+
+	FurryClaw: {
+		DisplayName: Furry Claw
+		Tooltip: "'Rapidly shreds through your enemies'"
+		Tooltip2: Very low damage but extremely fast attack speed
+	}
+
+	SkullBow: {
+		DisplayName: Skull Bow
+		Tooltip: "'The bones of Skeletron, reforged into a deadly bow'"
+		Tooltip2: Uses arrows as ammunition
+		Tooltip3: A post-Skeletron weapon
+	}
+
+	ReborniumMask: {
+		DisplayName: Rebornium Mask
+		Tooltip: "'A mask forged from the mysterious green metal'"
+		Tooltip2: Increases maximum mana by 20
+		SetBonus:
+			'''
+			5% increased damage and critical strike chance
+			Small chance to heal when hitting enemies
+			'''
+	}
+
+	ReborniumChestplate: {
+		DisplayName: Rebornium Chestplate
+		Tooltip: "'Pulsing with the energy of rebirth'"
+		Tooltip2: Increases maximum life by 10
+	}
+
+	ReborniumLeggings: {
+		DisplayName: Rebornium Leggings
+		Tooltip: "'The metal feels almost alive against your skin'"
+		Tooltip2: Increases movement speed by 8%
+	}
+
+	RoPro9000: {
+		DisplayName: RoPro9000
+		Tooltip: "'An unstable magical device that creates concentrated dust explosions'"
+		Tooltip2: Creates a powerful close-range dust explosion
+	}
+
+	Googling: {
+		DisplayName: Googling
+		Tooltip: Goog...
+	}
+
+	GoogBlast: {
+		DisplayName: Goog Blast
+		Tooltip: Goog...
+	}
+
+	TheMag: {
+	}
+
+	BromeBlaster: {
+		DisplayName: Brome Blaster
+		Tooltip: ""
+	}
+
+	ElectromanBlade: {
+	}
+}
+
+Buffs: {
+	NamelessParasiteBuff: {
+		DisplayName: Nameless Parasite
+		Description: The crimson parasite will fight for you
+	}
+
+	SkiDooBuff: {
+	}
+}
+
+Projectiles: {
+	NamelessParasiteMinion.DisplayName: Nameless Parasite
+	CrimsonDart.DisplayName: Crimson Dart
+}
+
+Prefixes: {
+	AbsoluteCinema.DisplayName: Absolute Cinema
+	AbsoluteCinemaPrefix.DisplayName: Absolute Cinema Prefix
+	Accelerated.DisplayName: Accelerated
+	Temporal.DisplayName: Temporal
+	Chronos.DisplayName: Chronos
+}
+
+Configs: {
+	SpiritrumConfig: {
+		DisplayName: Spiritrum Configuration
+		Headers.UIPositioning: UI Positioning
+
+		IdeologySlotXPosition: {
+			Label: Ideology Slot X Position
+			Tooltip: Horizontal position of the Ideology slot UI element
+		}
+
+		ModeSlotXPosition: {
+			Label: Mode Slot X Position
+			Tooltip: Horizontal position of the Mode slot UI element
+		}
+	}
+}

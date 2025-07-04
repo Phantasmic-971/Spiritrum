@@ -1,0 +1,75 @@
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+
+namespace Spiritrum.Content.Items.Consumables // Replace YourModNamespace with your mod's actual namespace
+{
+    // This class defines the Shimmering Dust consumable item
+    public class ShimmeringDust : ModItem
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Shimmering Dust"); // Old way
+            DisplayName.SetDefaults("Shimmering Dust"); // Set the item's name
+            Tooltip.SetDefault("Temporarily increases movement speed and jump height.\nLeaves a trail of sparkling dust."); // Set the item's tooltip
+
+            // This makes the item a consumable
+            Item.consumable = true;
+            Item.useStyle = ItemUseStyleID.DrinkLiquid; // Use a drinking animation
+            Item.useAnimation = 17; // Animation time
+            Item.useTime = 17; // Use time
+            Item.maxStack = Item.CommonMaxStack; // Standard max stack size
+            Item.width = 16; // Item texture width (adjust)
+            Item.height = 16; // Item texture height (adjust)
+            Item.rare = ItemRarityID.LightRed; // Set rarity (LightRed is Hardmode)
+            Item.value = Item.sellPrice(silver: 50); // Set sell price (adjust)
+            Item.UseSound = SoundID.Item3; // Sound when used (drinking sound)
+        }
+
+        // This method is called when the item is used
+        public override bool? UseItem(Player player)
+        {
+            // Apply the buff that grants the effects
+            player.AddBuff(ModContent.BuffType<ShimmeringDustBuff>(), 60 * 60); // Apply buff for 60 seconds (60 ticks/sec * 60 sec)
+
+            // Return true to indicate the item was used successfully
+            return true;
+        }
+
+        // You would need a ModBuff class to handle the movement speed and jump height increase
+    }
+
+    // This class defines the buff applied by Shimmering Dust
+    public class ShimmeringDustBuff : ModBuff
+    {
+        public override void SetStaticDefaults()
+        {
+            // DisplayName.SetDefault("Shimmering Speed"); // Old way
+            DisplayName.SetDefaults("Shimmering Speed"); // Set buff name
+            Description.SetDefault("Movement speed and jump height increased.\nLeaving a sparkling trail."); // Set buff description
+            Main.buffNoSave[Type] = true; // Buff doesn't save on logout
+            Main.debuff[Type] = false; // Not a debuff
+            BuffID.Sets.NurseCancelPatient[Type] = false; // Nurse won't remove this buff
+        }
+
+        // This method is called every tick while the player has the buff
+        public override void Update(Player player, ref int buffIndex)
+        {
+            // Increase movement speed by 25%
+            player.moveSpeed += 0.25f; // Add 25% to player's movement speed multiplier
+            player.runAcceleration *= 1.25f; // Increase acceleration too for better feel
+            player.maxRunSpeed *= 1.25f; // Increase max run speed
+
+            // Increase jump height (this is often done by modifying jump speed or number of jumps)
+            // A simple way is to increase jump speed
+            player.jumpSpeedBoost += 1.5f; // Add a boost to jump speed (adjust value)
+
+            // Leave a trail of sparkling dust
+            if (Main.rand.NextBool(3)) // 1 in 3 chance to spawn dust each tick
+            {
+                Dust.NewDust(player.position, player.width, player.height, DustID.Sparkle, player.velocity.X * 0.5f, player.velocity.Y * 0.5f, 150, default(Color), 1f);
+            }
+        }
+    }
+}
