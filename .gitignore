@@ -1,0 +1,30 @@
+# Visual Studio and build artifacts
+bin/
+obj/
+*.user
+*.suo
+*.ncb
+*.VC.db
+*.VC.opendb
+
+# tModLoader-specific
+*.tmod
+*.log
+
+# Build output folders
+**/bin/
+**/obj/
+
+# Ignore temporary files and IDE directories
+*.tmp
+*.temp
+*.bak
+*.swp
+*.vsp
+.vscode/
+.idea/
+
+# OS-specific files
+Thumbs.db
+desktop.ini
+.DS_Store
