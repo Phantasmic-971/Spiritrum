@@ -34,8 +34,13 @@ namespace Spiritrum.Content.Items.Modes
 			player.noKnockback = true; // Grants immunity to knockback
 
 			player.GetDamage(DamageClass.Generic) -= 0.60f; // -60% damage
-			player.statManaMax2 = 0; // Effectively removes mana
-			player.maxMinions -= 100; // Effectively removes summon slots
+			// Force mana and minion slots to exactly 0 regardless of other effects
+			player.statMana = 0;
+			player.manaRegenBonus -= 400; // Apply -400 mana regeneration
+			player.manaRegen = 0; // Set base mana regen to 0
+			player.manaRegenDelay = 120; // Keep mana regen on extended cooldown
+			player.maxMinions = 0;
+			player.numMinions = 0;
 			player.GetCritChance(DamageClass.Generic) -= 200; // Effectively removes critical chance
 		}
 

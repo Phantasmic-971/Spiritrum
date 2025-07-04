@@ -1514,6 +1514,20 @@
         <member name="M:Terraria.DataStructures.TileEntity.TryGet``1(Terraria.DataStructures.Point16,``0@)">
             <inheritdoc cref="M:Terraria.DataStructures.TileEntity.TryGet``1(System.Int32,System.Int32,``0@)"/>
         </member>
+        <member name="P:Terraria.DataStructures.TileObjectPreviewData.Alternate">
+            <inheritdoc cref="F:Terraria.TileObject.alternate"/>
+        </member>
+        <member name="P:Terraria.DataStructures.TileObjectPreviewData.Coordinates">
+            <summary>
+            The top left tile coordinate of this preview. Not necessarily the top left of the tile itself since the dimensions of this object also include space for the anchors of the selected placement style. Add <see cref="P:Terraria.DataStructures.TileObjectPreviewData.ObjectStart"/> to get the top left tile.
+            <see cref="P:Terraria.DataStructures.TileObjectPreviewData.Item(System.Int32,System.Int32)"/>
+            </summary>
+        </member>
+        <member name="P:Terraria.DataStructures.TileObjectPreviewData.Item(System.Int32,System.Int32)">
+            <summary>
+            The placement validity data. Values of 0 are ignored, 1 means the tile or anchor at the tile coordinate offset by Coordinates is valid, and 2 means it is invalid.
+            </summary>
+        </member>
         <member name="T:Terraria.DataStructures.TileRestingInfo">
             <summary>
             Holds data required for offsetting an entity when it rests on a tile (sitting/sleeping).
@@ -1822,13 +1836,17 @@
             </summary>
         </member>
         <member name="F:Terraria.Enums.AnchorType.SolidTile">
-            <summary> Solid tiles: <see cref="F:Terraria.Main.tileSolid"/> but not <see cref="F:Terraria.Main.tileSolidTop"/>, <see cref="F:Terraria.Main.tileNoAttach"/>, or sloped (unless <see cref="P:Terraria.ObjectData.TileObjectData.FlattenAnchors"/> is true). </summary>
+            <summary> Solid tiles: <see cref="F:Terraria.Main.tileSolid"/> but not <see cref="F:Terraria.Main.tileSolidTop"/>, <see cref="F:Terraria.Main.tileNoAttach"/>, or sloped (unless <see cref="P:Terraria.ObjectData.TileObjectData.FlattenAnchors"/> is true).
+            <br/><br/> Sloped solid tiles that are not sloped on the side being anchored to are covered by <see cref="F:Terraria.Enums.AnchorType.SolidSide"/>. </summary>
         </member>
         <member name="F:Terraria.Enums.AnchorType.SolidWithTop">
             <summary> Platforms with a top surface and tiles that are <see cref="F:Terraria.Main.tileSolid"/> and <see cref="F:Terraria.Main.tileSolidTop"/> (such as <see cref="F:Terraria.ID.TileID.PlanterBox"/> and <see cref="F:Terraria.ID.TileID.MetalBars"/>) </summary>
         </member>
         <member name="F:Terraria.Enums.AnchorType.Table">
             <summary> Table tiles: <see cref="F:Terraria.Main.tileTable"/> but not <see cref="F:Terraria.ID.TileID.Sets.Platforms"/>. Also includes <see cref="F:Terraria.Enums.AnchorType.SolidWithTop"/> tiles. </summary>
+        </member>
+        <member name="F:Terraria.Enums.AnchorType.SolidSide">
+            <summary> Solid tiles with full side facing the tile: <see cref="F:Terraria.Main.tileSolid"/> but not <see cref="F:Terraria.Main.tileSolidTop"/>. The tile can be sloped as long as the side being anchored to isn't sloped. </summary>
         </member>
         <member name="F:Terraria.Enums.AnchorType.AlternateTile">
             <summary> The tile is contained in <see cref="P:Terraria.ObjectData.TileObjectData.AnchorAlternateTiles"/> </summary>
@@ -3846,7 +3864,8 @@
         <member name="F:Terraria.ID.ItemID.Sets.Deprecated">
             <summary>
             If <see langword="true"/> for a given item type (<see cref="F:Terraria.Item.type"/>), then that item cannot exist normally: It will be destroyed at the end of <see cref="M:Terraria.Item.SetDefaults(System.Int32)"/>.
-            <br/> Defaults to <see langword="false"/>.
+            <br/><br/> Defaults to <see langword="false"/>.
+            <br/><br/> Modifying this set is not recommended. Currently deprecating existing items will potentially break the crafting functionality (See the <see href="https://github.com/tModLoader/tModLoader/issues/2487">corresponding issue</see> for more information).
             </summary>
         </member>
         <member name="F:Terraria.ID.ItemID.Sets.NeverAppearsAsNewInInventory">
@@ -5549,6 +5568,13 @@
             Useful if you have a multi-segmented boss and want its parts to draw over the main body (body will be in this set).
             </summary>
         </member>
+        <member name="F:Terraria.ID.NPCID.Sets.IsTownChild">
+            <summary>
+            If true, the given Town NPC won't drop a tombstone on death in hardcore mode and will have the "NPC has left!" death message unless specified otherwise by <see cref="P:Terraria.ModLoader.ModNPC.DeathMessage"/>.
+            <br/> This does NOT affect the gore spawned when the NPC dies.
+            <para/> Defaults to <see langword="false"/>.
+            </summary>
+        </member>
         <member name="F:Terraria.ID.NPCID.Sets.ActsLikeTownNPC">
             <summary>
             Whether or not a given NPC will act like a town NPC in terms of AI, animations, and attacks, but not in other regards, such as appearing on the minimap, like the bone merchant in vanilla.
@@ -7171,6 +7197,18 @@
             </summary>
             <remarks> <!-- No matching elements were found for the following include tag --><include file="CommonDocs.xml" path="Common/CreateNamedXSetFinalKeyC" /> </remarks>
         </member>
+        <member name="F:Terraria.ID.SlopeType.SlopeDownLeft">
+            <summary> Only the bottom and left sides are solid. </summary>
+        </member>
+        <member name="F:Terraria.ID.SlopeType.SlopeDownRight">
+            <summary> Only the bottom and right sides are solid. </summary>
+        </member>
+        <member name="F:Terraria.ID.SlopeType.SlopeUpLeft">
+            <summary> Only the top and left sides are solid. </summary>
+        </member>
+        <member name="F:Terraria.ID.SlopeType.SlopeUpRight">
+            <summary> Only the top and right sides are solid. </summary>
+        </member>
         <member name="F:Terraria.ID.TileID.Sets.IceSkateSlippery">
             <summary>
             If <see langword="true"/> for a given tile type (<see cref="P:Terraria.Tile.TileType"/>), then players will slip on that tile.
@@ -7266,6 +7304,16 @@
             <summary>
             Indicates that this tile can't be replaced with another tile via the block swap feature.
             <br/> Use <see cref="M:Terraria.ModLoader.ModTile.CanReplace(System.Int32,System.Int32,System.Int32)"/> or <see cref="M:Terraria.ModLoader.GlobalTile.CanReplace(System.Int32,System.Int32,System.Int32,System.Int32)"/> to dynamically prevent tile replacement for situations with more complex logic.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.TileID.Sets.ReplaceTileBreakUp">
+            <summary>
+            If this tile is above a tile being replaced via the block swap feature, it will be destroyed. Contains various plant tiles.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.TileID.Sets.ReplaceTileBreakDown">
+            <summary>
+            If this tile is below a tile being replaced via the block swap feature, it will be destroyed. Contains various vine tiles.
             </summary>
         </member>
         <member name="F:Terraria.ID.TileID.Sets.DrawsWalls">
@@ -7365,6 +7413,12 @@
         <member name="F:Terraria.ID.TileID.Sets.InteractibleByNPCs">
             <summary>
             If true, Town NPCs might occasionally palm their hand at this tile, suggesting that they are using the tile. Crafting stations typically set this. Some tiles that set this include <see cref="F:Terraria.ID.TileID.Furnaces"/>, <see cref="F:Terraria.ID.TileID.Sawmill"/>, and <see cref="F:Terraria.ID.TileID.AlchemyTable"/>.
+            </summary>
+        </member>
+        <member name="F:Terraria.ID.TileID.Sets.BreakableWhenPlacing">
+            <summary>
+            If true, this tile will be broken when placing another tile at its location. To also break by weapons and projectiles, use <see cref="F:Terraria.Main.tileCut"/> instead. Contains various ambient object tiles such as rock piles, larger plants, coral, and stalactites. Does not include the "fake" tiles placeable by the rubblemaker.
+            <br/><br/> Defaults to false.
             </summary>
         </member>
         <member name="F:Terraria.ID.TileID.Sets.Suffocate">
@@ -7564,6 +7618,11 @@
         </member>
         <member name="F:Terraria.ID.TileID.Search">
             <inheritdoc cref="T:ReLogic.Reflection.IdDictionary"/>
+        </member>
+        <member name="F:Terraria.ID.WallID.Sets.BlendType">
+            <summary>
+            <strong>Unused.</strong> Used to populate <see cref="F:Terraria.Main.wallBlend"/> for vanilla walls. Not used for modded walls, use Main.wallBlend instead.
+            </summary>
         </member>
         <member name="F:Terraria.ID.WallID.Search">
             <inheritdoc cref="T:ReLogic.Reflection.IdDictionary"/>
@@ -9445,7 +9504,8 @@
         </member>
         <member name="F:Terraria.Main.tileCut">
             <summary>
-            If true, Tiles of the indexed Tile Type will be destroyed by weapons and projectiles. <see cref="M:Terraria.ModLoader.ModProjectile.CanCutTiles"/> can be used to customize if a projectile should destroy tiles with this property.
+            If true, Tiles of the indexed Tile Type will be destroyed by weapons and projectiles. These tiles will also be destroyed when placing a tile at it's location, see also <see cref="F:Terraria.ID.TileID.Sets.BreakableWhenPlacing"/>, which is limited to breaking this tile only by tile placement. <see cref="M:Terraria.ModLoader.ModProjectile.CanCutTiles"/> can be used to customize if a projectile should destroy tiles with this property.
+            <br/><br/> Defaults to false.
             </summary>
         </member>
         <member name="F:Terraria.Main.tileShine">
@@ -9461,6 +9521,18 @@
         <member name="F:Terraria.Main.wallHouse">
             <summary>
             If true, the wall is considered "safe" for enemy spawning purposes.
+            </summary>
+        </member>
+        <member name="F:Terraria.Main.wallLight">
+            <summary>
+            If true, light flows in from the background, such as fences and glass.
+            </summary>
+        </member>
+        <member name="F:Terraria.Main.wallBlend">
+            <summary>
+            Set to a wall type to "blend" with that wall. All walls sharing the same value are considered to be the same wall type when blending. By default, a faint black line is drawn between walls of different types to transition between them. Walls that blend will not have this line drawn. 
+            <br/><br/> This is most commonly used to blend safe and unsafe wall variants, although there are some exceptions. All variants that should blend together should set this to a common shared base variant. The base variant does not need to set this. For example, <see cref="F:Terraria.ID.WallID.GreenDungeonUnsafe"/>, <see cref="F:Terraria.ID.WallID.GreenDungeonTileUnsafe"/>, and <see cref="F:Terraria.ID.WallID.GreenDungeonSlabUnsafe"/> all set this to <see cref="F:Terraria.ID.WallID.GreenDungeon"/> allowing all 4 wall types to be considered to be <see cref="F:Terraria.ID.WallID.GreenDungeon"/> and blend together.
+            <br/><br/> Defaults to it's own wall type, meaning it does not blend with any other wall (unless another wall is set to this wall's type.
             </summary>
         </member>
         <member name="F:Terraria.Main.tileAxe">
@@ -9528,6 +9600,18 @@
             <para/> A value of 2 results in a 2x2 pattern used by Lunar Rust Brick (<see cref="F:Terraria.ID.TileID.LunarBrick"/>) and others:<code>1 2
             3 4 </code>
             The <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#custom-tile-variation">Basic Tile wiki guide</see> has diagrams of these options.
+            </summary>
+        </member>
+        <member name="F:Terraria.Main.wallLargeFrames">
+            <summary>
+            When set to 1 or 2, this wall will use a tiled pattern for the wall variation rather than the random <see cref="P:Terraria.Tile.WallFrameNumber"/> choice (The info below counts from 1 rather than 0 for illustrative purposes). Defaults to 0.
+            <para/> A value of 1 ("Phlebas") results in a 3x4 pattern used by Copper Plating Wall (<see cref="F:Terraria.ID.WallID.CopperPlating"/>) and others: <code>2 4 2
+            1 3 1
+            2 2 4
+            1 1 3 </code>
+            <para/> A value of 2 ("Lazure") results in a 2x2 pattern used by Lunar Brick Wall (<see cref="F:Terraria.ID.WallID.LunarBrickWall"/>) and others:<code>1 2
+            3 4 </code>
+            The <see href="https://github.com/tModLoader/tModLoader/wiki/Wall#texture">Wall wiki guide</see> has diagrams of these options.
             </summary>
         </member>
         <member name="F:Terraria.Main.tileNoAttach">
@@ -10155,11 +10239,27 @@
             This probably will need optimization down the road.
             </summary>
         </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.ModdedIsItemSlotUnlockedAndUsable(System.Int32,Terraria.Player)">
+            <summary>
+            Checks if the ModAccessorySlot at the given index is enabled. Does not account for the functional or vanity slots individually being disabled due to conflicts arising from shared accessory slots.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.ModdedIsSpecificItemSlotUnlockedAndUsable(System.Int32,Terraria.Player,System.Boolean)">
+            <summary>
+            Like <see cref="M:Terraria.ModLoader.AccessorySlotLoader.ModdedIsItemSlotUnlockedAndUsable(System.Int32,Terraria.Player)"/>, except this also checks if the functional or vanity slot specifically is disabled due to conflicts arising from switching loadouts while using shared accessory slots.
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.AccessorySlotLoader.ModSlotCheck(Terraria.Item,System.Int32,System.Int32)">
             <summary>
             Checks if the provided item can go in to the provided slot.
             Includes checking if the item already exists in either of Player.Armor or ModSlotPlayer.exAccessorySlot
             Invokes directly ItemSlot.AccCheck &amp; ModSlot.CanAcceptItem
+            Note that this doesn't check for conflicts of shared slots with the items of other loadouts, that check is done in <see cref="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.DetectConflictsWithSharedSlots"/> to prevent a confusing user experience. The accessory slot acts like a disabled slot while in conflict, allowing the player to choose how to fix the issue.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.AccessorySlotLoader.IsAccessoryInConflict(Terraria.Player,Terraria.Item,System.Int32,System.Int32)">
+            <summary>
+            Similar to <see cref="M:Terraria.ModLoader.AccessorySlotLoader.ModSlotCheck(Terraria.Item,System.Int32,System.Int32)"/> except it ignores the item in <paramref name="slot"/> since that item is being passed in as <paramref name="checkItem"/>.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.AccessorySlotLoader.ModifyDefaultSwapSlot(Terraria.Item,System.Int32@)">
@@ -11078,6 +11178,39 @@
             Handles conversion of legacy 1.3 world unloaded tile TML TagCompound data to the newer 1.4+ systems.
             </summary>
         </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exAccessorySlot">
+            <summary> <see cref="T:Terraria.ModLoader.ModAccessorySlot"/> corollary to the accessory and vanity slots of <see cref="F:Terraria.Player.armor"/>. </summary>
+        </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exDyesAccessory">
+            <summary> <see cref="T:Terraria.ModLoader.ModAccessorySlot"/> corollary to <see cref="F:Terraria.Player.dye"/>. </summary>
+        </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exHideAccessory">
+            <summary> <see cref="T:Terraria.ModLoader.ModAccessorySlot"/> corollary to <see cref="F:Terraria.Player.hideVisibleAccessory"/>. </summary>
+        </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.slots">
+            <summary> All slots that can potentially show for this user. First the loaded ModAccessorySlots, followed by any unloaded slots. </summary>
+        </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.sharedLoadoutSlotTypes">
+            <summary> Which slots are shared, indexed by ModAccessorySlot.Type </summary>
+        </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exLoadouts">
+            <inheritdoc cref="T:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout"/>
+        </member>
+        <member name="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.extraItems">
+            <summary> Holds items from a saved <see cref="T:Terraria.ModLoader.ModAccessorySlot"/> that changed to not <see cref="P:Terraria.ModLoader.ModAccessorySlot.HasEquipmentLoadoutSupport"/> ("shared") and would otherwise be lost. Will be returned to the player when entering a world. </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Default.ModAccessorySlotPlayer.SlotCount">
+            <summary>
+            Total modded slots to show, including UnloadedAccessorySlot at the end.
+            On the local instance of a ModAccessorySlotPlayer, this might have extra entries not present on remote clients.
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Default.ModAccessorySlotPlayer.LoadedSlotCount">
+            <summary>
+            Total loaded modded slots.
+            This does not include UnloadedAccessorySlot entries. This value is used for network syncing since this will be consistent between clients.
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.UpdateVisibleAccessories">
             <summary>
             Updates functional slot visibility information on the player for Mod Slots, in a similar fashion to Player.UpdateVisibleAccessories()
@@ -11098,6 +11231,32 @@
             <summary>
             Runs a simplified version of Player.UpdateEquips for the Modded Accessory Slots
             </summary>
+        </member>
+        <member name="T:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout">
+            <summary>
+            <see cref="T:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout"/> holds loadout items for loadouts not in use. <see cref="T:Terraria.ModLoader.ModAccessorySlot"/> corollary to <see cref="T:Terraria.EquipmentLoadout"/>.
+            Note that when a loadout is selected, the items in <see cref="T:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout"/> are swapped into <see cref="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exAccessorySlot"/>, etc. and the loadout is left with empty Item instances. The active loadout items are stored on the player and the <see cref="T:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout"/> is left empty, this is the same approach used for vanilla loadouts as well (<see cref="F:Terraria.Player.Loadouts"/>).
+            </summary>
+        </member>
+        <member name="P:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout.ExAccessorySlot">
+            <inheritdoc cref="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exAccessorySlot"/>
+        </member>
+        <member name="P:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout.ExDyesAccessory">
+            <inheritdoc cref="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exDyesAccessory"/>
+        </member>
+        <member name="P:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout.ExHideAccessory">
+            <inheritdoc cref="F:Terraria.ModLoader.Default.ModAccessorySlotPlayer.exHideAccessory"/>
+        </member>
+        <member name="M:Terraria.ModLoader.Default.ModAccessorySlotPlayer.ExEquipmentLoadout.LoadData(Terraria.ModLoader.IO.TagCompound,System.Collections.Generic.List{System.String},System.Collections.Generic.Dictionary{System.String,System.Int32},System.Boolean[])">
+            <summary>
+            Loads data for this loadout and updates this instance accordingly.
+            Returns a collection of <see cref="T:Terraria.Item"/>s, which were not added to the loadout,
+            because <see cref="P:Terraria.ModLoader.ModAccessorySlot.HasEquipmentLoadoutSupport"/> changed since the last save.
+            </summary>
+            <param name="tag">The <see cref="T:Terraria.ModLoader.IO.TagCompound"/> from which to load the data</param>
+            <param name="order">Saved slot names in order.</param>
+            <param name="slots">Slot name to slot info mapping.</param>
+            <param name="sharedLoadoutSlotTypes">Slots that don't have loadout support</param>
         </member>
         <member name="T:Terraria.ModLoader.Default.PylonShopNPC">
             <summary>
@@ -13400,7 +13559,6 @@
         <member name="M:Terraria.ModLoader.GlobalItem.CanEquipAccessory(Terraria.Item,Terraria.Player,System.Int32,System.Boolean)">
             <summary>
             Allows you to disallow the player from equipping an accessory. Return false to disallow equipping the accessory. Returns true by default.
-            <para/> Called on the local client only.
             </summary>
             <param name="item">The item that is attempting to equip.</param>
             <param name="player">The player.</param>
@@ -13411,7 +13569,6 @@
             <summary>
             Allows you to prevent similar accessories from being equipped multiple times. For example, vanilla Wings.
             Return false to have the currently equipped item swapped with the incoming item - ie both can't be equipped at same time.
-            <para/> Called on the local client only.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.GlobalItem.ExtractinatorUse(System.Int32,System.Int32,System.Int32@,System.Int32@)">
@@ -14144,6 +14301,13 @@ PostAI()</code>
             <param name="damageMult"></param>
             <param name="defense"></param>
         </member>
+        <member name="M:Terraria.ModLoader.GlobalNPC.ModifyDeathMessage(Terraria.NPC,Terraria.Localization.NetworkText@,Microsoft.Xna.Framework.Color@)">
+            <summary>
+            Allows you to modify the death message of a town NPC or boss. This also affects what the dropped tombstone will say in the case of a town NPC. The text color can also be modified.
+            <para/> When modifying the death message, use <see cref="M:Terraria.NPC.GetFullNetName"/> to retrieve the NPC name to use in substitutions.
+            <para/> Return false to skip the vanilla code for sending the message. This is useful if the death message is handled by this method or if the message should be skipped for any other reason, such as if there are multiple bosses. Returns true by default.
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.GlobalNPC.TownNPCAttackStrength(Terraria.NPC,System.Int32@,System.Single@)">
             <summary>
             Allows you to determine the damage and knockback of a town NPC's attack before the damage is scaled. (More information on scaling in GlobalNPC.BuffTownNPCs.)
@@ -14662,7 +14826,7 @@ PostAI()</code>
             step succeed regardless. Returns null by default.
             </summary>
             <remarks>
-            Note that you may also change the the default npc count value if for some reason you wish to change the default
+            Note that you may also change the default npc count value if for some reason you wish to change the default
             amount of NPCs required to satisfy ALL pylons (if they adhere to what value it is).
             </remarks>
             <param name="pylonInfo"> The internal information pertaining to the current pylon being teleported to or from. </param>
@@ -14837,6 +15001,37 @@ PostAI()</code>
             <param name="j">The y position in tile coordinates.</param>
             <param name="type">The Tile type of the tile being drawn</param>
             <param name="spriteBatch">The SpriteBatch that should be used for all draw calls</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalTile.PreDrawPlacementPreview(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Vector2@,Microsoft.Xna.Framework.Color@,System.Boolean,Microsoft.Xna.Framework.Graphics.SpriteEffects@)">
+            <summary>
+            Allows you to draw behind this multi-tile's regular placement preview rendering, or change relevant drawing parameters. This is ran for each rendered section of the multi-tile.
+            <br/><br/> Make sure to use <paramref name="frame"/> for logic rather than the TileFrameX/Y values of the tile at the provided coordinates, this tile isn't placed yet.
+            <br/><br/> Return false to stop this section from drawing normally. Returns true by default.
+            </summary>
+            <param name="i">The x position in tile coordinates.</param>
+            <param name="j">The y position in tile coordinates.</param>
+            <param name="type">The Tile type of the preview that will be drawn.</param>
+            <param name="spriteBatch"></param>
+            <param name="frame">The source rectangle that this section will use for rendering.</param>
+            <param name="position">The position at which this section will be drawn.</param>
+            <param name="color">The color with which this section will be drawn. This is red when overlapping with another tile.</param>
+            <param name="validPlacement">Indicates if the tile can occupy this location.</param>
+            <param name="spriteEffects">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> that will be used to draw this section.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.GlobalTile.PostDrawPlacementPreview(System.Int32,System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Boolean,Microsoft.Xna.Framework.Graphics.SpriteEffects)">
+            <summary>
+            Allows you to draw in front of this multi-tile's placement preview rendering. This is ran for each rendered section of the multi-tile.
+            <br/><br/> Make sure to use <paramref name="frame"/> for logic rather than the TileFrameX/Y values of the tile at the provided coordinates, this tile isn't placed yet.
+            </summary>
+            <param name="i">The x position in tile coordinates.</param>
+            <param name="j">The y position in tile coordinates.</param>
+            <param name="type">The Tile type of the preview that was drawn.</param>
+            <param name="spriteBatch"></param>
+            <param name="frame">The source rectangle that was used for rendering this section.</param>
+            <param name="position">The position at which this section was drawn.</param>
+            <param name="color">The color with which this section was drawn.</param>
+            <param name="validPlacement">Indicates if the tile can occupy this location.</param>
+            <param name="spriteEffects">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> that were used to draw this section.</param>
         </member>
         <member name="M:Terraria.ModLoader.GlobalTile.TileFrame(System.Int32,System.Int32,System.Int32,System.Boolean@,System.Boolean@)">
             <summary>
@@ -16218,6 +16413,17 @@ PostAI()</code>
             A ModAccessorySlot instance represents a net new accessory slot instance. You can store fields in the ModAccessorySlot class.
             </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModAccessorySlot.HasEquipmentLoadoutSupport">
+            <summary>
+            Gets or sets a value indicating whether this slot supports equipment loadouts. If <see langword="false"/>,
+            the slot's item is shared between all loadouts.
+            <br/><br/> Defaults to <see langword="true"/>.
+            <br/><br/> Changing this value requires a reload. This value is not allowed to be different between multiplayer clients or issues will occur.
+            <br/><br/> Changing the value from <see langword="true"/> to <see langword="false"/> will cause the extra items to be spawned on the player when they enter the world.
+            <br/> Changing the value from <see langword="false"/> to <see langword="true"/> will result in the currently selected loadout holding the items.
+            <br/><br/> Slots that don't support loadouts will appear with the default green background texture, as if they were an accessory in loadout #1 or from before loadout support was added to the game.
+            </summary>
+        </member>
         <member name="M:Terraria.ModLoader.ModAccessorySlot.PreDraw(Terraria.ModLoader.AccessorySlotType,Terraria.Item,Microsoft.Xna.Framework.Vector2,System.Boolean)">
             <summary>
             Allows drawing prior to vanilla ItemSlot.Draw code. Return false to NOT call ItemSlot.Draw
@@ -16267,6 +16473,12 @@ PostAI()</code>
         <member name="M:Terraria.ModLoader.ModAccessorySlot.OnMouseHover(Terraria.ModLoader.AccessorySlotType)">
             <summary>
             Allows you to do stuff while the player is hovering over this slot.
+            </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModAccessorySlot.BackgroundDrawColor(Terraria.ModLoader.AccessorySlotType,Microsoft.Xna.Framework.Color@)">
+            <summary>
+            Allows customizing the background texture draw color.
+            <br/><br/> For <see cref="P:Terraria.ModLoader.ModAccessorySlot.HasEquipmentLoadoutSupport"/> slots without a custom texture, the color will already have been adjusted for the current loadout (ItemSlot.GetColorByLoadout), otherwise the color will be <see cref="F:Terraria.Main.inventoryBack"/>, which will oscillate all values between 180 and 240.
             </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModBackgroundStyle.Slot">
@@ -16468,7 +16680,12 @@ PostAI()</code>
             <para/> Defaults to 0, which is <see cref="F:Terraria.ID.DustID.Dirt"/>. To prevent spawning any hit dust, set this to -1 instead. </summary>
         </member>
         <member name="P:Terraria.ModLoader.ModBlockType.VanillaFallbackOnModDeletion">
-            <summary> The vanilla ID of what should replace the instance when a user unloads and subsequently deletes data from your mod in their save file. Defaults to 0. </summary>
+            <summary>
+            The vanilla ID of what should replace the instance when a user unloads and subsequently deletes data from your mod in their save file.
+            <br/><br/> <see cref="F:Terraria.Main.tileFrameImportant"/> tiles attempting to fallback to a vanilla <see cref="F:Terraria.Main.tileFrameImportant"/> tile need to match the layout (FrameX and FrameY values) of the fallback tile so that the resulting tiles aren't broken.
+            <br/><br/> Also note that tiles with ModTileEntity won't be able to fallback to a working vanilla Tile+TileEntity. The user will have to mine and replace the tile to spawn the correct TileEntity.
+            <br/><br/> Defaults to <see cref="F:Terraria.ID.TileID.Dirt"/> (0).
+            </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModBlockType.CreateMapEntryName">
             <summary>
@@ -18260,7 +18477,6 @@ PostAI()</code>
             Allows you to disallow the player from equipping this accessory. Return false to disallow equipping this accessory.
             <para/> Do not use this to check for mutually exclusive accessories being equipped, that check is only possible via <see cref="M:Terraria.ModLoader.ModItem.CanAccessoryBeEquippedWith(Terraria.Item,Terraria.Item,Terraria.Player)"/>
             <para/> Returns <see langword="true"/> by default.
-            <para/> Called on the local client only.
             </summary>
             <param name="player">The player.</param>
             <param name="slot">The inventory slot that the item is attempting to occupy.</param>
@@ -18271,7 +18487,6 @@ PostAI()</code>
             Allows you to prevent similar accessories from being equipped multiple times. For example, vanilla Wings.
             Return false to have the currently equipped item swapped with the incoming item - ie both can't be equipped at same time.
             <para/> This method exists because manually checking <see cref="F:Terraria.Player.armor"/> in <see cref="M:Terraria.ModLoader.ModItem.CanEquipAccessory(Terraria.Player,System.Int32,System.Boolean)"/> will not correctly account for modded accessory slots.
-            <para/> Called on the local client only.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModItem.ExtractinatorUse(System.Int32,System.Int32@,System.Int32@)">
@@ -18717,6 +18932,16 @@ PostAI()</code>
         <member name="P:Terraria.ModLoader.ModNPC.DisplayName">
             <summary> The translations for the display name of this NPC. </summary>
         </member>
+        <member name="P:Terraria.ModLoader.ModNPC.DeathMessage">
+            <summary>
+            Allows you to modify the death message of a town NPC or boss. This also affects what the dropped tombstone will say in the case of a town NPC.
+            <para/> If substitutions are not provided by using <see cref="M:Terraria.Localization.LocalizedText.WithFormatArgs(System.Object[])"/>, the NPC name will be substituted into the "{0}" placeholder.
+            <para/> This won't have any effect if the given NPC isn't a town NPC or a boss.
+            <para/> Returns null by default, with the text being "NPC has been defeated!" for bosses and "NPC was slain..." (or "NPC has left!" if <see cref="F:Terraria.ID.NPCID.Sets.IsTownChild"/> or <see cref="F:Terraria.ID.NPCID.Sets.IsTownPet"/> are set to <see langword="true"/>) for town NPCs.
+            <para/> The keys "Announcement.HasBeenDefeated_Plural" and "Announcement.HasBeenDefeated_Single" will be useful if creating a generic boss defeat message with a custom boss name. For example:
+            <br/> <c>Language.GetText("Announcement.HasBeenDefeated_Plural").WithFormatArgs(Language.GetText("Mods.MyMod.NPCs.MyBoss.TheTriplets"))</c>. Make sure to use GetText instead of GetTextValue when using WithFormatArgs so the message will properly sync.
+            </summary>
+        </member>
         <member name="P:Terraria.ModLoader.ModNPC.Texture">
             <summary>
             The file name of this type's texture file in the mod loader's file space.<br/>
@@ -19018,13 +19243,11 @@ PostAI()</code>
             </summary>
             <param name="npcLoot">A reference to the item drop database for this npc type</param>
         </member>
-        <member name="M:Terraria.ModLoader.ModNPC.BossLoot(System.String@,System.Int32@)">
+        <member name="M:Terraria.ModLoader.ModNPC.BossLoot(System.Int32@)">
             <summary>
-            Allows you to customize what happens when this boss dies, such as which name is displayed in the defeat message and what type of potion it drops.
+            Allows you to customize what happens when this boss dies, as well as letting you modify the type of potion it drops.
             <para/> Called in single player or on the server only.
             </summary>
-            <param name="name"></param>
-            <param name="potionType"></param>
         </member>
         <member name="M:Terraria.ModLoader.ModNPC.CanHitPlayer(Terraria.Player,System.Int32@)">
             <summary>
@@ -19348,6 +19571,14 @@ PostAI()</code>
             <para/> Called in single player or on the server only.
             </summary>
             <param name="toKingStatue">Whether the NPC was teleported to a King or Queen statue.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModNPC.ModifyDeathMessage(Terraria.Localization.NetworkText@,Microsoft.Xna.Framework.Color@)">
+            <summary>
+            Allows you to modify the death message of a town NPC or boss (potentially derived from <see cref="P:Terraria.ModLoader.ModNPC.DeathMessage"/>). This also affects what the dropped tombstone will say in the case of a town NPC. The text color can also be modified.
+            <para/> When modifying the death message, use <see cref="M:Terraria.NPC.GetFullNetName"/> to retrieve the NPC name to use in substitutions.
+            <para/> This is intended for more advanced use cases, you should be modifying only <see cref="P:Terraria.ModLoader.ModNPC.DeathMessage"/> for basic usages.
+            <para/> Return false to skip the vanilla code for sending the message. This is useful if the death message is handled by this method or if the message should be skipped for any other reason, such as if there are multiple bosses. Returns true by default.
+            </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModNPC.TownNPCAttackStrength(System.Int32@,System.Single@)">
             <summary>
@@ -20549,8 +20780,10 @@ PostAI()</code>
         </member>
         <member name="M:Terraria.ModLoader.ModPlayer.HideDrawLayers(Terraria.DataStructures.PlayerDrawSet)">
             <summary>
-            Allows you to modify the visibility of layers about to be drawn. Layers can be accessed via <see cref="P:Terraria.ModLoader.PlayerDrawLayerLoader.Layers"/>
-            <para/> Called on local and remote clients.
+            Allows you to modify the visibility of layers about to be drawn. All layers can be accessed via <see cref="P:Terraria.ModLoader.PlayerDrawLayerLoader.Layers"/>. Individual layers can be accessed by the <see cref="T:Terraria.DataStructures.PlayerDrawLayers"/> fields for vanilla layers or <see cref="M:Terraria.ModLoader.ModContent.GetInstance``1"/> for modded layers. The <see cref="M:Terraria.ModLoader.PlayerDrawLayer.Hide"/> method is how a layer can be hidden.
+            <br/><br/> For example: <code>PlayerDrawLayers.Wings.Hide();
+            ModContent.GetInstance&lt;ExamplePlayerDrawLayer&gt;().Hide();</code>
+            <br/><br/> Called on local and remote clients.
             </summary>
             <param name="drawInfo"></param>
         </member>
@@ -20745,6 +20978,14 @@ PostAI()</code>
             <para/> The coordinates correspond to the top left corner of the player position after teleporting.
             <para/> This gets called in <see cref="M:Terraria.Player.CheckForGoodTeleportationSpot(System.Boolean@,System.Int32,System.Int32,System.Int32,System.Int32,Terraria.Player.RandomTeleportationAttemptSettings)"/> and <see cref="M:Terraria.Player.ItemCheck_UseTeleportRod(Terraria.Item)"/>. The <paramref name="context"/> will have a value of "CheckForGoodTeleportationSpot" or "TeleportRod" respectively indicating which type of teleport is being attempted.
             </summary>
+        </member>
+        <member name="M:Terraria.ModLoader.ModPlayer.OnEquipmentLoadoutSwitched(System.Int32,System.Int32)">
+            <summary>
+            Allows to execute some code if the equipment loadout was switched.
+            <br/><br/> Called on the server and on all clients.
+            </summary>
+            <param name="oldLoadoutIndex">The old loadout index.</param>
+            <param name="loadoutIndex">The new loadout index.</param>
         </member>
         <member name="F:Terraria.ModLoader.PrefixCategory.Melee">
             <summary>
@@ -21972,7 +22213,7 @@ PostAI()</code>
         <member name="M:Terraria.ModLoader.ModSystem.ModifyWorldGenTasks(System.Collections.Generic.List{Terraria.WorldBuilding.GenPass},System.Double@)">
             <summary>
             A more advanced option to PostWorldGen, this method allows you modify the list of Generation Passes before a new world begins to be generated. <para/>
-            For example, disabling the "Planting Trees" pass will cause a world to generate without trees. Placing a new Generation Pass before the "Dungeon" pass will prevent the the mod's pass from cutting into the dungeon. <para/>
+            For example, disabling the "Planting Trees" pass will cause a world to generate without trees. Placing a new Generation Pass before the "Dungeon" pass will prevent the mod's pass from cutting into the dungeon. <para/>
             To disable or hide generation passes, please use <see cref="M:Terraria.WorldBuilding.GenPass.Disable"/> and defensive coding.
             <para/> See the <see href="https://github.com/tModLoader/tModLoader/wiki/World-Generation#determining-a-suitable-index">"Determining a suitable index" section of the World Generation wiki guide</see> for more information about how to properly use this for adding new world generation passes.
             </summary>
@@ -22338,6 +22579,35 @@ PostAI()</code>
             <param name="i">The x position in tile coordinates.</param>
             <param name="j">The y position in tile coordinates.</param>
             <param name="spriteBatch"></param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModTile.PreDrawPlacementPreview(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle@,Microsoft.Xna.Framework.Vector2@,Microsoft.Xna.Framework.Color@,System.Boolean,Microsoft.Xna.Framework.Graphics.SpriteEffects@)">
+            <summary>
+            Allows you to draw behind this multi-tile's regular placement preview rendering, or change relevant drawing parameters. This is ran for each rendered section of the multi-tile.
+            <br/><br/> Make sure to use <paramref name="frame"/> for logic rather than the TileFrameX/Y values of the tile at the provided coordinates, this tile isn't placed yet.
+            <br/><br/> Return false to stop this section from drawing normally. Returns true by default.
+            </summary>
+            <param name="i">The x position in tile coordinates.</param>
+            <param name="j">The y position in tile coordinates.</param>
+            <param name="spriteBatch"></param>
+            <param name="frame">The source rectangle that this section will use for rendering.</param>
+            <param name="position">The position at which this section will be drawn.</param>
+            <param name="color">The color with which this section will be drawn. This is red when overlapping with another tile.</param>
+            <param name="validPlacement">Indicates if the tile can occupy this location.</param>
+            <param name="spriteEffects">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> that will be used to draw this section.</param>
+        </member>
+        <member name="M:Terraria.ModLoader.ModTile.PostDrawPlacementPreview(System.Int32,System.Int32,Microsoft.Xna.Framework.Graphics.SpriteBatch,Microsoft.Xna.Framework.Rectangle,Microsoft.Xna.Framework.Vector2,Microsoft.Xna.Framework.Color,System.Boolean,Microsoft.Xna.Framework.Graphics.SpriteEffects)">
+            <summary>
+            Allows you to draw in front of this multi-tile's placement preview rendering. This is ran for each rendered section of the multi-tile.
+            <br/><br/> Make sure to use <paramref name="frame"/> for logic rather than the TileFrameX/Y values of the tile at the provided coordinates, this tile isn't placed yet.
+            </summary>
+            <param name="i">The x position in tile coordinates.</param>
+            <param name="j">The y position in tile coordinates.</param>
+            <param name="spriteBatch"></param>
+            <param name="frame">The source rectangle that was used for rendering this section.</param>
+            <param name="position">The position at which this section was drawn.</param>
+            <param name="color">The color with which this section was drawn.</param>
+            <param name="validPlacement">Indicates if the tile can occupy this location.</param>
+            <param name="spriteEffects">The <see cref="T:Microsoft.Xna.Framework.Graphics.SpriteEffects"/> that were used to draw this section.</param>
         </member>
         <member name="M:Terraria.ModLoader.ModTile.TileFrame(System.Int32,System.Int32,System.Boolean@,System.Boolean@)">
             <summary>
@@ -22766,6 +23036,7 @@ PostAI()</code>
         <member name="T:Terraria.ModLoader.ModWall">
             <summary>
             This class represents a type of wall that can be added by a mod. Only one instance of this class will ever exist for each type of wall that is added. Any hooks that are called will be called by the instance corresponding to the wall type.
+            <br/><br/> The <see href="https://github.com/tModLoader/tModLoader/wiki/Wall">Wall Guide</see> teaches the basics of making a modded wall.
             </summary>
         </member>
         <member name="M:Terraria.ModLoader.ModWall.AddMapEntry(Microsoft.Xna.Framework.Color,Terraria.Localization.LocalizedText)">
@@ -24583,6 +24854,7 @@ PostAI()</code>
             If the NPC does have a given name, this will return the NPC's full name; given name first, then type name.<br/>
             Full name with a given name is given in the format of "X the Y", where X is their given name and Y is their type name.<br/>
             For example, a Stylist might return "Scarlett the Stylist" here; with Scarlett being her given name, and Stylist being her type name.<br/>
+            <para/> For network code, use <see cref="M:Terraria.NPC.GetFullNetName"/> instead to allow the localization to happen for each client in their selected language.
             </summary>
         </member>
         <member name="P:Terraria.NPC.HasGivenName">
@@ -24618,6 +24890,11 @@ PostAI()</code>
             </summary>
             <param name="npcID"></param>
             <returns></returns>
+        </member>
+        <member name="M:Terraria.NPC.GetFullNetName">
+            <summary>
+            Similar to <see cref="P:Terraria.NPC.FullName"/>, but results in a NetworkText instead of a string, making it suitable for network messages allowing the text to be localized on each client using the clients selected language. 
+            </summary>
         </member>
         <member name="M:Terraria.NPC.GetFirstNPCNameOrNull(System.Int32)">
             <summary>
@@ -24768,7 +25045,7 @@ PostAI()</code>
         </member>
         <member name="M:Terraria.NPC.FindFirstNPC(System.Int32)">
             <summary>
-            Returns the index within <see cref="F:Terraria.Main.npc"/> of the the first active NPC in the world of the given NPC type (<see cref="F:Terraria.NPC.type"/>).
+            Returns the index within <see cref="F:Terraria.Main.npc"/> of the first active NPC in the world of the given NPC type (<see cref="F:Terraria.NPC.type"/>).
             </summary>
             <param name="Type"></param>
             <returns></returns>
@@ -25377,14 +25654,14 @@ PostAI()</code>
             <summary>
             Offsets the drawing of this tile in the Y direction. Can be used to draw a tile at a location other than the default. One example is how <see cref="F:Terraria.ID.TileID.Switches"/> appear slightly embedded into the tile they are anchored to. Another example is how the alternate placement of banners for  platforms shifts the drawing up.
             <para/> For modded tiles this affects both the placement preview and placed tiles.
-            <para/> Read <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#non-16-or-18-values">this section on the wiki</see> for a visual explanation of this.
+            <para/> Read <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#drawyoffset">this section on the wiki</see> for a visual explanation of this.
             <para/> Defaults to 0.
             </summary>
         </member>
         <member name="P:Terraria.ObjectData.TileObjectData.DrawXOffset">
             <summary>
             Offsets the drawing of this tile in the X direction. Can be used to draw a tile at a location other than the default. One example is how <see cref="F:Terraria.ID.TileID.Switches"/> appear slightly embedded into the tile they are anchored to.
-            <para/> Read <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#non-16-or-18-values">this section on the wiki</see> for a visual explanation of this.
+            <para/> Read <see href="https://github.com/tModLoader/tModLoader/wiki/Basic-Tile#drawxoffset">this section on the wiki</see> for a visual explanation of this.
             <para/> Defaults to 0.
             </summary>
         </member>
@@ -25428,7 +25705,7 @@ PostAI()</code>
         <member name="P:Terraria.ObjectData.TileObjectData.StyleWrapLimit">
             <summary>
             Defines how many tile placement styles (Number of styles times <see cref="P:Terraria.ObjectData.TileObjectData.StyleMultiplier"/>) will fit into a line (row if <see cref="P:Terraria.ObjectData.TileObjectData.StyleHorizontal"/> is true, column if StyleHorizontal is false) of the spritesheet before wrapping to the next line. This is used for organizational purposes and to keep spritesheets easy to work with.
-            <para/> Defaults to 0, which will be interpreted as 1.
+            <para/> Defaults to 0, which means no wrapping.
             </summary>
         </member>
         <member name="P:Terraria.ObjectData.TileObjectData.StyleWrapLimitVisualOverride">
@@ -25940,6 +26217,11 @@ PostAI()</code>
         </member>
         <member name="F:Terraria.Player.respawnTimer">
             <summary> The amount of time in ticks before this player respawns after death. Most suitably modified in <see cref="M:Terraria.ModLoader.ModPlayer.Kill(System.Double,System.Int32,System.Boolean,Terraria.DataStructures.PlayerDeathReason)"/> </summary>
+        </member>
+        <member name="F:Terraria.Player.hideVisibleAccessory">
+            <summary>
+            Indicates if the corresponding <see cref="F:Terraria.Player.armor"/> accessory is set to be hidden or not. 
+            </summary>
         </member>
         <member name="F:Terraria.Player.controlDownHold">
             <summary> True when the player has been holding <see cref="F:Terraria.Player.controlDown"/> for at least 45 ticks. Used by <see cref="F:Terraria.ID.ItemID.ShimmerCloak"/>. See also <see cref="F:Terraria.Player.holdDownCardinalTimer"/>. </summary>
@@ -26828,11 +27110,6 @@ PostAI()</code>
         <member name="M:Terraria.Player.UpdateVisibleAccessories(Terraria.Item,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Invoked in UpdateVisibleAccessories. Runs common code for both modded slots and vanilla slots based on provided Items.
-            </summary>
-        </member>
-        <member name="M:Terraria.Player.DropItem(Terraria.DataStructures.IEntitySource,Microsoft.Xna.Framework.Vector2,Terraria.Item@)">
-            <summary>
-            Drops the ref'd item from the player at the position, and than turns the ref'd Item to air.
             </summary>
         </member>
         <member name="M:Terraria.Player.GetManaCost(Terraria.Item)">
@@ -28352,25 +28629,25 @@ PostAI()</code>
         </member>
         <member name="P:Terraria.Tile.TopSlope">
             <summary>
-            Whether a tile's <see cref="P:Terraria.Tile.Slope"/> has a solid top side (<see cref="F:Terraria.ID.SlopeType.SlopeDownLeft"/> or <see cref="F:Terraria.ID.SlopeType.SlopeDownRight"/>).<br/>
+            If the top side of a tile is sloped (<see cref="P:Terraria.Tile.Slope"/>), meaning the bottom side is solid. (<see cref="F:Terraria.ID.SlopeType.SlopeDownLeft"/> or <see cref="F:Terraria.ID.SlopeType.SlopeDownRight"/>).<br/>
             Legacy/vanilla equivalent is <see cref="M:Terraria.Tile.topSlope"/>.
             </summary>
         </member>
         <member name="P:Terraria.Tile.BottomSlope">
             <summary>
-            Whether a tile's <see cref="P:Terraria.Tile.Slope"/> has a solid bottom side (<see cref="F:Terraria.ID.SlopeType.SlopeUpLeft"/> or <see cref="F:Terraria.ID.SlopeType.SlopeUpRight"/>).<br/>
+            If the bottom side of a tile is sloped (<see cref="P:Terraria.Tile.Slope"/>), meaning the top side is solid. (<see cref="F:Terraria.ID.SlopeType.SlopeUpLeft"/> or <see cref="F:Terraria.ID.SlopeType.SlopeUpRight"/>).<br/>
             Legacy/vanilla equivalent is <see cref="M:Terraria.Tile.bottomSlope"/>.
             </summary>
         </member>
         <member name="P:Terraria.Tile.LeftSlope">
             <summary>
-            Whether a tile's <see cref="P:Terraria.Tile.Slope"/> has a solid left side (<see cref="F:Terraria.ID.SlopeType.SlopeDownRight"/> or <see cref="F:Terraria.ID.SlopeType.SlopeUpRight"/>).<br/>
+            If the left side of a tile is sloped (<see cref="P:Terraria.Tile.Slope"/>), meaning the right side is solid. (<see cref="F:Terraria.ID.SlopeType.SlopeDownRight"/> or <see cref="F:Terraria.ID.SlopeType.SlopeUpRight"/>).<br/>
             Legacy/vanilla equivalent is <see cref="M:Terraria.Tile.leftSlope"/>.
             </summary>
         </member>
         <member name="P:Terraria.Tile.RightSlope">
             <summary>
-            Whether a tile's <see cref="P:Terraria.Tile.Slope"/> has a solid right side (<see cref="F:Terraria.ID.SlopeType.SlopeDownLeft"/> or <see cref="F:Terraria.ID.SlopeType.SlopeUpLeft"/>).<br/>
+            If the right side of a tile is sloped (<see cref="P:Terraria.Tile.Slope"/>), meaning the left side is solid. (<see cref="F:Terraria.ID.SlopeType.SlopeDownLeft"/> or <see cref="F:Terraria.ID.SlopeType.SlopeUpLeft"/>).<br/>
             Legacy/vanilla equivalent is <see cref="M:Terraria.Tile.rightSlope"/>.
             </summary>
         </member>
@@ -28778,7 +29055,7 @@ PostAI()</code>
             </summary>
         </member>
         <member name="F:Terraria.TileObject.alternate">
-            <summary> Note: The index of the alternate within the <see cref="P:Terraria.ObjectData.TileObjectData.Alternates"/>, not the alternate placement style offset (<see cref="P:Terraria.ObjectData.TileObjectData.Style"/>) </summary>
+            <summary> Note: The index of the alternate within the <see cref="P:Terraria.ObjectData.TileObjectData.Alternates"/>, not the alternate placement style offset (<see cref="P:Terraria.ObjectData.TileObjectData.Style"/>). This counts from 1, a value of 0 means it is not an alternate. </summary>
         </member>
         <member name="T:Terraria.UI.IngameFancyUI">
             <summary>
@@ -28803,6 +29080,16 @@ PostAI()</code>
             Alters the ItemSlot.DyeSwap method for modded slots;
             Unfortunately, I (Solxan) couldn't ever get ItemSlot.DyeSwap invoked so pretty sure this and its vanilla code is defunct.
             Here in case someone proves my statement wrong later.
+            </summary>
+        </member>
+        <member name="M:Terraria.UI.ItemSlot.AccCheck_ForLocalPlayer(Terraria.Item[],Terraria.Item,System.Int32)">
+            <inheritdoc cref="M:Terraria.UI.ItemSlot.AccCheck_ForPlayer(Terraria.Player,Terraria.Item[],Terraria.Item,System.Int32)"/>
+        </member>
+        <member name="M:Terraria.UI.ItemSlot.AccCheck_ForPlayer(Terraria.Player,Terraria.Item[],Terraria.Item,System.Int32)">
+            <summary>
+            Checks if placing <paramref name="item"/> into index <paramref name="slot"/> of <paramref name="itemCollection"/> works or not. <paramref name="itemCollection"/> corresponds to the <paramref name="player"/>'s accessories. 
+            <br/><br/> This is a replacement for <see cref="M:Terraria.UI.ItemSlot.AccCheck(Terraria.Item[],Terraria.Item,System.Int32)"/> that takes into account player-specific checks and hooks.
+            <br/><br/> Returns true if can't equip and false if placing the accessory is ok. 
             </summary>
         </member>
         <member name="T:Terraria.UI.StyleDimension">
@@ -29538,6 +29825,12 @@ itemFoundData.CopyTo(itemsFound, 0);
         <member name="M:Terraria.WorldGen.nearbyChlorophyte(System.Int32,System.Int32)">
             <summary>
             Returns true if there are 3 or more Chlorophyte or ChlorophyteBrick tiles within a 11x11 area around the provided coordinate. Sometimes returns true if there are less than 3 but more than 0 of them. Used to implement Chlorophyte tiles  restricting the spread of the evil biomes nearby (<see href="https://terraria.wiki.gg/wiki/Biome_spread#Notes">Biome Spread wiki page</see>).
+            </summary>
+        </member>
+        <member name="M:Terraria.WorldGen.SolidTileAllowBottomSlope(System.Int32,System.Int32)">
+            <summary>
+            Returns true if there is a solid tile at the provided tile coordinates suitable for a tile to be anchored above.
+            <br/><br/> Specifically, this checks that the tile is active, unactuated, is <see cref="F:Terraria.Main.tileSolid"/> or <see cref="F:Terraria.Main.tileSolidTop"/>, isn't a half block, and it has a solid top side (top isn't sloped).
             </summary>
         </member>
         <member name="M:Terraria.WorldGen.TileRunner(System.Int32,System.Int32,System.Double,System.Int32,System.Int32,System.Boolean,System.Double,System.Double,System.Boolean,System.Boolean,System.Int32)">

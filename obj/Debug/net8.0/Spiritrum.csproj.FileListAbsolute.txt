@@ -229,3 +229,4 @@ C:\Users\Élie\Documents\my games\Terraria\tModLoader\ModSources\Spiritrum\obj\D
 C:\Users\Élie\Documents\my games\Terraria\tModLoader\ModSources\Spiritrum\obj\Debug\net8.0\refint\Spiritrum.dll
 C:\Users\Élie\Documents\my games\Terraria\tModLoader\ModSources\Spiritrum\obj\Debug\net8.0\Spiritrum.pdb
 C:\Users\Élie\Documents\my games\Terraria\tModLoader\ModSources\Spiritrum\obj\Debug\net8.0\ref\Spiritrum.dll
+C:\Users\Élie\Documents\my games\Terraria\tModLoader\ModSources\Spiritrum\obj\Debug\net8.0\Spiritrum.sourcelink.json

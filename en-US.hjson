@@ -7,6 +7,10 @@ Mods: {
 			IBISTile.MapEntry: I B I S Tile
 			ThePhoneTile.MapEntry: The Phone Tile
 			FrozoniteOreTile.MapEntry: Frozonite Ore Tile
+			AzuriteOrePlaced.MapEntry: Azurite Ore Placed
+			MintalOrePlaced.MapEntry: Mintal Ore Placed
+			MorbiumOrePlaced.MapEntry: Morbium Ore Placed
+			TransOrePlaced.MapEntry: Trans Ore Placed
 		}
 
 		Items: {
@@ -609,6 +613,788 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Electroman Blade
 			}
+
+			LoreStone: {
+				Tooltip: ""
+				DisplayName: Lore Stone
+			}
+
+			AzuriteGreaves: {
+				SetBonus: Mods.Spiritrum.Items.AzuriteGreaves.SetBonus
+				DisplayName: Azurite Greaves
+				Tooltip: ""
+			}
+
+			AzuriteHat: {
+				SetBonus: Mods.Spiritrum.Items.AzuriteHat.SetBonus
+				DisplayName: Azurite Hat
+				Tooltip: ""
+			}
+
+			AzuritePlatemail: {
+				SetBonus: Mods.Spiritrum.Items.AzuritePlatemail.SetBonus
+				DisplayName: Azurite Platemail
+				Tooltip: ""
+			}
+
+			MintalBreastplate: {
+				SetBonus: Mods.Spiritrum.Items.MintalBreastplate.SetBonus
+				DisplayName: Mintal Breastplate
+				Tooltip: ""
+			}
+
+			MintalHelmet: {
+				SetBonus: Mods.Spiritrum.Items.MintalHelmet.SetBonus
+				DisplayName: Mintal Helmet
+				Tooltip: ""
+			}
+
+			MintalLeggings: {
+				SetBonus: Mods.Spiritrum.Items.MintalLeggings.SetBonus
+				DisplayName: Mintal Leggings
+				Tooltip: ""
+			}
+
+			Mintal: {
+				DisplayName: Mintal
+				Tooltip: ""
+			}
+
+			MorbiumGreaves: {
+				SetBonus: Mods.Spiritrum.Items.MorbiumGreaves.SetBonus
+				DisplayName: Morbium Greaves
+				Tooltip: ""
+			}
+
+			MorbiumMask: {
+				SetBonus: Mods.Spiritrum.Items.MorbiumMask.SetBonus
+				DisplayName: Morbium Mask
+				Tooltip: ""
+			}
+
+			MorbiumPlatemail: {
+				SetBonus: Mods.Spiritrum.Items.MorbiumPlatemail.SetBonus
+				DisplayName: Morbium Platemail
+				Tooltip: ""
+			}
+
+			SteelBreastplate: {
+				SetBonus: Mods.Spiritrum.Items.SteelBreastplate.SetBonus
+				DisplayName: Steel Breastplate
+				Tooltip: ""
+			}
+
+			SteelHelmet: {
+				SetBonus: Mods.Spiritrum.Items.SteelHelmet.SetBonus
+				DisplayName: Steel Helmet
+				Tooltip: ""
+			}
+
+			SteelLeggings: {
+				SetBonus: Mods.Spiritrum.Items.SteelLeggings.SetBonus
+				DisplayName: Steel Leggings
+				Tooltip: ""
+			}
+
+			BottledShimmer: {
+				DisplayName: Bottled Shimmer
+				Tooltip: ""
+			}
+
+			DefenseShield: {
+				DisplayName: Defense Shield
+				Tooltip: ""
+			}
+
+			EmpoweredManaCrystal: {
+				DisplayName: Empowered Mana Crystal
+				Tooltip: ""
+			}
+
+			GelCube: {
+				DisplayName: Gel Cube
+				Tooltip: ""
+			}
+
+			Horseshoe: {
+				DisplayName: Horseshoe
+				Tooltip: ""
+			}
+
+			MeteorCube: {
+				DisplayName: Meteor Cube
+				Tooltip: ""
+			}
+
+			River: {
+				DisplayName: River
+				Tooltip: ""
+			}
+
+			SilverCube: {
+				DisplayName: Silver Cube
+				Tooltip: ""
+			}
+
+			TungstenCube: {
+				DisplayName: Tungsten Cube
+				Tooltip: ""
+			}
+
+			BrainOfCthulhuIcon: {
+				DisplayName: Brain Of Cthulhu Icon
+				Tooltip: ""
+			}
+
+			DeerclopsIcon: {
+				DisplayName: Deerclops Icon
+				Tooltip: ""
+			}
+
+			DukeFishronIcon: {
+				DisplayName: Duke Fishron Icon
+				Tooltip: ""
+			}
+
+			EaterOfWorldsIcon: {
+				DisplayName: Eater Of Worlds Icon
+				Tooltip: ""
+			}
+
+			EmpressOfLightIcon: {
+				DisplayName: Empress Of Light Icon
+				Tooltip: ""
+			}
+
+			EyeOfCthulhuIcon: {
+				DisplayName: Eye Of Cthulhu Icon
+				Tooltip: ""
+			}
+
+			GolemIcon: {
+				DisplayName: Golem Icon
+				Tooltip: ""
+			}
+
+			KingSlimeIcon: {
+				DisplayName: King Slime Icon
+				Tooltip: ""
+			}
+
+			LunaticCultistIcon: {
+				DisplayName: Lunatic Cultist Icon
+				Tooltip: ""
+			}
+
+			MoonLordIcon: {
+				DisplayName: Moon Lord Icon
+				Tooltip: ""
+			}
+
+			PlanteraIcon: {
+				DisplayName: Plantera Icon
+				Tooltip: ""
+			}
+
+			QueenBeeIcon: {
+				DisplayName: Queen Bee Icon
+				Tooltip: ""
+			}
+
+			QueenSlimeIcon: {
+				DisplayName: Queen Slime Icon
+				Tooltip: ""
+			}
+
+			SkeletronIcon: {
+				DisplayName: Skeletron Icon
+				Tooltip: ""
+			}
+
+			SkeletronPrimeIcon: {
+				DisplayName: Skeletron Prime Icon
+				Tooltip: ""
+			}
+
+			TheDestroyerIcon: {
+				DisplayName: The Destroyer Icon
+				Tooltip: ""
+			}
+
+			TheTwinsIcon: {
+				DisplayName: The Twins Icon
+				Tooltip: ""
+			}
+
+			WallOfFleshIcon: {
+				DisplayName: Wall Of Flesh Icon
+				Tooltip: ""
+			}
+
+			AlienThornBall: {
+				DisplayName: Alien Thorn Ball
+				Tooltip: ""
+			}
+
+			BlankCanvas: {
+				DisplayName: Blank Canvas
+				Tooltip: ""
+			}
+
+			CoalLump: {
+				DisplayName: Coal Lump
+				Tooltip: ""
+			}
+
+			CubicMold: {
+				DisplayName: Cubic Mold
+				Tooltip: ""
+			}
+
+			FireDiamond: {
+				DisplayName: Fire Diamond
+				Tooltip: ""
+			}
+
+			LunarGem: {
+				DisplayName: Lunar Gem
+				Tooltip: ""
+			}
+
+			Paper: {
+				DisplayName: Paper
+				Tooltip: ""
+			}
+
+			SoulOfHeight: {
+				DisplayName: Soul Of Height
+				Tooltip: ""
+			}
+
+			Stormfish: {
+				DisplayName: Stormfish
+				Tooltip: ""
+			}
+
+			AcidCloud: {
+				DisplayName: Acid Cloud
+				Tooltip: ""
+			}
+
+			AncientCopperOre: {
+				DisplayName: Ancient Copper Ore
+				Tooltip: ""
+			}
+
+			AncientFurnace: {
+				DisplayName: Ancient Furnace
+				Tooltip: ""
+			}
+
+			AncientGoldOre: {
+				DisplayName: Ancient Gold Ore
+				Tooltip: ""
+			}
+
+			AncientHellforge: {
+				DisplayName: Ancient Hellforge
+				Tooltip: ""
+			}
+
+			AncientIronOre: {
+				DisplayName: Ancient Iron Ore
+				Tooltip: ""
+			}
+
+			AncientSilverOre: {
+				DisplayName: Ancient Silver Ore
+				Tooltip: ""
+			}
+
+			AncientStoneBlock: {
+				DisplayName: Ancient Stone Block
+				Tooltip: ""
+			}
+
+			AncientWood: {
+				DisplayName: Ancient Wood
+				Tooltip: ""
+			}
+
+			AncientWorkbench: {
+				DisplayName: Ancient Workbench
+				Tooltip: ""
+			}
+
+			AzuriteBar: {
+				DisplayName: Azurite Bar
+				Tooltip: ""
+			}
+
+			AzuriteBrick: {
+				DisplayName: Azurite Brick
+				Tooltip: ""
+			}
+
+			AzuriteBrickWall: {
+				DisplayName: Azurite Brick Wall
+				Tooltip: ""
+			}
+
+			AzuriteOre: {
+				DisplayName: Azurite Ore
+				Tooltip: ""
+			}
+
+			AquaticSlimeBanner: {
+				DisplayName: Aquatic Slime Banner
+				Tooltip: ""
+			}
+
+			MintSlimeBanner: {
+				DisplayName: Mint Slime Banner
+				Tooltip: ""
+			}
+
+			MutatedSlimeBanner: {
+				DisplayName: Mutated Slime Banner
+				Tooltip: ""
+			}
+
+			PearlsandSlimeBanner: {
+				DisplayName: Pearlsand Slime Banner
+				Tooltip: ""
+			}
+
+			PoisonSlimeBanner: {
+				DisplayName: Poison Slime Banner
+				Tooltip: ""
+			}
+
+			VoidBatBanner: {
+				DisplayName: Void Bat Banner
+				Tooltip: ""
+			}
+
+			BloodCloud: {
+				DisplayName: Blood Cloud
+				Tooltip: ""
+			}
+
+			DustBlock: {
+				DisplayName: Dust Block
+				Tooltip: ""
+			}
+
+			FireDiamondStoneBlock: {
+				DisplayName: Fire Diamond Stone Block
+				Tooltip: ""
+			}
+
+			GalvanizedSquareSteel: {
+				DisplayName: Galvanized Square Steel
+				Tooltip: ""
+			}
+
+			Limestone: {
+				DisplayName: Limestone
+				Tooltip: ""
+			}
+
+			LimestoneBrick: {
+				DisplayName: Limestone Brick
+				Tooltip: ""
+			}
+
+			LimestoneBrickWall: {
+				DisplayName: Limestone Brick Wall
+				Tooltip: ""
+			}
+
+			LimestoneWall: {
+				DisplayName: Limestone Wall
+				Tooltip: ""
+			}
+
+			MintalBrick: {
+				DisplayName: Mintal Brick
+				Tooltip: ""
+			}
+
+			MintalBrickWall: {
+				DisplayName: Mintal Brick Wall
+				Tooltip: ""
+			}
+
+			MintalOre: {
+				DisplayName: Mintal Ore
+				Tooltip: ""
+			}
+
+			MorbiumBar: {
+				DisplayName: Morbium Bar
+				Tooltip: ""
+			}
+
+			MorbiumBrick: {
+				DisplayName: Morbium Brick
+				Tooltip: ""
+			}
+
+			MorbiumBrickWall: {
+				DisplayName: Morbium Brick Wall
+				Tooltip: ""
+			}
+
+			MorbiumOre: {
+				DisplayName: Morbium Ore
+				Tooltip: ""
+			}
+
+			OrangeBrick: {
+				DisplayName: Orange Brick
+				Tooltip: ""
+			}
+
+			RainCloudWall: {
+				DisplayName: Rain Cloud Wall
+				Tooltip: ""
+			}
+
+			RedBrickPlatform: {
+				DisplayName: Red Brick Platform
+				Tooltip: ""
+			}
+
+			ReplantedLifeFruit: {
+				DisplayName: Replanted Life Fruit
+				Tooltip: ""
+			}
+
+			Rewinder: {
+				DisplayName: Rewinder
+				Tooltip: ""
+			}
+
+			SandierSand: {
+				DisplayName: Sandier Sand
+				Tooltip: ""
+			}
+
+			Saturplate: {
+				DisplayName: Saturplate
+				Tooltip: ""
+			}
+
+			SootCloud: {
+				DisplayName: Soot Cloud
+				Tooltip: ""
+			}
+
+			SteelAnvil: {
+				DisplayName: Steel Anvil
+				Tooltip: ""
+			}
+
+			SteelBar: {
+				DisplayName: Steel Bar
+				Tooltip: ""
+			}
+
+			SteelBrick: {
+				DisplayName: Steel Brick
+				Tooltip: ""
+			}
+
+			SteelShelf: {
+				DisplayName: Steel Shelf
+				Tooltip: ""
+			}
+
+			StormCloud: {
+				DisplayName: Storm Cloud
+				Tooltip: ""
+			}
+
+			TransBar: {
+				DisplayName: Trans Bar
+				Tooltip: ""
+			}
+
+			TransBrick: {
+				DisplayName: Trans Brick
+				Tooltip: ""
+			}
+
+			TransOre: {
+				DisplayName: Trans Ore
+				Tooltip: ""
+			}
+
+			WhitePicketFence: {
+				DisplayName: White Picket Fence
+				Tooltip: ""
+			}
+
+			AzuritePickaxe: {
+				DisplayName: Azurite Pickaxe
+				Tooltip: ""
+			}
+
+			AzuriteWaraxe: {
+				DisplayName: Azurite Waraxe
+				Tooltip: ""
+			}
+
+			GenderBreaker: {
+				DisplayName: Gender Breaker
+				Tooltip: ""
+			}
+
+			Mallet: {
+				DisplayName: Mallet
+				Tooltip: ""
+			}
+
+			MintalHamaxe: {
+				DisplayName: Mintal Hamaxe
+				Tooltip: ""
+			}
+
+			MintalPickaxe: {
+				DisplayName: Mintal Pickaxe
+				Tooltip: ""
+			}
+
+			MorbiumBattleaxe: {
+				DisplayName: Morbium Battleaxe
+				Tooltip: ""
+			}
+
+			MorbiumGroundbreaker: {
+				DisplayName: Morbium Groundbreaker
+				Tooltip: ""
+			}
+
+			MorbiumPickaxe: {
+				DisplayName: Morbium Pickaxe
+				Tooltip: ""
+			}
+
+			MorbiumTreeripper: {
+				DisplayName: Morbium Treeripper
+				Tooltip: ""
+			}
+
+			SteelAxe: {
+				DisplayName: Steel Axe
+				Tooltip: ""
+			}
+
+			SteelHammer: {
+				DisplayName: Steel Hammer
+				Tooltip: ""
+			}
+
+			SteelPickaxe: {
+				DisplayName: Steel Pickaxe
+				Tooltip: ""
+			}
+
+			AzuriteArrow: {
+				DisplayName: Azurite Arrow
+				Tooltip: ""
+			}
+
+			AzuriteBow: {
+				DisplayName: Azurite Bow
+				Tooltip: ""
+			}
+
+			BloodshotArrow: {
+				DisplayName: Bloodshot Arrow
+				Tooltip: ""
+			}
+
+			BlueMaticHorn: {
+				DisplayName: Blue Matic Horn
+				Tooltip: ""
+			}
+
+			CopperLongsword: {
+				DisplayName: Copper Longsword
+				Tooltip: ""
+			}
+
+			CopperQuadsword: {
+				DisplayName: Copper Quadsword
+				Tooltip: ""
+			}
+
+			CrimtaneShuriken: {
+				DisplayName: Crimtane Shuriken
+				Tooltip: ""
+			}
+
+			DemoniteShuriken: {
+				DisplayName: Demonite Shuriken
+				Tooltip: ""
+			}
+
+			FeatherArrow: {
+				DisplayName: Feather Arrow
+				Tooltip: ""
+			}
+
+			FireyPhaseblade: {
+				DisplayName: Firey Phaseblade
+				Tooltip: ""
+			}
+
+			FireyPhasesaber: {
+				DisplayName: Firey Phasesaber
+				Tooltip: ""
+			}
+
+			FlamingKnife: {
+				DisplayName: Flaming Knife
+				Tooltip: ""
+			}
+
+			FrozenMace: {
+				DisplayName: Frozen Mace
+				Tooltip: ""
+			}
+
+			GenderDefender: {
+				DisplayName: Gender Defender
+				Tooltip: ""
+			}
+
+			GiantMushroom: {
+				DisplayName: Giant Mushroom
+				Tooltip: ""
+			}
+
+			GoldLongsword: {
+				DisplayName: Gold Longsword
+				Tooltip: ""
+			}
+
+			IronLongsword: {
+				DisplayName: Iron Longsword
+				Tooltip: ""
+			}
+
+			LeadLongsword: {
+				DisplayName: Lead Longsword
+				Tooltip: ""
+			}
+
+			MetalBall: {
+				DisplayName: Metal Ball
+				Tooltip: ""
+			}
+
+			MiniThrowableBoulder: {
+				DisplayName: Mini Throwable Boulder
+				Tooltip: ""
+			}
+
+			MintalBow: {
+				DisplayName: Mintal Bow
+				Tooltip: ""
+			}
+
+			MintalMachinePistol: {
+				DisplayName: Mintal Machine Pistol
+				Tooltip: ""
+			}
+
+			MintalRepeater: {
+				DisplayName: Mintal Repeater
+				Tooltip: ""
+			}
+
+			MoltenShuriken: {
+				DisplayName: Molten Shuriken
+				Tooltip: ""
+			}
+
+			MorbiumBow: {
+				DisplayName: Morbium Bow
+				Tooltip: ""
+			}
+
+			PlatinumLongsword: {
+				DisplayName: Platinum Longsword
+				Tooltip: ""
+			}
+
+			RunicCodex: {
+				DisplayName: Runic Codex
+				Tooltip: ""
+			}
+
+			SexualitySlicer: {
+				DisplayName: Sexuality Slicer
+				Tooltip: ""
+			}
+
+			Shortgun: {
+				DisplayName: Shortgun
+				Tooltip: ""
+			}
+
+			SilverLongsword: {
+				DisplayName: Silver Longsword
+				Tooltip: ""
+			}
+
+			SteelBow: {
+				DisplayName: Steel Bow
+				Tooltip: ""
+			}
+
+			SteelKnife: {
+				DisplayName: Steel Knife
+				Tooltip: ""
+			}
+
+			SteelLongsword: {
+				DisplayName: Steel Longsword
+				Tooltip: ""
+			}
+
+			SteelShuriken: {
+				DisplayName: Steel Shuriken
+				Tooltip: ""
+			}
+
+			StoneArrow: {
+				DisplayName: Stone Arrow
+				Tooltip: ""
+			}
+
+			StoneSword: {
+				DisplayName: Stone Sword
+				Tooltip: ""
+			}
+
+			TinLongsword: {
+				DisplayName: Tin Longsword
+				Tooltip: ""
+			}
+
+			TungstenLongsword: {
+				DisplayName: Tungsten Longsword
+				Tooltip: ""
+			}
+
+			WindTome: {
+				DisplayName: Wind Tome
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -635,6 +1421,24 @@ Mods: {
 			EquinoxDrill.DisplayName: Equinox Drill
 			EquinoxSpear.DisplayName: Equinox Spear
 			EquinoxDash.DisplayName: Equinox Dash
+			AzuriteArrowProjectile.DisplayName: Azurite Arrow Projectile
+			BloodshotArrowProjectile.DisplayName: Bloodshot Arrow Projectile
+			BlueMaticHornProjectile.DisplayName: Blue Matic Horn Projectile
+			CopperQuadswordProjectile.DisplayName: Copper Quadsword Projectile
+			CrimtaneShurikenProjectile.DisplayName: Crimtane Shuriken Projectile
+			DemoniteShurikenProjectile.DisplayName: Demonite Shuriken Projectile
+			FeatherArrowProjectile.DisplayName: Feather Arrow Projectile
+			FlamingKnifeProjectile.DisplayName: Flaming Knife Projectile
+			FrozenMaceProjectile.DisplayName: Frozen Mace Projectile
+			MetalBallProjectile.DisplayName: Metal Ball Projectile
+			MiniBoulderThrowableProjectile.DisplayName: Mini Boulder Throwable Projectile
+			MoltenShurikenProjectile.DisplayName: Molten Shuriken Projectile
+			RunicCodexProjectile.DisplayName: Runic Codex Projectile
+			ShortgunProjectile.DisplayName: Shortgun Projectile
+			SteelKnifeProjectile.DisplayName: Steel Knife Projectile
+			SteelShurikenProjectile.DisplayName: Steel Shuriken Projectile
+			StoneArrowProjectile.DisplayName: Stone Arrow Projectile
+			WindTomeProjectile.DisplayName: Wind Tome Projectile
 		}
 
 		NPCs: {
@@ -656,6 +1460,12 @@ Mods: {
 
 			VoidHarbinger.DisplayName: Void Harbinger
 			EvilGoog.DisplayName: Evil Goog
+			AquaticSlime.DisplayName: Aquatic Slime
+			MintSlime.DisplayName: Mint Slime
+			MutatedSlime.DisplayName: Mutated Slime
+			PearlsandSlime.DisplayName: Pearlsand Slime
+			PoisonSlime.DisplayName: Poison Slime
+			VoidBat.DisplayName: Void Bat
 		}
 
 		Buffs: {
@@ -716,5 +1526,12 @@ Mods: {
 		}
 
 		"Keybinds.Temporal Shift Dash.DisplayName": Temporal  Shift  Dash
+
+		WorldGen: {
+			MagnoliaOrePassMessage: Mods.Spiritrum.WorldGen.MagnoliaOrePassMessage
+			BlessedWithAzuriteOreMessage: Mods.Spiritrum.WorldGen.BlessedWithAzuriteOreMessage
+			LycopiteMessage: Mods.Spiritrum.WorldGen.LycopiteMessage
+			LycopiteBlessMessage: Mods.Spiritrum.WorldGen.LycopiteBlessMessage
+		}
 	}
 }
