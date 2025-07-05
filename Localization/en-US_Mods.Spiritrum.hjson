@@ -284,5 +284,15 @@ Configs: {
 			Label: Mode Slot X Position
 			Tooltip: Horizontal position of the Mode slot UI element
 		}
+
+		IdeologySlotXPositionPercent: {
+			Label: Ideology Slot X Position (% of screen width)
+			Tooltip: ""
+		}
+
+		ModeSlotXPositionPercent: {
+			Label: Mode Slot X Position (% of screen width)
+			Tooltip: ""
+		}
 	}
 }

@@ -73,5 +73,4 @@ namespace Spiritrum.Content.Buffs
             }
         }
     }
-    }
 }

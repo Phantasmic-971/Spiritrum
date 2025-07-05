@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Collections.Generic;
 using static Terraria.ModLoader.ModContent;
 
 namespace Spiritrum.Content.Items.Armor
@@ -10,21 +11,31 @@ namespace Spiritrum.Content.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName and Tooltip handled in localization
+            // DisplayName.SetDefault("Frozonite Chestplate");
+            // Tooltip.SetDefault handled in localization
         }
 
         public override void SetDefaults()
         {
             Item.width = 30;
             Item.height = 20;
-            Item.value = Item.sellPrice(silver: 30);
-            Item.rare = ItemRarityID.Cyan;
-            Item.defense = 18; // Pre-boss, slightly better than iron
+            Item.value = Item.sellPrice(gold: 4);
+            Item.rare = ItemRarityID.Yellow; // Post-Golem rarity (Yellow)
+            Item.defense = 22; // Keeping the defense stat as requested
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            tooltips.Add(new TooltipLine(Mod, "FrozoniteChestplateBonus", "+8% damage"));
+            tooltips.Add(new TooltipLine(Mod, "FrozoniteChestplateBonus2", "+20 max mana"));
+            tooltips.Add(new TooltipLine(Mod, "FrozoniteChestplateBonus3", "8% reduced mana cost"));
         }
 
         public override void UpdateEquip(Player player)
         {
-            player.GetDamage(DamageClass.Generic) += 0.12f;
+            player.GetDamage(DamageClass.Generic) += 0.08f;
+            player.statManaMax2 += 20; // +20 Max mana
+            player.manaCost -= 0.08f; // 8% reduced mana cost
         }
 
         public override void AddRecipes()

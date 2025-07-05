@@ -68,8 +68,11 @@ namespace Spiritrum.Systems
                 var config = ModContent.GetInstance<SpiritrumConfig>();
                 if (config != null)
                 {
-                    // Update the UI position from config
-                    ideologySlotUI.UpdatePosition(config.IdeologySlotXPosition);
+                    // Calculate position based on percentage of screen width
+                    float screenPosition = Main.screenWidth * (config.IdeologySlotXPositionPercent / 100f);
+                    
+                    // Update the UI position from calculated value
+                    ideologySlotUI.UpdatePosition((int)screenPosition);
                 }
             }
         }

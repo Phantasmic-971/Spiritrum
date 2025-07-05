@@ -1400,6 +1400,26 @@ Mods: {
 				Tooltip: ""
 				DisplayName: River Mode
 			}
+
+			BromiumCube: {
+				Tooltip: ""
+				DisplayName: Bromium Cube
+			}
+
+			BagOfMiniBoulders: {
+				DisplayName: Bag Of Mini Boulders
+				Tooltip: ""
+			}
+
+			ElementalRevolver: {
+				DisplayName: Elemental Revolver
+				Tooltip: ""
+			}
+
+			GoogPaw: {
+				DisplayName: Goog Paw
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -1444,6 +1464,7 @@ Mods: {
 			SteelShurikenProjectile.DisplayName: Steel Shuriken Projectile
 			StoneArrowProjectile.DisplayName: Stone Arrow Projectile
 			WindTomeProjectile.DisplayName: Wind Tome Projectile
+			FrozoFlake.DisplayName: Frozo Flake
 		}
 
 		NPCs: {
@@ -1537,6 +1558,7 @@ Mods: {
 			BlessedWithAzuriteOreMessage: Mods.Spiritrum.WorldGen.BlessedWithAzuriteOreMessage
 			LycopiteMessage: Mods.Spiritrum.WorldGen.LycopiteMessage
 			LycopiteBlessMessage: Mods.Spiritrum.WorldGen.LycopiteBlessMessage
+			AdditionalLimestoneMessage: Mods.Spiritrum.WorldGen.AdditionalLimestoneMessage
 		}
 	}
 }

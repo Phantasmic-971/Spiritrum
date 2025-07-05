@@ -33,21 +33,21 @@ namespace Spiritrum.MagnoliaAddon.Tiles.Blocks
 
         }
 
-        // ExampleOreSystem contains code related to spawning ExampleOre. It contains both spawning ore during world generation, seen in ModifyWorldGenTasks, and spawning ore after defeating a boss, seen in BlessWorldWithExampleOre and MinionBossBody.OnKill.
+        // LimestoneSystem contains code related to spawning Limestone. It contains both spawning ore during world generation, seen in ModifyWorldGenTasks, and spawning additional limestone later if needed.
         public class LimestoneSystem : ModSystem
         {
             public static LocalizedText MagnoliaOrePassMessage { get; private set; }
-            public static LocalizedText BlessedWithAzuriteOreMessage { get; private set; }
+            public static LocalizedText AdditionalLimestoneMessage { get; private set; }
 
             public override void SetStaticDefaults()
             {
                 MagnoliaOrePassMessage = Mod.GetLocalization($"WorldGen.{nameof(MagnoliaOrePassMessage)}");
-                BlessedWithAzuriteOreMessage = Mod.GetLocalization($"WorldGen.{nameof(BlessedWithAzuriteOreMessage)}");
+                AdditionalLimestoneMessage = Mod.GetLocalization($"WorldGen.{nameof(AdditionalLimestoneMessage)}");
             }
 
-            // This method is called from MinionBossBody.OnKill the first time the boss is killed.
+            // This method is called when needed to generate limestone in the world
             // The logic is located here for organizational purposes.
-            public void BlessWorldWithExampleOre()
+            public void GenerateAdditionalLimestone()
             {
                 if (Main.netMode == NetmodeID.MultiplayerClient)
                 {
@@ -61,11 +61,11 @@ namespace Spiritrum.MagnoliaAddon.Tiles.Blocks
                     // Broadcast a message to notify the user.
                     if (Main.netMode == NetmodeID.SinglePlayer)
                     {
-                        Main.NewText(BlessedWithAzuriteOreMessage.Value, 50, 255, 130);
+                        Main.NewText(AdditionalLimestoneMessage.Value, 50, 255, 130);
                     }
                     else if (Main.netMode == NetmodeID.Server)
                     {
-                        ChatHelper.BroadcastChatMessage(BlessedWithAzuriteOreMessage.ToNetworkText(), new Color(50, 255, 130));
+                        ChatHelper.BroadcastChatMessage(AdditionalLimestoneMessage.ToNetworkText(), new Color(50, 255, 130));
                     }
 
                     // 100 controls how many splotches of ore are spawned into the world, scaled by world size. For comparison, the first 3 times altars are smashed about 275, 190, or 120 splotches of the respective hardmode ores are spawned. 
@@ -77,8 +77,8 @@ namespace Spiritrum.MagnoliaAddon.Tiles.Blocks
                         int i = WorldGen.genRand.Next(100, Main.maxTilesX - 100);
                         int j = WorldGen.genRand.Next(highestY, Main.UnderworldLayer);
 
-                        // OreRunner will spawn ExampleOre in splotches. OnKill only runs on the server or single player, so it is safe to run world generation code.
-                        WorldGen.OreRunner(i, j, WorldGen.genRand.Next(5, 9), WorldGen.genRand.Next(5, 9), (ushort)ModContent.TileType<TransOrePlaced>());
+                        // OreRunner will spawn limestone in splotches. This only runs on the server or single player, so it is safe to run world generation code.
+                        WorldGen.OreRunner(i, j, WorldGen.genRand.Next(5, 9), WorldGen.genRand.Next(5, 9), (ushort)ModContent.TileType<LimestonePlaced>());
                     }
                 });
             }
@@ -95,7 +95,7 @@ namespace Spiritrum.MagnoliaAddon.Tiles.Blocks
                 if (ShiniesIndex != -1)
                 {
                     // Next, we insert our pass directly after the original "Shinies" pass.
-                    // ExampleOrePass is a class seen bellow
+                    // MagnoliaOrePass is a class seen below
                     tasks.Insert(ShiniesIndex + 1, new MagnoliaOrePass("Magnolia Mod Ores", 237.4298f));
                 }
             }

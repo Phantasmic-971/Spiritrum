@@ -9,16 +9,8 @@ using Spiritrum.Content.Items.Placeables.Banners;
 
 namespace Spiritrum.Content.NPCS
 {
-    /// <summary>
-    /// Mint Slime - A hallow variant slime that drops Mintal Ore
-    /// </summary>
     public class MintSlime : ModNPC
     {
-        #region Initialization
-        
-        /// <summary>
-        /// Sets the static defaults for this NPC
-        /// </summary>
         public override void SetStaticDefaults()
         {
             // Animation frames
@@ -35,9 +27,6 @@ namespace Spiritrum.Content.NPCS
             NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
         }
 
-        /// <summary>
-        /// Sets the defaults for this NPC instance
-        /// </summary>
         public override void SetDefaults()
         {
             // Dimensions
@@ -63,13 +52,6 @@ namespace Spiritrum.Content.NPCS
             BannerItem = ModContent.ItemType<MintSlimeBanner>();
         }
         
-        #endregion
-        
-        #region Loot
-
-        /// <summary>
-        /// Modifies the loot dropped by this NPC
-        /// </summary>
         public override void ModifyNPCLoot(NPCLoot npcLoot)
         {
             // Inherit Green Slime drops
@@ -83,19 +65,10 @@ namespace Spiritrum.Content.NPCS
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MintalOre>(), 1, 9, 23));
         }
         
-        #endregion
-        
-        #region Spawning
-
-        /// <summary>
-        /// Determines the chance of this NPC spawning
-        /// </summary>
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
             // Spawns in the Hallow biome with increased chance
             return SpawnCondition.OverworldHallow.Chance * 1.2f;
         }
-        
-        #endregion
     }
 }

@@ -21,7 +21,17 @@ namespace Spiritrum.UI
             this.RemoveAllChildren();
             if (Main.playerInventory)
             {
-                // Slot position is updated from config
+                // Get the configured percentage
+                var config = ModContent.GetInstance<SpiritrumConfig>();
+                float percentage = config != null ? config.IdeologySlotXPositionPercent / 100f : 0.88f;
+                
+                // Calculate position based on screen size
+                float xPosition = Main.screenWidth * percentage;
+                
+                // Update position each frame to handle resolution changes
+                ideologySlotItemSlot.Left.Set(xPosition, 0f);
+                
+                // Append to UI
                 Append(ideologySlotItemSlot);
             }
         }
@@ -30,13 +40,12 @@ namespace Spiritrum.UI
         {
             ideologySlotItemSlot = new IdeologySlotItemSlot(this);
             
-            // Try to load position from config, fall back to default if config not available
-            float xPosition = 1665f; // Default
+            // Get the configured percentage
             var config = ModContent.GetInstance<SpiritrumConfig>();
-            if (config != null)
-            {
-                xPosition = config.IdeologySlotXPosition;
-            }
+            float percentage = config != null ? config.IdeologySlotXPositionPercent / 100f : 0.88f;
+            
+            // Calculate position based on screen size
+            float xPosition = Main.screenWidth * percentage;
             
             ideologySlotItemSlot.Left.Set(xPosition, 0f);
             ideologySlotItemSlot.Top.Set(slotPosition.Y, 0f);
@@ -46,7 +55,7 @@ namespace Spiritrum.UI
         {
             if (ideologySlotItemSlot != null)
             {
-                // Update the slot's X position
+                // Use the provided position value from the config
                 ideologySlotItemSlot.Left.Set(xPosition, 0f);
                 
                 // Keep the original Y position

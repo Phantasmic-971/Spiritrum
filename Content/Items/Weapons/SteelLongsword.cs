@@ -7,22 +7,8 @@ using Terraria.ModLoader;
 
 namespace Spiritrum.Content.Items.Weapons
 {
-    /// <summary>
-    /// Steel Longsword - A mid-tier melee weapon with armor penetration
-    /// </summary>
     public class SteelLongsword : ModItem
     {
-        #region Properties and Fields
-
-        // No fields needed for this class
-
-        #endregion
-
-        #region Initialization
-
-        /// <summary>
-        /// Sets the default properties of this item
-        /// </summary>
         public override void SetDefaults()
         {
             // Dimensions
@@ -48,21 +34,11 @@ namespace Spiritrum.Content.Items.Weapons
             Item.UseSound = SoundID.Item1;
         }
 
-        #endregion
-
-        #region Visuals
-
-        /// <summary>
-        /// Determines the color of the item in low light conditions
-        /// </summary>
         public override Color? GetAlpha(Color lightColor)
         {
             return Color.White;
         }
 
-        /// <summary>
-        /// Modifies the tooltips shown for this item
-        /// </summary>
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             // Add a tooltip about armor penetration
@@ -75,13 +51,6 @@ namespace Spiritrum.Content.Items.Weapons
             });
         }
 
-        #endregion
-
-        #region Crafting
-
-        /// <summary>
-        /// Adds crafting recipes for this item
-        /// </summary>
         public override void AddRecipes()
         {
             // Craft from 12 steel bars
@@ -104,8 +73,6 @@ namespace Spiritrum.Content.Items.Weapons
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
-
-        #endregion
     }
 }
 

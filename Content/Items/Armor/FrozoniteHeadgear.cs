@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Localization;
+using System.Collections.Generic;
 using static Terraria.ModLoader.ModContent;
 
 namespace Spiritrum.Content.Items.Armor
@@ -9,19 +11,25 @@ namespace Spiritrum.Content.Items.Armor
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName and Tooltip handled in localization
         }
 
         public override void SetDefaults()
         {
             Item.width = 22;
             Item.height = 18;
-            Item.value = Item.sellPrice(silver: 20);
-            Item.rare = ItemRarityID.Cyan;
-            Item.defense = 16; // Pre-boss, slightly better than iron
-        }        public override void UpdateEquip(Player player)
+            Item.value = Item.sellPrice(gold: 3);
+            Item.rare = ItemRarityID.Yellow; 
+            Item.defense = 18; 
+        }        public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            player.GetCritChance(DamageClass.Generic) += 4;
+            tooltips.Add(new TooltipLine(Mod, "FrozoniteHeadgearBonus", "+10% critical strike chance"));
+            tooltips.Add(new TooltipLine(Mod, "FrozoniteHeadgearBonus2", "+10% damage"));
+        }
+        
+        public override void UpdateEquip(Player player)
+        {
+            player.GetCritChance(DamageClass.Generic) += 10f; // Increased from 4% to 10% for post-Golem
+            player.GetDamage(DamageClass.Generic) += 0.10f;
         }
         
         public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -31,19 +39,26 @@ namespace Spiritrum.Content.Items.Armor
         
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = "20% chance to not consume ammo, +8% crit chance"; // Set bonus description
-            player.setBonus = "+8% damage, +40 mana and +1 summon slot";
-            player.GetDamage(DamageClass.Generic) += 0.08f; // 5% increased damage
-            player.GetCritChance(DamageClass.Generic) += 8f; // 5% increased critical strike chance
-            player.maxMinions += 1;
+            player.setBonus = "30% chance to not consume ammo\n+20% all damage\n+80 max mana and +2 summon slots\nGrants the Ice Barrier buff when below 50% health";
+            
+            player.GetDamage(DamageClass.Generic) += 0.05f;
+            player.GetCritChance(DamageClass.Generic) += 10f;
+            player.maxMinions += 2;
             player.statManaMax2 += 40;
-            player.ammoBox = true; // 20% chance to not consume ammo
+            player.ammoCost80 = true;
+            
+            // Add ice barrier effect when health is low
+            if (player.statLife <= player.statLifeMax2 / 2)
+            {
+                player.AddBuff(BuffID.IceBarrier, 5); // 5 is just to keep the buff active
+            }
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemType<Placeables.FrozoniteBar>(), 12);
+            recipe.AddIngredient(ItemID.FrostCore, 1); // Add Frost Core for ice theme
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

@@ -21,7 +21,16 @@ namespace Spiritrum.UI
             this.RemoveAllChildren();
             if (Main.playerInventory)
             {
-                // Slot position is updated from config
+                // Get the configured percentage
+                var config = ModContent.GetInstance<SpiritrumConfig>();
+                float percentage = config != null ? config.ModeSlotXPositionPercent / 100f : 0.88f;
+                
+                // Calculate position based on screen size
+                float xPosition = Main.screenWidth * percentage;
+                
+                // Update position each frame to handle resolution changes
+                modeSlotItemSlot.Left.Set(xPosition, 0f);
+                // Append to UI
                 Append(modeSlotItemSlot);
             }
         }
@@ -31,13 +40,12 @@ namespace Spiritrum.UI
             // Create the item slot element
             modeSlotItemSlot = new ModeSlotItemSlot(this);
             
-            // Try to load position from config, fall back to default if config not available
-            float xPosition = 1665f; // Default
+            // Get the configured percentage
             var config = ModContent.GetInstance<SpiritrumConfig>();
-            if (config != null)
-            {
-                xPosition = config.ModeSlotXPosition;
-            }
+            float percentage = config != null ? config.ModeSlotXPositionPercent / 100f : 0.88f;
+            
+            // Calculate position based on screen size
+            float xPosition = Main.screenWidth * percentage;
             
             // Set its initial position
             modeSlotItemSlot.Left.Set(xPosition, 0f);
@@ -48,7 +56,7 @@ namespace Spiritrum.UI
         {
             if (modeSlotItemSlot != null)
             {
-                // Update the slot's X position
+                // Use the provided position value from the config
                 modeSlotItemSlot.Left.Set(xPosition, 0f);
                 
                 // Keep the original Y position
