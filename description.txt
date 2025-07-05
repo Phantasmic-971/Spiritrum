@@ -1,13 +1,9 @@
 The Spectrum Mod started as a joke mod that adds a bit of content with old sprites I made in the past years.
 but it soon changed to a regular mod with lore.
 
-Dimensional Shifts, 1.0
-Official release from beta
-Adds:
--1 Armor set
--2 Weapon
--1 Ore
--1 Bar
+Hotfix:
+Removed all Rebornium content
+Fixed a bug where GEoT mode literally disabled mana (Now sets to 0 and gives -400 mana regen)
 
 Adds:
 114 Items
@@ -42,4 +38,3 @@ Brome
 https://www.youtube.com/@bromex_
 GEoD Mapping
 https://www.youtube.com/@GodEmperorofDrip
-Rebornium (A good friend)

@@ -51,17 +51,17 @@ namespace Spiritrum.Content.Items.Misc
             tooltips.Add(new TooltipLine(Mod, "Lore10", "Day 3, balance between death and life was implemented."));
             tooltips.Add(new TooltipLine(Mod, "Lore11", "Day 4, the first signs of intelligence and ideas appeared."));
             tooltips.Add(new TooltipLine(Mod, "Lore12", "Day 5, [UNKNOWN]."));
-            tooltips.Add(new TooltipLine(Mod, "Lore13", "Day 6, the first terrarians came to be, Bromus, Rebornus and Phantus."));
+            tooltips.Add(new TooltipLine(Mod, "Lore13", "Day 6, the first terrarians came to be, Bromus, [No identity] and Phantus."));
             tooltips.Add(new TooltipLine(Mod, "Lore14", "Day 7, the initial world was created and copied multiple times"));
             tooltips.Add(new TooltipLine(Mod, "Lore15", "using some godly seeds. There was no event on day 8 and 9."));
             
             // Fourth paragraph - events
-            tooltips.Add(new TooltipLine(Mod, "Lore16", "On day 10, Rebornus learned to restore life to the skin. However,"));
+            tooltips.Add(new TooltipLine(Mod, "Lore16", "On day 10, [No identity] learned to restore life to the skin. However,"));
             tooltips.Add(new TooltipLine(Mod, "Lore17", "the exercise of such power introduced some side effects to the body,"));
             tooltips.Add(new TooltipLine(Mod, "Lore18", "like loss of DNA. But this DNA was transferred to the earth"));
             tooltips.Add(new TooltipLine(Mod, "Lore19", "and formed new materials. Phantus did not participate in the experiment."));
-            tooltips.Add(new TooltipLine(Mod, "Lore20", "These minerals were both named after Bromus and Rebornus."));
-            tooltips.Add(new TooltipLine(Mod, "Lore21", "They were named Bromium and Rebornium."));
+            tooltips.Add(new TooltipLine(Mod, "Lore20", "These minerals were both named after Bromus and [No identity]."));
+            tooltips.Add(new TooltipLine(Mod, "Lore21", "They were named Bromium and..."));
             
             // Final paragraph
             tooltips.Add(new TooltipLine(Mod, "Lore22", "The creators were upset. Therefore, they sent the [UNKNOWN]"));
