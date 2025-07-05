@@ -2,10 +2,12 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent.Bestiary;
-using Spiritrum.Content.Items;                  // EchoCharm, NamelessEmblem
+using Spiritrum.Content.Items.Accessories;                  // EchoCharm, NamelessEmblem
 using Spiritrum.Content.Items.Consumables;      // ShimmeringDust
-using Spiritrum.Content.Items.Weapons;          // WhisperingBlade
-using Spiritrum.Content.Projectiles;          // WhisperingBladeProjectile
+using Spiritrum.Content.Items.Weapons;
+using Spiritrum.Content.Items.Materials;          // WhisperingBlade
+using Spiritrum.Content.Projectiles;  
+using Spiritrum.Content.Items.Other;        // WhisperingBladeProjectile
 using Terraria.Localization; // Needed for Language.GetTextValue
 using Microsoft.Xna.Framework; // Needed if you add custom buttons with textures
 

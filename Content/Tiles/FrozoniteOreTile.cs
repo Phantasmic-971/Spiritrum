@@ -3,7 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using Spiritrum.Content.Items.Placeable;
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Tiles
 {

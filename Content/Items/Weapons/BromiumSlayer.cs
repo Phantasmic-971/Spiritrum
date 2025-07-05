@@ -1,6 +1,7 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Weapons
 { 

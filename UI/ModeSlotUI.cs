@@ -10,19 +10,11 @@ using Spiritrum.Config;
 
 namespace Spiritrum.UI
 {
-    /// <summary>
-    /// Main UI state that manages the custom Mode Slot interface.
-    /// </summary>
     public class ModeSlotUI : UIState
     {
-        // The actual slot element that will be displayed
         private ModeSlotItemSlot modeSlotItemSlot;
-        // The position of the slot on the screen
         private Vector2 slotPosition = new Vector2(1665f, 700f); // Default position
 
-        /// <summary>
-        /// Called every frame to update the UI state
-        /// </summary>
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
@@ -34,9 +26,6 @@ namespace Spiritrum.UI
             }
         }
 
-        /// <summary>
-        /// Called once when the UI is first initialized
-        /// </summary>
         public override void OnInitialize()
         {
             // Create the item slot element
@@ -55,9 +44,6 @@ namespace Spiritrum.UI
             modeSlotItemSlot.Top.Set(slotPosition.Y, 0f);
         }
         
-        /// <summary>
-        /// Updates the UI position based on the config value
-        /// </summary>
         public void UpdatePosition(int xPosition)
         {
             if (modeSlotItemSlot != null)
@@ -74,12 +60,8 @@ namespace Spiritrum.UI
         }
     }
 
-    /// <summary>
-    /// The actual item slot UI element
-    /// </summary>
     public class ModeSlotItemSlot : UIElement
     {
-        // Reference to the parent UI
         private readonly ModeSlotUI parentUI;
 
         public ModeSlotItemSlot(ModeSlotUI parent)

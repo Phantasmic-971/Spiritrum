@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent; // Needed for ItemType<T>()
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Tools // Make sure this matches your folder structure
 {

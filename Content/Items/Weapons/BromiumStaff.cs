@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Terraria.Localization; // Needed for TooltipLine
 using System.Collections.Generic; // Needed for List<TooltipLine>
 using static Terraria.ModLoader.ModContent; // Needed for ItemType<T>() and ProjectileType<T>()
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Weapons // Make sure this matches your folder structure
 {

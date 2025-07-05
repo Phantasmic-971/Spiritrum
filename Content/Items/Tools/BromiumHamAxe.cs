@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using static Terraria.ModLoader.ModContent; // Needed for ItemType
 using System.Collections.Generic; // Needed for List<T>
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Tools // Recommended namespace for weapons/tools
 {

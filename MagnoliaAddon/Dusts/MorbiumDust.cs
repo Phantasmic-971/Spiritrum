@@ -5,7 +5,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace MagnoliaMod.Content.Dusts
+namespace Spiritrum.MagnoliaAddon.Dusts
 {
     // This dust shows off custom drawing. By default, the dust sprite is drawn once. This example uses custom drawing to draw a trail, it is an exact clone of DustID.Electric, aside from some code cleanup. One place Terraria uses DustID.Electric is when a player is suffering from BuffID.Electrified.
     public class MorbiumDust : ModDust

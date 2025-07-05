@@ -6,6 +6,7 @@ using Terraria.Localization; // Added for localization support in tooltips
 using System.Collections.Generic; // Needed for List<TooltipLine>
 using static Terraria.ModLoader.ModContent;
 using Spiritrum.Players;
+using Spiritrum.Content.Items.Consumables;
 
 namespace Spiritrum.Content.Items.Ideology
 {

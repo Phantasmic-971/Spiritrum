@@ -11,7 +11,6 @@ namespace Spiritrum.Players
 {
     public class EchoPlayer : ModPlayer
     {
-        // This method is called before the player takes damage
         public override void ModifyHurt(ref Player.HurtModifiers modifiers)
         {
             if (Player.HasBuff(ModContent.BuffType<CharmingEcho>()))
@@ -20,7 +19,7 @@ namespace Spiritrum.Players
                 {
                     modifiers.FinalDamage.Base = 0; // Negate the damage
                     modifiers.DisableSound();
-                    Player.immuneTime = 180; // 3   seconds of invincibility
+                    Player.immuneTime = 180; // 3 seconds of invincibility
                     SoundEngine.PlaySound(SoundID.Item163, Player.position);
                     SpawnShadowyBurst();
                     CombatText.NewText(Player.getRect(), Color.Cyan, "Dodged!");
@@ -28,11 +27,8 @@ namespace Spiritrum.Players
             }
         }
         
-        // Method to spawn the shadowy burst effect
         private void SpawnShadowyBurst()
         {
-            // This creates a visual and damage effect around the player
-            
             // Spawn shadowy dust
             for (int i = 0; i < 30; i++)
             {
@@ -55,7 +51,7 @@ namespace Spiritrum.Players
             // Iterate through active NPCs
             for (int i = 0; i < Main.maxNPCs; i++)
             {
-                NPC npc = Main.npc[i];                // Check if the NPC is active, not town NPC, not friendly, and within the burst radius
+                NPC npc = Main.npc[i];
                 if (npc.active && !npc.townNPC && !npc.friendly && Vector2.Distance(Player.Center, npc.Center) < burstRadius)
                 {
                     // Deal damage to the NPC using the correct method
@@ -67,7 +63,6 @@ namespace Spiritrum.Players
             }
         }
         
-        // Creates a dust trail between two points
         private void CreateDustTrail(Vector2 start, Vector2 end)
         {
             int numPoints = 10;
@@ -80,4 +75,5 @@ namespace Spiritrum.Players
             }
         }
     }
+}
 }

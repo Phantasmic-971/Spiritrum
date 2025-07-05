@@ -6,6 +6,7 @@ using Spiritrum.Content.Items;
 using Spiritrum.Content.Items.Weapons;
 using Spiritrum.Content.Items.Consumables;
 using Spiritrum.Content.Items.Mounts;
+using Spiritrum.Content.Items.Accessories;
 
 namespace Spiritrum.Content.Global
 {
@@ -13,24 +14,40 @@ namespace Spiritrum.Content.Global
     {
         public override void ModifyShop(NPCShop shop)
         {
+            // Add Poutine to the Merchant's shop
             if (shop.NpcType == NPCID.Merchant)
             {
                 shop.Add<Poutine>();
             }
         }
-
+        
         public override void OnKill(NPC npc)
+        {
+            // Track boss progression
+            HandleBossProgression(npc);
+            
+            // Handle special drops from vanilla bosses
+            HandleVanillaBossDrops(npc);
+        }
+        
+        private void HandleBossProgression(NPC npc)
         {
             // Handle VoidHarbinger kill
             if (npc.type == ModContent.NPCType<VoidHarbinger>())
             {
                 SpiritrumMod.downedVoidHarbinger = true;
+                
+                // Sync to server if in multiplayer
                 if (Main.netMode == NetmodeID.Server)
                 {
                     NetMessage.SendData(MessageID.WorldData);
                 }
             }
-              // King Slime drops GelaticCrown with 10% chance
+        }
+        
+        private void HandleVanillaBossDrops(NPC npc)
+        {
+            // King Slime drops GelaticCrown with 10% chance
             if (npc.type == NPCID.KingSlime)
             {
                 if (Main.rand.NextFloat() < 0.1f) // 10% chance

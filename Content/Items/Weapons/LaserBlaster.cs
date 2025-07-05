@@ -2,6 +2,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Spiritrum.Content.Items.Consumables;
 
 namespace Spiritrum.Content.Items.Weapons
 {

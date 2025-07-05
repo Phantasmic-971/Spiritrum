@@ -1467,7 +1467,7 @@ namespace Spiritrum.Content.NPCS
             }        }public override void ModifyNPCLoot(NPCLoot npcLoot)
         {   
             // Always drop a good amount of Void Essence (for crafting other void-themed items)
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.VoidEssence>(), 1, 15, 25));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.VoidEssence>(), 1, 15, 25));
             
             // 100% chance to drop some souls (a mix of them)
             npcLoot.Add(ItemDropRule.Common(ItemID.SoulofSight, 1, 10, 15));
@@ -1479,7 +1479,7 @@ namespace Spiritrum.Content.NPCS
             
             // Money drops (Guaranteed platinum coin for defeating a boss)
             npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 1, 3));            // Trophy drop (10% chance)
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeable.VoidHarbingerTrophy>(), 10));
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeables.VoidHarbingerTrophy>(), 10));
               // The Grim Wraith - 33.3% chance to drop
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.TheGrimWraith>(), 3));
         }

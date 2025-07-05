@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using System; // Needed for MathHelper.ToRadians
 using Spiritrum.Content.Items.Weapons;
+using Spiritrum.Content.Items.Materials;
 
 namespace Spiritrum.Content.Items.Weapons
 {

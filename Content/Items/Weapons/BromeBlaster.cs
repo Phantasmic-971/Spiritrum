@@ -8,6 +8,8 @@ using System.Collections.Generic; // Needed for List<TooltipLine>
 using static Terraria.ModLoader.ModContent;
 using System; // Needed for MathHelper.ToRadians
 using Spiritrum.Content.Items.Weapons;
+using Spiritrum.Content.Items.Materials;
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Weapons
 {

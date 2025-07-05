@@ -13,7 +13,8 @@ namespace Spiritrum.Systems
     {
         internal UserInterface ideologySlotInterface;
         internal IdeologySlotUI ideologySlotUI;
-          public override void Load()
+        
+        public override void Load()
         {
             if (!Main.dedServ)
             {
@@ -57,9 +58,9 @@ namespace Spiritrum.Systems
                         return true;
                     },
                     InterfaceScaleType.UI));
-            }        }
+            }
+        }
 
-        // Method to update UI position from config
         internal void UpdatePositionsFromConfig()
         {
             if (ideologySlotUI != null && !Main.dedServ)

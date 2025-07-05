@@ -1,0 +1,95 @@
+using Spiritrum.Content.Items.Other;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
+using Spiritrum.Content.Items.Materials;
+
+namespace Spiritrum.Content.Items.Weapons
+{
+
+    public class FireyPhaseblade : ModItem
+    {
+        public override void SetDefaults()
+        {
+            Item.width = 36;
+            Item.height = 36;
+
+            Item.useStyle = ItemUseStyleID.Swing;
+            Item.useTime = 18;
+            Item.useAnimation = 18;
+            Item.autoReuse = true;
+
+            Item.DamageType = DamageClass.Melee;
+            Item.damage = 26;
+            Item.knockBack = 3;
+            Item.ChangePlayerDirectionOnShoot = true;
+
+
+            Item.value = Item.sellPrice(silver: 54);
+            Item.rare = ItemRarityID.Blue;
+            Item.UseSound = SoundID.Item15;
+
+
+
+            // If you want melee speed to only affect the swing speed of the weapon and not the shoot speed (not recommended)
+            // Item.attackSpeedOnlyAffectsWeaponAnimation = true;
+
+            // Normally shooting a projectile makes the player face the projectile, but if you don't want that (like the beam sword) use this line of code
+            // Item.ChangePlayerDirectionOnShoot = false;
+        }
+
+
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            // Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
+            var line = new TooltipLine(Mod, "Face", "");
+            tooltips.Add(line);
+
+            line = new TooltipLine(Mod, "Face", "")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
+
+
+
+            // Here we will hide all tooltips whose title end with ':RemoveMe'
+            // One like that is added at the start of this method
+            foreach (var l in tooltips)
+            {
+                if (l.Name.EndsWith(":RemoveMe"))
+                {
+                    l.Hide();
+                }
+            }
+
+            // Another method of hiding can be done if you want to hide just one line.
+            // tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
+        }
+
+        public override void OnHitNPC(Player player, NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // Inflict the OnFire debuff for 1 second onto any NPC/Monster that this hits.
+            // 60 frames = 1 second
+            target.AddBuff(BuffID.OnFire, 180);
+        }
+        public override void AddRecipes()
+        {
+            Recipe recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.MeteoriteBar, 15);
+            recipe.AddIngredient<FireDiamond>(10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
+
+    }
+}
+

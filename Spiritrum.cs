@@ -13,15 +13,9 @@ namespace Spiritrum
 {
     public class SpiritrumMod : Mod
     {
-        // Static reference to the mod instance for easier access
-        // Initialize with the constructor to ensure it's available earlier
         internal static SpiritrumMod Instance;
-        
-        // UI Systems references for position updates
         internal IdeologySlotUISystem IdeologySlotUI;
         internal ModeSlotUISystem ModeSlotUI;
-        
-        // Boss flags
         public static bool downedVoidHarbinger;
         
         public SpiritrumMod()
@@ -32,8 +26,7 @@ namespace Spiritrum
 
         public override void Unload()
         {
-            // Nothing special to unload
-            Logger.Info("Spiritrum mod: Unloading Time prefixes and reforging system...");
+            Logger.Info("Spiritrum mod: Unloading...");
             
             // Reset boss flags
             downedVoidHarbinger = false;
@@ -41,10 +34,7 @@ namespace Spiritrum
             // Clear instance reference
             Instance = null;
         }
-        
-        /// <summary>
-        /// Reloads UI positions from config when settings change
-        /// </summary>
+
         internal void ReloadUIPositions()
         {
             if (!Main.dedServ)
@@ -62,17 +52,6 @@ namespace Spiritrum
             }
         }
         
-        /// <summary>
-        /// Returns whether the Void Harbinger boss has been defeated
-        /// </summary>
-        public bool GetDownedVoidHarbinger()
-        {
-            return downedVoidHarbinger;
-        }
-        
-        /// <summary>
-        /// Registers a UI system with the mod instance
-        /// </summary>
         public void RegisterUISystem(object uiSystem)
         {
             if (uiSystem is IdeologySlotUISystem ideologySystem)
@@ -84,8 +63,13 @@ namespace Spiritrum
                 ModeSlotUI = modeSystem;
             }
         }
+        
+        public bool GetDownedVoidHarbinger()
+        {
+            return downedVoidHarbinger;
+        }
     }
-      // WorldData class to handle saving and loading boss flags
+
     public class SpiritrunWorldData : ModSystem
     {
         public override void SaveWorldData(TagCompound tag)

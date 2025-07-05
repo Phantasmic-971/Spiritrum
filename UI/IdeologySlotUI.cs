@@ -9,7 +9,8 @@ using Spiritrum.Players;
 using Spiritrum.Config;
 
 namespace Spiritrum.UI
-{    public class IdeologySlotUI : UIState
+{    
+    public class IdeologySlotUI : UIState
     {
         private IdeologySlotItemSlot ideologySlotItemSlot;
         private Vector2 slotPosition = new Vector2(1665f, 775f); // Default position
@@ -41,10 +42,6 @@ namespace Spiritrum.UI
             ideologySlotItemSlot.Top.Set(slotPosition.Y, 0f);
         }
         
-        /// <summary>
-        /// Updates the UI position based on the config value
-        /// </summary>
-        /// <param name="xPosition">New X position for the slot</param>
         public void UpdatePosition(int xPosition)
         {
             if (ideologySlotItemSlot != null)

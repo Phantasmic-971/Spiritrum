@@ -1395,6 +1395,11 @@ Mods: {
 				DisplayName: Wind Tome
 				Tooltip: ""
 			}
+
+			RiverMode: {
+				Tooltip: ""
+				DisplayName: River Mode
+			}
 		}
 
 		Projectiles: {

@@ -43,7 +43,7 @@ namespace Spiritrum.Content.Items.Armor
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemType<Placeable.FrozoniteBar>(), 12);
+            recipe.AddIngredient(ItemType<Placeables.FrozoniteBar>(), 12);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
         }

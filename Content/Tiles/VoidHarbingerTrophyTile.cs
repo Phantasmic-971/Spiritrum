@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.ObjectData;
 using Terraria.DataStructures;
 using Terraria.ModLoader.IO;
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Tiles
 {
@@ -30,7 +31,7 @@ namespace Spiritrum.Content.Tiles
 
         public override void KillMultiTile(int i, int j, int frameX, int frameY)
         {
-            Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 30, j * 30, 48, 32, ModContent.ItemType<Items.Placeable.VoidHarbingerTrophy>());
+            Item.NewItem(new Terraria.DataStructures.EntitySource_TileBreak(i, j), i * 30, j * 30, 48, 32, ModContent.ItemType<Items.Placeables.VoidHarbingerTrophy>());
         }
     }
 }

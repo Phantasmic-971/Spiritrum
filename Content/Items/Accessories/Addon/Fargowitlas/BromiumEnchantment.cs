@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using Terraria.GameContent.Creative;
 using System.Linq;
 using Spiritrum.Content.Projectiles;
-using Spiritrum.Content.Items;
+using Spiritrum.Content.Items.Armor;
 using Spiritrum.Content.Items.Weapons;
 using Spiritrum.Content.Items.Modes;
 

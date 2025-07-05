@@ -5,6 +5,7 @@ using Terraria.ModLoader;
 using Terraria.Localization; // Still good practice to include
 using System.Collections.Generic; // Needed for List<TooltipLine>
 using static Terraria.ModLoader.ModContent;
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Weapons
 {

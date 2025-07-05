@@ -3,6 +3,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Spiritrum.Content.Items; // For GoogBlast and BromiumBar
 using Spiritrum.Content.Projectiles; // For GoogBlast_Projectile
+using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Weapons // Updated namespace
 {

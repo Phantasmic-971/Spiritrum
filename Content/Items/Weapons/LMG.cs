@@ -6,6 +6,7 @@ using Terraria.Localization; // Needed for tooltips
 using System.Collections.Generic; // Needed for List<TooltipLine>
 using Spiritrum.Content.Items.Weapons;
 using static Terraria.ModLoader.ModContent;
+using Spiritrum.Content.Items.Materials;
 
 namespace Spiritrum.Content.Items.Weapons
 {

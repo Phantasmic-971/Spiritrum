@@ -19,7 +19,7 @@ namespace Spiritrum.Players
         public override void LoadData(TagCompound tag)
         {
             // Load the flag - if it exists, this is not a new player
-            isNewPlayer = tag.ContainsKey("isNewPlayer") ? (bool)tag["isNewPlayer"] : true;
+            isNewPlayer = tag.ContainsKey("isNewPlayer") ? tag.Get<bool>("isNewPlayer") : true;
         }
 
         public override void OnEnterWorld()

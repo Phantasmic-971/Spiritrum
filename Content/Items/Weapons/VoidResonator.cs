@@ -5,7 +5,8 @@ using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using System;
 using System.Collections.Generic;
-using Spiritrum.Content.Projectiles; // Add reference to the Projectiles namespace
+using Spiritrum.Content.Projectiles;
+using Spiritrum.Content.Items.Materials; // Add reference to the Projectiles namespace
 
 namespace Spiritrum.Content.Items.Weapons
 {

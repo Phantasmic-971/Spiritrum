@@ -1,3 +1,3 @@
-displayName = Spectrum Mod v1.0
+displayName = Spectrum Mod v0.4.4.2
 author = Phantasmic
-version = 0.4.4.1.1
+version = 0.4.4.2

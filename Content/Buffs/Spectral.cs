@@ -24,7 +24,7 @@ namespace Spiritrum.Content.Buffs
             // Create a damaging aura effect
             float auraRadius = 120f;
             int auraDamage = 30;
-            
+        
             // Visual effect - ghostly dust particles
             if (Main.rand.NextBool(3))
             {
@@ -72,5 +72,6 @@ namespace Spiritrum.Content.Buffs
                 }
             }
         }
+    }
     }
 }

@@ -29,7 +29,7 @@ namespace Spiritrum.Content.Items.Weapons
             Item.autoReuse = true;
             Item.shoot = ModContent.ProjectileType<Projectiles.AnthraxProjectile>();
             Item.shootSpeed = 12f;
-            Item.useAmmo = ModContent.ItemType<AnthraxGasGrenade>();
+            Item.useAmmo = ModContent.ItemType<Ammo.AnthraxGasGrenade>();
             Item.scale = 0.6f;
         }
         public override Vector2? HoldoutOffset() => new Vector2(-45, 0);

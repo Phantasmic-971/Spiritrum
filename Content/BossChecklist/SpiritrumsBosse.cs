@@ -9,7 +9,7 @@ using Terraria.GameContent.ItemDropRules;
 using Spiritrum;
 using Spiritrum.Content.NPCS;
 using Spiritrum.Content.Items;
-using Spiritrum.Content.Items.Placeable;
+using Spiritrum.Content.Items.Placeables;
 using Spiritrum.Content.Items.Consumables;
 
 namespace Spiritrum.Content.BossChecklist
@@ -47,8 +47,8 @@ namespace Spiritrum.Content.BossChecklist
                 ModContent.ItemType<VoidCatalyst>(), // Spawn item// Collection of boss drops
                 new List<int> {
                     ModContent.ItemType<Items.Weapons.VoidResonator>(),
-                    ModContent.ItemType<Items.VoidEssence>(),
-                    ModContent.ItemType<Items.Placeable.VoidHarbingerTrophy>()
+                    ModContent.ItemType<Content.Items.Materials.VoidEssence>(),
+                    ModContent.ItemType<Items.Placeables.VoidHarbingerTrophy>()
                 },
                 
                 // Custom boss head texture
