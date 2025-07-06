@@ -31,19 +31,19 @@ namespace Spiritrum.Content.Items.Weapons
             Item.autoReuse = true;
             Item.shoot = ProjectileID.Bullet; // Uses vanilla bullet
             Item.shootSpeed = 20f;
-            Item.damage = 33;
+            Item.damage = 13;
             Item.knockBack = 2f;
             Item.DamageType = DamageClass.Ranged; // Use DamageType for compatibility
             Item.value = Item.sellPrice(gold: 5);
             Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item41; // Sound of firing
             Item.useAmmo = AmmoID.Bullet; // Uses standard bullets as ammo
-            Item.scale = 0.68f; // Adjust scale to make the sprite more centered
+            Item.scale = 0.8f; // Adjust scale to make the sprite more centered
             Item.noMelee = true; // This item does not deal melee damage
         }
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			const int NumProjectiles = 2; // The number of projectiles that this bow will shoot.
+			const int NumProjectiles = 3; // The number of projectiles that this bow will shoot.
 
 			for (int i = 0; i < NumProjectiles; i++) {
 				// Rotate the velocity randomly by 12 degrees at max.

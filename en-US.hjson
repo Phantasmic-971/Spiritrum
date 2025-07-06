@@ -1420,6 +1420,16 @@ Mods: {
 				DisplayName: Goog Paw
 				Tooltip: ""
 			}
+
+			StealthNodachi: {
+				DisplayName: Stealth Nodachi
+				Tooltip: ""
+			}
+
+			ElementalBlade: {
+				Tooltip: ""
+				DisplayName: Elemental Blade
+			}
 		}
 
 		Projectiles: {

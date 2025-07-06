@@ -45,9 +45,9 @@ namespace Spiritrum.Content.Items.Weapons
 
             // Weapon classification
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 65;
+            Item.damage = 70;
             Item.knockBack = 3f;
-            Item.crit = 6;
+            Item.crit = 8;
 
             // Usage properties
             Item.useTime = 12;
@@ -58,7 +58,7 @@ namespace Spiritrum.Content.Items.Weapons
     
             
             // Magic weapon properties
-            Item.mana = 8; // Mana cost per use
+            Item.mana = 14; // Mana cost per use
             
             // Shooting properties
             Item.shoot = ProjectileID.PurificationPowder; // Default projectile, will be overridden in Shoot method

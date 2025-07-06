@@ -6,22 +6,22 @@ using System.Collections.Generic;
 
 namespace Spiritrum.Content.Items.Weapons
 {
-    public class ElectromanBlade : ModItem
+    public class ElementalBlade : ModItem
     {
         public override void SetStaticDefaults()
         {
         }
         public override void SetDefaults()
         {
-            Item.damage = 30; // Low base damage
+            Item.damage = 64; // Low base damage
             Item.DamageType = DamageClass.Melee;
             Item.width = 24;
             Item.height = 24;
-            Item.useTime = 18; // Very fast attack speed (lower numbers mean faster)
-            Item.useAnimation = 18;
+            Item.useTime = 12; // Very fast attack speed (lower numbers mean faster)
+            Item.useAnimation = 12;
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.knockBack = 3f; // Low knockback
-            Item.value = Item.buyPrice(gold: 5);
+            Item.knockBack = 5f; // Low knockback
+            Item.value = Item.buyPrice(gold: 12);
             Item.rare = ItemRarityID.Yellow; // Blue rarity (uncommon)
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true; // Can hold to attack continuously
@@ -30,13 +30,15 @@ namespace Spiritrum.Content.Items.Weapons
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-           tooltips.Add(new TooltipLine(Mod, "Story", "The blade of the space police"));
+           tooltips.Add(new TooltipLine(Mod, "Ability", "Fires fire waves with left click and ice waves with right click"));
         }
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.Starfury, 1);
-            recipe.AddIngredient(ItemID.MeteoriteBar, 12);
+            recipe.AddIngredient(ItemID.FieryGreatsword, 1);
+            recipe.AddIngredient(ItemID.Frostbrand, 1);
+            recipe.AddIngredient(ItemID.FrostCore, 1);
+            recipe.AddIngredient(ItemID.LivingFireBlock, 25);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
