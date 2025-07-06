@@ -22,7 +22,7 @@ namespace Spiritrum.Content.Items.Accessories
             // Common Properties
             Item.width = 26; // Hitbox width of the item.
             Item.height = 26; // Hitbox height of the item.
-            Item.rare = ItemRarityID.Blue; // The color that the item's name will be in-game.
+            Item.rare = ItemRarityID.Yellow; // The color that the item's name will be in-game.
             Item.value = 500;
             Item.maxStack = 1;
             Item.accessory = true;
@@ -40,7 +40,13 @@ namespace Spiritrum.Content.Items.Accessories
             var line = new TooltipLine(Mod, "Face", "Makes you fall in reverse");
             tooltips.Add(line);
 
-            line = new TooltipLine(Mod, "Face", "who the fuck turned off gravity?")
+             line = new TooltipLine(Mod, "Face", "Increases damage by 8%")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
+
+            line = new TooltipLine(Mod, "Face", "'who the fuck turned off gravity?'")
             {
                 OverrideColor = new Color(255, 255, 255)
             };
