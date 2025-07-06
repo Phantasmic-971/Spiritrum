@@ -23,7 +23,7 @@ namespace Spiritrum.Content.Items.Weapons
             Item.autoReuse = true;
             Item.scale = 1.2f;
             Item.DamageType = DamageClass.Melee;
-            Item.damage = 106;
+            Item.damage = 124;
             Item.knockBack = 9.25f;
 
 
