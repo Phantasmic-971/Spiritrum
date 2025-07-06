@@ -49,7 +49,7 @@ namespace Spiritrum.Content.Items.Weapons
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.OrichalcumBar, 15); // Requires 1 Laser Rifle
-        
+           recipe.AddIngredient(ModContent.ItemType<Blaster>(), 1);
             recipe.AddTile(TileID.MythrilAnvil); // Crafted at a Mythril or Orichalcum Anvil
             recipe.Register();
         }
