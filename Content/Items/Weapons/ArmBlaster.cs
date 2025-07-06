@@ -25,8 +25,8 @@ namespace Spiritrum.Content.Items.Weapons
             Item.mana = 10; // Mana cost per use
             Item.width = 20; // Reduced sprite width
             Item.height = 10; // Reduced sprite height
-            Item.useTime = 12; // Faster speed of use
-            Item.useAnimation = 12; // Faster animation speed
+            Item.useTime = 13; // Faster speed of use
+            Item.useAnimation = 13; // Faster animation speed
             Item.useStyle = ItemUseStyleID.Shoot; // Gun style
             Item.noMelee = true; // Does not deal melee damage
             Item.knockBack = 1; // Knockback
