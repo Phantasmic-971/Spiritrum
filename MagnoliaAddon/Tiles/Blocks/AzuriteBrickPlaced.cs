@@ -17,7 +17,7 @@ namespace Spiritrum.MagnoliaAddon.Tiles.Blocks
             DustType = DustID.VampireHeal;
             HitSound = SoundID.Tink;
 
-            AddMapEntry(new Color(130, 0, 13));
+            AddMapEntry(new Color(13, 0, 130));
         }
 
 

@@ -19,15 +19,15 @@ namespace Spiritrum.MagnoliaAddon.Dusts
             int frameY = desiredVanillaDustTexture * 10 / 1000 * 30 + Main.rand.Next(3) * 10;
             dust.frame = new Rectangle(frameX, frameY, 8, 8);
             dust.noGravity = true;
-            dust.color = Color.AliceBlue;
-            dust.scale = 1f;
+            dust.color = Color.DarkTurquoise;
+            dust.scale = 1.15f;
             dust.alpha = 100;
 
         }
 
         public override Color? GetAlpha(Dust dust, Color lightColor)
         {
-            lightColor = Color.Lerp(lightColor, Color.AliceBlue, 0.8f);
+            lightColor = Color.Lerp(lightColor, Color.DarkTurquoise, 0.8f);
             return new Color(lightColor.R, lightColor.G, lightColor.B, 25);
         }
 

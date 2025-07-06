@@ -20,14 +20,14 @@ namespace Spiritrum.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 50; // Base damage of the Laser Blaster
+            Item.damage = 45; // Base damage of the Laser Blaster
             Item.DamageType = DamageClass.Magic; // Magic weapon
             Item.crit = 4;
             Item.mana = 12; // Mana cost per use
             Item.width = 20; // Reduced sprite width
             Item.height = 10; // Reduced sprite height
-            Item.useTime = 12; // Faster speed of use
-            Item.useAnimation = 12; // Faster animation speed
+            Item.useTime = 16; // Faster speed of use
+            Item.useAnimation = 16; // Faster animation speed
             Item.useStyle = ItemUseStyleID.Shoot; // Gun style
             Item.noMelee = true; // Does not deal melee damage
             Item.knockBack = 1; // Knockback
@@ -49,8 +49,8 @@ namespace Spiritrum.Content.Items.Weapons
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient(ItemID.PalladiumBar, 15); // Requires 1 Laser Rifle
-             recipe.AddIngredient(ModContent.ItemType<ArmBlasterV3>(), 1);
-            recipe.AddTile(TileID.MythrilAnvil); // Crafted at a Mythril or Orichalcum Anvil
+            
+            recipe.AddTile(TileID.Anvils); // Crafted at a Mythril or Orichalcum Anvil
             recipe.Register();
         }
     }

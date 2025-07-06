@@ -31,7 +31,7 @@ namespace Spiritrum.MagnoliaAddon.Tiles.Blocks
             Main.tileBlockLight[Type] = true;
 
             LocalizedText name = CreateMapEntryName();
-            AddMapEntry(new Color(156, 0, 0), Language.GetText("Azurite"));
+            AddMapEntry(new Color(5, 5, 155), Language.GetText("Azurite"));
 
             DustType = 183;
             HitSound = SoundID.Tink;

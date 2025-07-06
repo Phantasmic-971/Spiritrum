@@ -9,6 +9,7 @@ using Terraria;
 using Microsoft.Xna.Framework;
 using Terraria.DataStructures;
 using Spiritrum.Content.Items.Placeables;
+using Spiritrum.Content.Projectiles;
 
 namespace Spiritrum.Content.Items.Weapons
 {
@@ -27,8 +28,8 @@ namespace Spiritrum.Content.Items.Weapons
 
 
             // Use Properties
-            Item.useTime = 22; // The item's use time in ticks (60 ticks == 1 second.)
-            Item.useAnimation = 22; // The length of the item's use animation in ticks (60 ticks == 1 second.)
+            Item.useTime = 24; // The item's use time in ticks (60 ticks == 1 second.)
+            Item.useAnimation = 24; // The length of the item's use animation in ticks (60 ticks == 1 second.)
             Item.useStyle = ItemUseStyleID.Shoot; // How you use the item (swinging, holding out, etc.)
             Item.autoReuse = true; // Whether or not you can hold click to automatically use it again.
 
@@ -39,8 +40,8 @@ namespace Spiritrum.Content.Items.Weapons
 
             // Weapon Properties
             Item.DamageType = DamageClass.Ranged; // Sets the damage type to ranged.
-            Item.damage = 110; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
-            Item.knockBack = 1.5f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
+            Item.damage = 108; // Sets the item's damage. Note that projectiles shot by this weapon will use its and the used ammunition's damage added together.
+            Item.knockBack = 4.5f; // Sets the item's knockback. Note that projectiles shot by this weapon will use its and the used ammunition's knockback added together.
             Item.noMelee = true; // So the item's animation doesn't do damage.
 
 
@@ -58,10 +59,10 @@ namespace Spiritrum.Content.Items.Weapons
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             // Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
-            var line = new TooltipLine(Mod, "Face", "");
+            var line = new TooltipLine(Mod, "Face", "Converts all arrows into Morbium Arrows");
             tooltips.Add(line);
 
-            line = new TooltipLine(Mod, "Face", "")
+            line = new TooltipLine(Mod, "Face", "Morbium arrows are extremely slow, but split into four fast morbium beams after a short delay")
             {
                 OverrideColor = new Color(255, 255, 255)
             };
@@ -86,7 +87,7 @@ namespace Spiritrum.Content.Items.Weapons
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<MorbiumBar>(12);
+            recipe.AddIngredient<MorbiumBar>(15);
             recipe.AddTile(TileID.MythrilAnvil);
             recipe.Register();
 
@@ -102,7 +103,7 @@ namespace Spiritrum.Content.Items.Weapons
         }
         public override void ModifyShootStats(Player player, ref Vector2 position, ref Vector2 velocity, ref int type, ref int damage, ref float knockback)
         {
-            type = ProjectileID.VenomArrow;
+             type = ModContent.ProjectileType<MorbiumArrowProj>();
         }
     }
 

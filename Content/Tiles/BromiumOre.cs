@@ -13,6 +13,7 @@ namespace Spiritrum.Content.Tiles
             // Basic tile properties
             Main.tileSolid[Type] = true;
             Main.tileMergeDirt[Type] = true;
+            Main.tileMerge[TileID.Stone][Type] = true;
             Main.tileBlockLight[Type] = true;            // Add the map entry with a custom name
             var name = CreateMapEntryName();
             // name.SetDefault("Bromium Ore");
