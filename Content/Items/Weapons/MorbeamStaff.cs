@@ -29,7 +29,7 @@ namespace Spiritrum.Content.Items.Weapons
             Item.useAnimation = 13;
             Item.autoReuse = true;
         
-            Item.mana = 12;
+            Item.mana = 10;
             Item.DamageType = DamageClass.Magic;
             Item.damage = 84;
             Item.knockBack = 3f;
