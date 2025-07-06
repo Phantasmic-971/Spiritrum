@@ -25,13 +25,13 @@ namespace Spiritrum.Content.Items.Weapons
             Item.height = 33;
 
             Item.useStyle = ItemUseStyleID.Shoot;
-            Item.useTime = 13;
-            Item.useAnimation = 13;
+            Item.useTime = 12;
+            Item.useAnimation = 12;
             Item.autoReuse = true;
         
             Item.mana = 10;
             Item.DamageType = DamageClass.Magic;
-            Item.damage = 84;
+            Item.damage = 90;
             Item.knockBack = 3f;
             Item.noMelee = true;
             Item.ArmorPenetration = 10;
