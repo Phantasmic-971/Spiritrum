@@ -1,91 +1,243 @@
+using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.Bestiary;
-using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.ModLoader.Utilities;
-using System.Linq;
-using Spiritrum.Content.Items.Other;
-using Spiritrum.Content.Items.Placeables.Banners;
+using Terraria.Audio;
+using System;
 
 namespace Spiritrum.Content.NPCS
 {
-    // Party Zombie is a pretty basic clone of a vanilla NPC. To learn how to further adapt vanilla NPC behaviors, see https://github.com/tModLoader/tModLoader/wiki/Advanced-Vanilla-Code-Adaption#example-npc-npc-clone-with-modified-projectile-hoplite
     public class VoidBat : ModNPC
     {
+        private int attackTimer = 0;
+        private Vector2 targetPosition = Vector2.Zero;
+        private bool isCharging = false;
+        private int chargeTimer = 0;
+        private int lifespan = 0;
+        
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.CaveBat];
-
-            NPCID.Sets.ShimmerTransformToNPC[NPC.type] = NPCID.CaveBat;
-
-            NPCID.Sets.NPCBestiaryDrawModifiers value = new NPCID.Sets.NPCBestiaryDrawModifiers()
-            { // Influences how the NPC looks in the Bestiary
-                Velocity = 1f // Draws the NPC in the bestiary as if its walking +1 tiles in the x direction
+            Main.npcFrameCount[Type] = 4; // 4 frame animation
+            NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers()
+            {
+                Velocity = 1f,
+                Direction = 1
             };
-            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, value);
+            NPCID.Sets.NPCBestiaryDrawOffset.Add(Type, drawModifiers);
         }
 
         public override void SetDefaults()
         {
-            NPC.width = 34;
-            NPC.height = 24;
-            NPC.damage = 62;
-            NPC.defense = 32;
-            NPC.lifeMax = 435;
+            NPC.width = 32;
+            NPC.height = 32;
+            NPC.damage = Main.dayTime ? 40 : 60; // Less damage during day
+            NPC.defense = 15;
+            NPC.lifeMax = 1200; // Moderate health for a summoned minion
             NPC.HitSound = SoundID.NPCHit1;
             NPC.DeathSound = SoundID.NPCDeath4;
-            NPC.value = 500f;
-            NPC.knockBackResist = 0.7f;
-            NPC.aiStyle = 14; // bat ai
-
-            AIType = NPCID.CaveBat; // Use vanilla zombie's type when executing AI code. (This also means it will try to despawn during daytime)
-            AnimationType = NPCID.CaveBat; // Use vanilla zombie's type when executing animation code. Important to also match Main.npcFrameCount[NPC.type] in SetStaticDefaults.
-            Banner = Type;
-            BannerItem = ModContent.ItemType<VoidBatBanner>();
-
+            NPC.value = Item.buyPrice(0, 0, 30, 0); // Small reward
+            NPC.knockBackResist = 0.3f; // Some knockback resistance
+            NPC.aiStyle = -1; // Custom AI
+            NPC.noGravity = true;
+            NPC.noTileCollide = true;
+            
+            // Make it glow slightly
+            NPC.alpha = 50;
+            
+            // Immune to some debuffs
+            NPC.buffImmune[BuffID.Poisoned] = true;
+            NPC.buffImmune[BuffID.OnFire] = true;
+            
+            // No banner for boss minions
+            Banner = 0;
+            BannerItem = 0;
         }
 
-        public override void ModifyNPCLoot(NPCLoot npcLoot)
+        public override void FindFrame(int frameHeight)
         {
-            // Since Party Zombie is essentially just another variation of Zombie, we'd like to mimic the Zombie drops.
-            // To do this, we can either (1) copy the drops from the Zombie directly or (2) just recreate the drops in our code.
-            // (1) Copying the drops directly means that if Terraria updates and changes the Zombie drops, your ModNPC will also inherit the changes automatically.
-            // (2) Recreating the drops can give you more control if desired but requires consulting the wiki, bestiary, or source code and then writing drop code.
+            // Simple flying animation
+            NPC.frameCounter += 0.2f;
+            NPC.frameCounter %= Main.npcFrameCount[NPC.type];
+            int frame = (int)NPC.frameCounter;
+            NPC.frame.Y = frame * frameHeight;
+        }
 
-            // (1) This example shows copying the drops directly. For consistency and mod compatibility, we suggest using the smallest positive NPCID when dealing with npcs with many variants and shared drop pools.
-            var zombieDropRules = Main.ItemDropsDB.GetRulesForNPCID(NPCID.CaveBat, false); // false is important here
-            foreach (var zombieDropRule in zombieDropRules)
+        public override void AI()
+        {
+            // Find the player to target
+            Player target = Main.player[Player.FindClosest(NPC.position, NPC.width, NPC.height)];
+            if (!target.active || target.dead)
             {
-                // In this foreach loop, we simple add each drop to the PartyZombie drop pool. 
-                npcLoot.Add(zombieDropRule);
+                // Despawn if no valid target
+                NPC.velocity.Y -= 0.2f;
+                if (NPC.timeLeft > 60)
+                    NPC.timeLeft = 60;
+                return;
             }
 
-            // (2) This example shows recreating the drops. This code is commented out because we are using the previous method instead.
-            // npcLoot.Add(ItemDropRule.Common(ItemID.Shackle, 50)); // Drop shackles with a 1 out of 50 chance.
-            // npcLoot.Add(ItemDropRule.Common(ItemID.ZombieArm, 250)); // Drop zombie arm with a 1 out of 250 chance.
+            // Face the target
+            NPC.direction = NPC.spriteDirection = NPC.Center.X < target.Center.X ? 1 : -1;
 
-            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentNebula, 4, 2, 5)); // Drop zombie arm with a 1 out of 250 chance.
-            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentSolar, 4, 2, 5)); // Drop zombie arm with a 1 out of 250 chance.
-            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentStardust, 4, 2, 5)); // Drop zombie arm with a 1 out of 250 chance.
-            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentVortex, 4, 2, 5)); // Drop zombie arm with a 1 out of 250 chance.
+            attackTimer++;
+            lifespan++;
+
+            // AI states
+            if (!isCharging)
+            {
+                // Hovering/positioning phase
+                Vector2 idealPosition = target.Center + new Vector2(
+                    Main.rand.Next(-250, 250),
+                    Main.rand.Next(-180, -80)
+                );
+
+                // Move towards ideal position
+                Vector2 direction = idealPosition - NPC.Center;
+                float distance = direction.Length();
+
+                if (distance > 30f)
+                {
+                    direction.Normalize();
+                    float speed = Math.Min(distance / 25f, 5f);
+                    NPC.velocity = Vector2.Lerp(NPC.velocity, direction * speed, 0.08f);
+                }
+                else
+                {
+                    NPC.velocity *= 0.95f;
+                }
+
+                // Decide when to charge (give warning time)
+                if (attackTimer > 150 && Main.rand.NextBool(240)) // Less frequent charges
+                {
+                    isCharging = true;
+                    chargeTimer = 0;
+                    targetPosition = target.Center;
+                    attackTimer = 0;
+                    
+                    // Play warning sound
+                    SoundEngine.PlaySound(SoundID.Roar, NPC.position);
+                    
+                    // Create warning dust
+                    for (int i = 0; i < 20; i++)
+                    {
+                        Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                            DustID.PurpleTorch, 0f, 0f, 0, default, 1.8f);
+                        dust.noGravity = true;
+                        dust.velocity *= 0.3f;
+                    }
+                }
+            }
+            else
+            {
+                // Charging phase
+                chargeTimer++;
+                
+                if (chargeTimer < 45) // Longer warning time
+                {
+                    // Brief pause before charging
+                    NPC.velocity *= 0.92f;
+                    
+                    // Create charging effect
+                    if (chargeTimer % 8 == 0)
+                    {
+                        for (int i = 0; i < 5; i++)
+                        {
+                            Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                                DustID.PurpleTorch, 0f, 0f, 0, default, 1.5f);
+                            dust.noGravity = true;
+                            dust.velocity = (NPC.Center - dust.position) * 0.08f;
+                        }
+                    }
+                }
+                else if (chargeTimer == 45)
+                {
+                    // Launch the charge (slightly slower)
+                    Vector2 chargeDirection = (targetPosition - NPC.Center).SafeNormalize(Vector2.Zero);
+                    NPC.velocity = chargeDirection * 12f; // Reduced from 15f
+                    
+                    // Play charge sound
+                    SoundEngine.PlaySound(SoundID.Item1, NPC.position);
+                }
+                else if (chargeTimer > 45 && chargeTimer < 105)
+                {
+                    // Maintain charge velocity but slow down gradually
+                    NPC.velocity *= 0.97f;
+                    
+                    // Create trail effect
+                    if (Main.rand.NextBool(3))
+                    {
+                        Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                            DustID.PurpleTorch, 0f, 0f, 0, default, 1f);
+                        dust.noGravity = true;
+                        dust.velocity = -NPC.velocity * 0.2f;
+                    }
+                }
+                else
+                {
+                    // End charge, return to hovering
+                    isCharging = false;
+                    chargeTimer = 0;
+                    NPC.velocity *= 0.9f;
+                }
+            }
+
+            // Create ambient void particles
+            if (Main.rand.NextBool(12))
+            {
+                Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                    DustID.PurpleTorch, 0f, 0f, 0, default, 0.8f);
+                dust.noGravity = true;
+                dust.velocity *= 0.2f;
+            }
+
+            // Add light
+            Lighting.AddLight(NPC.Center, 0.3f, 0.1f, 0.4f);
+
+            // Despawn after 25 seconds
+            if (lifespan > 1500) // 25 seconds at 60 FPS
+            {
+                NPC.velocity.Y -= 0.15f;
+                if (NPC.timeLeft > 90)
+                    NPC.timeLeft = 90;
+            }
         }
 
+        public override void OnHitPlayer(Player target, Player.HurtInfo hurtInfo)
+        {
+            // Apply a minor debuff when hitting the player
+            if (Main.rand.NextBool(4))
+            {
+                target.AddBuff(BuffID.Darkness, 120); // 2 seconds of darkness
+            }
+        }
 
+        public override void HitEffect(NPC.HitInfo hit)
+        {
+            // Create void dust when hit
+            for (int i = 0; i < 5; i++)
+            {
+                Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                    DustID.PurpleTorch, hit.HitDirection * 2f, -1f, 0, default, 1f);
+                dust.noGravity = true;
+            }
+
+            // If killed, create death effect
+            if (NPC.life <= 0)
+            {
+                for (int i = 0; i < 20; i++)
+                {
+                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                        DustID.PurpleTorch, Main.rand.Next(-3, 4), Main.rand.Next(-3, 4), 0, default, 1.5f);
+                    dust.noGravity = true;
+                    dust.velocity *= 2f;
+                }
+                
+                SoundEngine.PlaySound(SoundID.NPCDeath39, NPC.position);
+            }
+        }
 
         public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
-            //If any player is underground and has an example item in their inventory, the example bone merchant will have a slight chance to spawn.
-            if (spawnInfo.Player.inventory.Any(item => item.type == ModContent.ItemType<AlienThornBall>()))
-            {
-                return 0.69f;
-            }
-
-            //Else, the example bone merchant will not spawn if the above conditions are not met.
-            return 0f;
-
-
+            return 0f; // Only spawned by VoidHarbinger
         }
-
     }
 }

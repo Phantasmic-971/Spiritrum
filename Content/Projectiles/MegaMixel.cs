@@ -16,13 +16,13 @@ namespace Spiritrum.Content.Projectiles
             Projectile.height = 30;
             Projectile.friendly = true;
             Projectile.DamageType = DamageClass.Melee;
-            Projectile.penetrate = 3;
-            Projectile.timeLeft = 60;
+            Projectile.penetrate = 4;
+            Projectile.timeLeft = 90;
             Projectile.tileCollide = false;
             Projectile.ignoreWater = false;
             Projectile.extraUpdates = 1;
             Projectile.usesLocalNPCImmunity = true;
-            Projectile.localNPCHitCooldown = 15;
+            Projectile.localNPCHitCooldown = 13;
         }
 
         public override void AI()

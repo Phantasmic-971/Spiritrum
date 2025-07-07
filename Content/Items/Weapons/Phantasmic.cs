@@ -34,16 +34,16 @@ namespace Spiritrum.Content.Items.Weapons
 			Item.UseSound = SoundID.Item5; // Bow sound
 			Item.autoReuse = true; // Automatically reuses
 			Item.shoot = ModContent.ProjectileType<PhantomArrowProjectile>(); // Shoots arrows
-			Item.shootSpeed = 200f; // Arrow speed
-			Item.scale = 0.72f;
+			Item.shootSpeed = 25f; // Arrow speed
+			Item.scale = 0.76f;
 		}
 
 		public override bool Shoot(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, Vector2 velocity, int type, int damage, float knockback) {
-			const int NumProjectiles = 4; // The number of projectiles that this bow will shoot.
+			const int NumProjectiles = 5; // The number of projectiles that this bow will shoot.
 
 			for (int i = 0; i < NumProjectiles; i++) {
 				// Rotate the velocity randomly by 12 degrees at max.
-				Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(8));
+				Vector2 newVelocity = velocity.RotatedByRandom(MathHelper.ToRadians(3));
 
 				// Create a projectile.
 				Projectile.NewProjectileDirect(source, position, newVelocity, type, damage, knockback, player.whoAmI);
@@ -60,8 +60,12 @@ namespace Spiritrum.Content.Items.Weapons
 		public override void ModifyTooltips(List<TooltipLine> tooltips)
 		{
 			// Add your custom tooltip lines based on the provided text
-			tooltips.Add(new TooltipLine(Mod, "PhantasmicTipDeveloper", "Developer weapon"));
-			tooltips.Add(new TooltipLine(Mod, "PhantasmicTipShoot", "Shoots 4 fast arrows with slight inaccuracy at a fast pace"));
+			var devLine = new TooltipLine(Mod, "PhantasmicTipDeveloper", "Developer weapon")
+			{
+				OverrideColor = new Color(255, 200, 50)
+			};
+			tooltips.Add(devLine);
+			tooltips.Add(new TooltipLine(Mod, "PhantasmicTipShoot", "Shoots 5 fast arrows with slight inaccuracy"));
 
 			// Add a tooltip line for the ammo consumption chance, which is present in the code
 			tooltips.Add(new TooltipLine(Mod, "PhantasmicTipAmmo", "75% chance to not consume ammo")); // Added line for ammo effect

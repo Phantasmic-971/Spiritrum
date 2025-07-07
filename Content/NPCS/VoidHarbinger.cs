@@ -71,7 +71,7 @@ namespace Spiritrum.Content.NPCS
         {
             NPC.width = 80;
             NPC.height = 96;
-            NPC.damage = Main.dayTime ? 80 : 300; // 80 damage during day, 300 during night
+            NPC.damage = Main.dayTime ? 60 : 200; // Reduced from 80/300 to 60/200
             NPC.defense = 35;
             NPC.lifeMax = PhaseOneMaxLife;
             NPC.HitSound = SoundID.NPCHit54; // Shadow wraith hit sound
@@ -133,14 +133,14 @@ namespace Spiritrum.Content.NPCS
             NPC.frame.Y = frame * frameHeight;
         }        public override void AI()
         {
-            // Update damage based on time of day - 300 damage at night, 60 damage during day
-            if (Main.dayTime && NPC.damage > 180)
+            // Update damage based on time of day - 200 damage at night, 60 damage during day
+            if (Main.dayTime && NPC.damage > 120)
             {
-                NPC.damage = 180;
+                NPC.damage = 120; // Reduced from 180
             }
-            else if (!Main.dayTime && NPC.damage < 9900)
+            else if (!Main.dayTime && NPC.damage < 6000)
             {
-                NPC.damage = 9900;
+                NPC.damage = 6000; // Reduced from 9900
             }
             
             // Boss despawn logic
@@ -189,7 +189,7 @@ namespace Spiritrum.Content.NPCS
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     // Create a ring of void projectiles that implode
-                    int projectileCount = 16;
+                    int projectileCount = 12; // Reduced from 16
                     for (int i = 0; i < projectileCount; i++)
                     {
                         float rotation = MathHelper.TwoPi * i / projectileCount;
@@ -260,11 +260,11 @@ namespace Spiritrum.Content.NPCS
         }
           private void FirstPhaseAttacks(Player target)
         {
-            // First phase uses a cycle of 4 different attack patterns
+            // First phase uses a cycle of 5 different attack patterns
             if (attackDuration <= 0)
             {
                 // Time to switch to the next attack pattern
-                currentAttack = (currentAttack + 1) % 4;
+                currentAttack = (currentAttack + 1) % 5;
                 
                 // Set up the new attack pattern
                 switch (currentAttack)
@@ -284,7 +284,12 @@ namespace Spiritrum.Content.NPCS
                         NPC.velocity = Vector2.Zero;
                         break;
                         
-                    case 3: // Pursuit attack
+                    case 3: // Void bat summoning attack
+                        attackDuration = 320; // Long duration for summoning
+                        NPC.velocity = Vector2.Zero;
+                        break;
+                        
+                    case 4: // Pursuit attack
                         attackDuration = 280; // Increased from 220
                         break;
                 }
@@ -308,7 +313,11 @@ namespace Spiritrum.Content.NPCS
                     VoidSphereAttack(target);
                     break;
                     
-                case 3: // Pursuit attack
+                case 3: // Void bat summoning attack
+                    VoidBatSummonAttack(target);
+                    break;
+                    
+                case 4: // Pursuit attack
                     PursuitAttack(target);
                     break;
             }
@@ -617,13 +626,270 @@ namespace Spiritrum.Content.NPCS
             {
                 NPC.velocity *= 0.8f;
             }
+        }
+        
+        private void VoidBatSummonAttack(Player target)
+        {
+            // First phase summons 3 void bats
+            
+            // First, move to a safe position above the player
+            if (attackCounter < 80)
+            {
+                Vector2 hoverPos = target.Center - new Vector2(0, 200);
+                Vector2 toHoverPos = hoverPos - NPC.Center;
+                float distToHover = toHoverPos.Length();
+                
+                if (distToHover > 30)
+                {
+                    toHoverPos.Normalize();
+                    NPC.velocity = toHoverPos * Math.Min(distToHover / 20f, 6f);
+                }
+                else
+                {
+                    NPC.velocity *= 0.9f;
+                }
+                
+                // Charging effect
+                if (attackCounter % 15 == 0)
+                {
+                    for (int i = 0; i < 12; i++)
+                    {
+                        Vector2 dustPos = NPC.Center + Main.rand.NextVector2Circular(60f, 60f);
+                        Vector2 dustVel = (NPC.Center - dustPos) * 0.08f;
+                        Dust dust = Dust.NewDustPerfect(dustPos, DustID.PurpleTorch, dustVel, 0, default, 1.8f);
+                        dust.noGravity = true;
+                    }
+                }
+            }
+            else if (attackCounter == 80)
+            {
+                // Summon 3 void bats with warning
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    for (int i = 0; i < 3; i++)
+                    {
+                        // Spawn bats at different positions around the boss
+                        float angle = MathHelper.TwoPi * i / 3f;
+                        Vector2 spawnOffset = new Vector2(
+                            (float)Math.Cos(angle) * 120f,
+                            (float)Math.Sin(angle) * 80f
+                        );
+                        Vector2 spawnPos = NPC.Center + spawnOffset;
+                        
+                        // Ensure spawn position is valid
+                        if (!Collision.SolidCollision(spawnPos, 32, 32))
+                        {
+                            int voidBat = NPC.NewNPC(NPC.GetSource_FromAI(), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<VoidBat>());
+                            
+                            if (voidBat < Main.maxNPCs)
+                            {
+                                Main.npc[voidBat].target = NPC.target;
+                                Main.npc[voidBat].netUpdate = true;
+                            }
+                        }
+                        
+                        // Create spawn effect
+                        for (int d = 0; d < 25; d++)
+                        {
+                            Dust dust = Dust.NewDustDirect(spawnPos - new Vector2(16, 16), 32, 32, 
+                                DustID.PurpleTorch, 0f, 0f, 0, default, 2f);
+                            dust.noGravity = true;
+                            dust.velocity = Main.rand.NextVector2Circular(4f, 4f);
+                        }
+                    }
+                    
+                    // Play summoning sound
+                    SoundEngine.PlaySound(SoundID.NPCDeath52, NPC.position);
+                }
+                
+                // Create dramatic summoning effect
+                for (int i = 0; i < 50; i++)
+                {
+                    Vector2 velocity = Main.rand.NextVector2Circular(8f, 8f);
+                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                        DustID.PurpleTorch, velocity.X, velocity.Y, 0, default, 2.5f);
+                    dust.noGravity = true;
+                }
+            }
+            else
+            {
+                // After summoning, retreat and move defensively
+                Vector2 retreatPos = target.Center + new Vector2(
+                    Main.rand.Next(-300, 300),
+                    Main.rand.Next(-250, -150)
+                );
+                
+                Vector2 toRetreat = retreatPos - NPC.Center;
+                float distance = toRetreat.Length();
+                
+                if (distance > 50)
+                {
+                    toRetreat.Normalize();
+                    NPC.velocity = toRetreat * Math.Min(distance / 30f, 5f);
+                }
+                else
+                {
+                    NPC.velocity *= 0.95f;
+                }
+                
+                // Occasionally fire defensive projectiles
+                if (attackCounter % 60 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 toPlayer = target.Center - NPC.Center;
+                    toPlayer.Normalize();
+                    
+                    int damage = NPC.damage / 6; // Reduced damage for defensive shots
+                    int projectileType = ModContent.ProjectileType<VoidHarbingerBossProjectile>();
+                    
+                    // Fire 2 projectiles in a spread
+                    float spread = MathHelper.ToRadians(25);
+                    Vector2 velocity1 = toPlayer.RotatedBy(spread) * 5f;
+                    Vector2 velocity2 = toPlayer.RotatedBy(-spread) * 5f;
+                    
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity1, projectileType, damage, 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity2, projectileType, damage, 0f, Main.myPlayer);
+                    
+                    SoundEngine.PlaySound(SoundID.Item8, NPC.position);
+                }
+            }
+        }
+        
+        private void EnhancedVoidBatSummonAttack(Player target)
+        {
+            // Second phase summons 4 void bats with enhanced effects
+            
+            // First, move to a safe position above the player
+            if (attackCounter < 70)
+            {
+                Vector2 hoverPos = target.Center - new Vector2(0, 220);
+                Vector2 toHoverPos = hoverPos - NPC.Center;
+                float distToHover = toHoverPos.Length();
+                
+                if (distToHover > 30)
+                {
+                    toHoverPos.Normalize();
+                    NPC.velocity = toHoverPos * Math.Min(distToHover / 18f, 7f);
+                }
+                else
+                {
+                    NPC.velocity *= 0.9f;
+                }
+                
+                // Enhanced charging effect
+                if (attackCounter % 12 == 0)
+                {
+                    for (int i = 0; i < 16; i++)
+                    {
+                        Vector2 dustPos = NPC.Center + Main.rand.NextVector2Circular(80f, 80f);
+                        Vector2 dustVel = (NPC.Center - dustPos) * 0.1f;
+                        Dust dust = Dust.NewDustPerfect(dustPos, DustID.PurpleTorch, dustVel, 0, default, 2.2f);
+                        dust.noGravity = true;
+                    }
+                }
+            }
+            else if (attackCounter == 70)
+            {
+                // Summon 4 void bats with enhanced warning
+                if (Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        // Spawn bats at different positions around the boss
+                        float angle = MathHelper.TwoPi * i / 4f;
+                        Vector2 spawnOffset = new Vector2(
+                            (float)Math.Cos(angle) * 140f,
+                            (float)Math.Sin(angle) * 90f
+                        );
+                        Vector2 spawnPos = NPC.Center + spawnOffset;
+                        
+                        // Ensure spawn position is valid
+                        if (!Collision.SolidCollision(spawnPos, 32, 32))
+                        {
+                            int voidBat = NPC.NewNPC(NPC.GetSource_FromAI(), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<VoidBat>());
+                            
+                            if (voidBat < Main.maxNPCs)
+                            {
+                                Main.npc[voidBat].target = NPC.target;
+                                Main.npc[voidBat].netUpdate = true;
+                                // In phase 2, give bats slightly more health
+                                Main.npc[voidBat].lifeMax = (int)(Main.npc[voidBat].lifeMax * 1.2f);
+                                Main.npc[voidBat].life = Main.npc[voidBat].lifeMax;
+                            }
+                        }
+                        
+                        // Create enhanced spawn effect
+                        for (int d = 0; d < 30; d++)
+                        {
+                            Dust dust = Dust.NewDustDirect(spawnPos - new Vector2(16, 16), 32, 32, 
+                                DustID.PurpleTorch, 0f, 0f, 0, default, 2.3f);
+                            dust.noGravity = true;
+                            dust.velocity = Main.rand.NextVector2Circular(5f, 5f);
+                        }
+                    }
+                    
+                    // Play enhanced summoning sound
+                    SoundEngine.PlaySound(SoundID.Roar, NPC.position);
+                }
+                
+                // Create dramatic enhanced summoning effect
+                for (int i = 0; i < 70; i++)
+                {
+                    Vector2 velocity = Main.rand.NextVector2Circular(10f, 10f);
+                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
+                        DustID.PurpleTorch, velocity.X, velocity.Y, 0, default, 3f);
+                    dust.noGravity = true;
+                }
+            }
+            else
+            {
+                // After summoning, more aggressive movement and attacks
+                Vector2 retreatPos = target.Center + new Vector2(
+                    Main.rand.Next(-350, 350),
+                    Main.rand.Next(-280, -180)
+                );
+                
+                Vector2 toRetreat = retreatPos - NPC.Center;
+                float distance = toRetreat.Length();
+                
+                if (distance > 40)
+                {
+                    toRetreat.Normalize();
+                    NPC.velocity = toRetreat * Math.Min(distance / 25f, 6f);
+                }
+                else
+                {
+                    NPC.velocity *= 0.95f;
+                }
+                
+                // More frequent and aggressive defensive projectiles
+                if (attackCounter % 45 == 0 && Main.netMode != NetmodeID.MultiplayerClient)
+                {
+                    Vector2 toPlayer = target.Center - NPC.Center;
+                    toPlayer.Normalize();
+                    
+                    int damage = NPC.damage / 5; // Slightly higher damage in phase 2
+                    int projectileType = ModContent.ProjectileType<VoidHarbingerBossProjectile>();
+                    
+                    // Fire 3 projectiles in a spread
+                    float spread = MathHelper.ToRadians(30);
+                    Vector2 velocity1 = toPlayer.RotatedBy(spread) * 6f;
+                    Vector2 velocity2 = toPlayer * 6f;
+                    Vector2 velocity3 = toPlayer.RotatedBy(-spread) * 6f;
+                    
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity1, projectileType, damage, 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity2, projectileType, damage, 0f, Main.myPlayer);
+                    Projectile.NewProjectile(NPC.GetSource_FromAI(), NPC.Center, velocity3, projectileType, damage, 0f, Main.myPlayer);
+                    
+                    SoundEngine.PlaySound(SoundID.Item9, NPC.position);
+                }
+            }
         }        private void SecondPhaseAttacks(Player target)
         {
-            // Second phase uses a cycle of 5 different attack patterns, more aggressive than first phase
+            // Second phase uses a cycle of 6 different attack patterns, more aggressive than first phase
             if (attackDuration <= 0)
             {
                 // Time to switch to the next attack pattern
-                currentAttack = (currentAttack + 1) % 5;
+                currentAttack = (currentAttack + 1) % 6;
                 
                 // Set up the new attack pattern
                 switch (currentAttack)
@@ -645,7 +911,12 @@ namespace Spiritrum.Content.NPCS
                         attackDuration = 240; // Increased from 180
                         break;
                         
-                    case 4: // Shadow dash combo
+                    case 4: // Enhanced void bat summoning attack
+                        attackDuration = 300; // Long duration for summoning
+                        NPC.velocity = Vector2.Zero;
+                        break;
+                        
+                    case 5: // Shadow dash combo
                         attackDuration = 260; // Increased from 200
                         targetPosition = target.Center;
                         break;
@@ -674,7 +945,11 @@ namespace Spiritrum.Content.NPCS
                     VoidImplosionAttack(target);
                     break;
                     
-                case 4: // Shadow dash combo
+                case 4: // Enhanced void bat summoning attack
+                    EnhancedVoidBatSummonAttack(target);
+                    break;
+                    
+                case 5: // Shadow dash combo
                     ShadowDashCombo(target);
                     break;
             }
@@ -752,7 +1027,7 @@ namespace Spiritrum.Content.NPCS
                     int projectileType = ModContent.ProjectileType<VoidHarbingerBossProjectile>();
                     
                     // Fire projectiles in multiple directions
-                    int projectileCount = 6; // Reduced from 8
+                    int projectileCount = 4; // Reduced from 6
                     for (int i = 0; i < projectileCount; i++)
                     {
                         float projAngle = MathHelper.TwoPi * i / projectileCount;
@@ -1092,7 +1367,7 @@ namespace Spiritrum.Content.NPCS
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     // Create ring of void projectiles that implode
-                    int projectileCount = 16;
+                    int projectileCount = 12; // Reduced from 16 for VoidImplosionAttack
                     for (int i = 0; i < projectileCount; i++)
                     {
                         float rotation = MathHelper.TwoPi * i / projectileCount;
@@ -1187,7 +1462,7 @@ namespace Spiritrum.Content.NPCS
                 if (Main.netMode != NetmodeID.MultiplayerClient)
                 {
                     // Create ring of void projectiles that explode outward
-                    int projectileCount = 24;
+                    int projectileCount = 16; // Reduced from 24 for explosion
                     for (int i = 0; i < projectileCount; i++)
                     {
                         float rotation = MathHelper.TwoPi * i / projectileCount;
@@ -1195,7 +1470,7 @@ namespace Spiritrum.Content.NPCS
                             (float)Math.Cos(rotation),
                             (float)Math.Sin(rotation)
                         );
-                        velocity *= 10f;
+                        velocity *= 8f; // Reduced speed from 10f
                         
                         int damage = NPC.damage / 5;
                         int projectileType = ModContent.ProjectileType<VoidHarbingerBossProjectile>();
@@ -1464,24 +1739,45 @@ namespace Spiritrum.Content.NPCS
                         }
                     }
                     break;
-            }        }public override void ModifyNPCLoot(NPCLoot npcLoot)
+            }        }        public override void ModifyNPCLoot(NPCLoot npcLoot)
         {   
-            // Always drop a good amount of Void Essence (for crafting other void-themed items)
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.VoidEssence>(), 1, 15, 25));
-            
-            // 100% chance to drop some souls (a mix of them)
-            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofSight, 1, 10, 15));
-            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofNight, 1, 10, 15));
-            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofLight, 1, 10, 15));
-            
-            // 25% chance to drop Hallowed Bars
-            npcLoot.Add(ItemDropRule.Common(ItemID.HallowedBar, 4, 10, 15));
-            
-            // Money drops (Guaranteed platinum coin for defeating a boss)
-            npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 1, 3));            // Trophy drop (10% chance)
+            // Always drop Void Essence (for crafting other void-themed items)
+            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Materials.VoidEssence>(), 1, 25, 35));
+
+            // 100% chance to drop some souls (a mix of them) - increased amounts
+            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofSight, 1, 15, 25));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofNight, 1, 15, 25));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofLight, 1, 15, 25));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofFright, 1, 8, 15));
+            npcLoot.Add(ItemDropRule.Common(ItemID.SoulofMight, 1, 8, 15));
+
+            // 50% chance to drop Hallowed Bars (increased chance and amount)
+            npcLoot.Add(ItemDropRule.Common(ItemID.HallowedBar, 2, 15, 25));
+
+            // Money drops (Guaranteed platinum coins for defeating a boss)
+            npcLoot.Add(ItemDropRule.Common(ItemID.PlatinumCoin, 1, 3, 6));
+
+            // Trophy drop (10% chance)
             npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Items.Placeables.VoidHarbingerTrophy>(), 10));
-              // The Grim Wraith - 33.3% chance to drop
-            npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Content.Items.Weapons.TheGrimWraith>(), 3));
+
+            // Weapon drops - one guaranteed weapon from this pool
+            IItemDropRule weaponPool = new OneFromOptionsNotScaledWithLuckDropRule(1, 1,
+                ModContent.ItemType<Content.Items.Weapons.TheGrimWraith>(),
+                ModContent.ItemType<Content.Items.Weapons.VoidResonator>()
+            );
+            npcLoot.Add(weaponPool);
+
+            // Rare materials (15% chance each)
+            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentNebula, 7, 3, 8));
+            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentSolar, 7, 3, 8));
+            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentStardust, 7, 3, 8));
+            npcLoot.Add(ItemDropRule.Common(ItemID.FragmentVortex, 7, 3, 8));
+
+            // Consumable rewards (guaranteed)
+            npcLoot.Add(ItemDropRule.Common(ItemID.GreaterHealingPotion, 1, 10, 20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.GreaterManaPotion, 1, 10, 20));
+            npcLoot.Add(ItemDropRule.Common(ItemID.EndurancePotion, 1, 3, 8));
+            npcLoot.Add(ItemDropRule.Common(ItemID.LifeforcePotion, 1, 3, 8));
         }
 
         public override void HitEffect(NPC.HitInfo hit)

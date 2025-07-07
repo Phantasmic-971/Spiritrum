@@ -87,38 +87,41 @@ namespace Spiritrum.Content.Items.Weapons
             
             if (projectileRoll < 25) // 25% chance for FrozoFlake
             {
-                int proj = Projectile.NewProjectile(source, position, velocity, ProjectileType<FrozoFlake>(), damage, knockback, player.whoAmI);
-                // Custom behavior for FrozoFlake if needed
+                int frozoDamage = (int)(damage * 1.2f); // 20% more damage
+                int proj = Projectile.NewProjectile(source, position, velocity, ProjectileType<FrozoFlake>(), frozoDamage, knockback, player.whoAmI);
                 Main.projectile[proj].friendly = true;
                 Main.projectile[proj].hostile = false;
             }
             else if (projectileRoll < 50) // 25% chance for Heat Ray
             {
-                Projectile.NewProjectile(source, position, velocity, ProjectileID.HeatRay, damage, knockback, player.whoAmI);
+                int heatRayDamage = (int)(damage * 1.5f); // 50% more damage
+                Projectile.NewProjectile(source, position, velocity, ProjectileID.HeatRay, heatRayDamage, knockback, player.whoAmI);
             }
             else if (projectileRoll < 75) // 25% chance for Flamelash
             {
                 Vector2 targetPos = Main.MouseWorld;
                 Vector2 direction = targetPos - position;
                 direction.Normalize();
-                direction *= velocity.Length(); // Maintain original speed
+                direction *= velocity.Length();
                 Projectile.NewProjectile(source, position, direction, ProjectileID.Flamelash, damage, knockback, player.whoAmI);
             }
             else // 25% chance to fire all three
             {
                 // Spawn FrozoFlake
-                int proj1 = Projectile.NewProjectile(source, position, velocity, ProjectileType<FrozoFlake>(), damage, knockback, player.whoAmI);
+                int frozoDamage = (int)(damage * 1.2f);
+                int proj1 = Projectile.NewProjectile(source, position, velocity, ProjectileType<FrozoFlake>(), frozoDamage, knockback, player.whoAmI);
                 Main.projectile[proj1].friendly = true;
                 Main.projectile[proj1].hostile = false;
-                
+
                 // Spawn Heat Ray
-                Projectile.NewProjectile(source, position, velocity, ProjectileID.HeatRay, damage, knockback, player.whoAmI);
-                
+                int heatRayDamage = (int)(damage * 1.5f);
+                Projectile.NewProjectile(source, position, velocity, ProjectileID.HeatRay, heatRayDamage, knockback, player.whoAmI);
+
                 // Spawn Flamelash
                 Vector2 targetPos = Main.MouseWorld;
                 Vector2 direction = targetPos - position;
                 direction.Normalize();
-                direction *= velocity.Length(); // Maintain original speed
+                direction *= velocity.Length();
                 Projectile.NewProjectile(source, position, direction, ProjectileID.Flamelash, damage, knockback, player.whoAmI);
             }
             

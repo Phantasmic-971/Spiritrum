@@ -18,13 +18,13 @@ namespace Spiritrum.Content.Items.Weapons
             Item.height = 60;
 
             Item.useStyle = ItemUseStyleID.Swing;
-            Item.useTime = 8;
-            Item.useAnimation = 32;
+            Item.useTime = 7;
+            Item.useAnimation = 36;
             Item.autoReuse = true;
-            Item.scale = 1.5f;
+            Item.scale = 1.7f;
             Item.DamageType = DamageClass.Melee;
             Item.damage = 255;
-            Item.knockBack = 9.25f;
+            Item.knockBack = 9.75f;
 
 
             Item.value = Item.buyPrice(gold: 69);
@@ -32,7 +32,7 @@ namespace Spiritrum.Content.Items.Weapons
             Item.UseSound = SoundID.Item1;
 
             Item.shoot = ModContent.ProjectileType<MegaMixel>(); 
-            Item.shootSpeed = 10.5f; // Speed of the projectiles the sword will shoot
+            Item.shootSpeed = 11.75f; // Speed of the projectiles the sword will shoot
 
             // If you want melee speed to only affect the swing speed of the weapon and not the shoot speed (not recommended)
             // Item.attackSpeedOnlyAffectsWeaponAnimation = true;
@@ -46,6 +46,11 @@ namespace Spiritrum.Content.Items.Weapons
        
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
+            // Developer tooltip
+            tooltips.Add(new TooltipLine(Mod, "Dev", "Developer Weapon")
+            {
+                OverrideColor = new Color(255, 200, 50)
+            });
             // Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
             var line = new TooltipLine(Mod, "Face", "Rapidly shoots giant mixels");
             tooltips.Add(line);

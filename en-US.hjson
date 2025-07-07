@@ -1460,6 +1460,21 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Volcanic Syringe
 			}
+
+			LuminiteCube: {
+				DisplayName: Luminite Cube
+				Tooltip: ""
+			}
+
+			MegaMixelMasher: {
+				DisplayName: Mega Mixel Masher
+				Tooltip: ""
+			}
+
+			GraniteGrenade: {
+				DisplayName: Granite Grenade
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -1512,6 +1527,8 @@ Mods: {
 			FireWave.DisplayName: Fire Wave
 			IceWave.DisplayName: Ice Wave
 			ElementalBladeProjectile.DisplayName: Elemental Blade Projectile
+			MegaMixel.DisplayName: Mega Mixel
+			GraniteGrenadeProjectile.DisplayName: Granite Grenade Projectile
 		}
 
 		NPCs: {
