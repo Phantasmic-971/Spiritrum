@@ -86,14 +86,6 @@ namespace Spiritrum.Content.Items.Consumables
 			Player.statManaMax2 += spectraliteMana; // statManaMax2 is used for mana above the crystal cap (200+200)
 		}
 
-		// This hook is called when the player respawns after dying.
-		public override void OnRespawn()
-		{
-			// Reset the Spectralite mana increase and consumption status on respawn
-			spectraliteMana = 0; // Reset mana increase
-			spectraliteConsumed = 0; // Reset consumption count
-		}
-
 		// Note: If you want it to reset on leaving the world as well,
 		// you would need to add the PlayerDisconnect hook:
 		// public override void PlayerDisconnect()
