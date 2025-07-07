@@ -1430,6 +1430,36 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Elemental Blade
 			}
+
+			MorbiumCube: {
+				DisplayName: Morbium Cube
+				Tooltip: ""
+			}
+
+			BromiumBrick: {
+				DisplayName: Bromium Brick
+				Tooltip: ""
+			}
+
+			SnowierSnow: {
+				DisplayName: Snowier Snow
+				Tooltip: ""
+			}
+
+			MorbeamStaff: {
+				DisplayName: Morbeam Staff
+				Tooltip: ""
+			}
+
+			MorbiumSword: {
+				DisplayName: Morbium Sword
+				Tooltip: ""
+			}
+
+			VolcanicSyringe: {
+				Tooltip: ""
+				DisplayName: Volcanic Syringe
+			}
 		}
 
 		Projectiles: {
@@ -1475,6 +1505,13 @@ Mods: {
 			StoneArrowProjectile.DisplayName: Stone Arrow Projectile
 			WindTomeProjectile.DisplayName: Wind Tome Projectile
 			FrozoFlake.DisplayName: Frozo Flake
+			Morbeam.DisplayName: Morbeam
+			MorbeamRanged.DisplayName: Morbeam Ranged
+			MorbiumArrowProj.DisplayName: Morbium Arrow Proj
+			MorbiumBolt.DisplayName: Morbium Bolt
+			FireWave.DisplayName: Fire Wave
+			IceWave.DisplayName: Ice Wave
+			ElementalBladeProjectile.DisplayName: Elemental Blade Projectile
 		}
 
 		NPCs: {
@@ -1553,6 +1590,11 @@ Mods: {
 			SnowyOwlStaffBuff: {
 				DisplayName: Snowy Owl Staff Buff
 				Description: Mods.Spiritrum.Buffs.SnowyOwlStaffBuff.Description
+			}
+
+			ElementalBlades: {
+				Description: Mods.Spiritrum.Buffs.ElementalBlades.Description
+				DisplayName: Elemental Blades
 			}
 		}
 
