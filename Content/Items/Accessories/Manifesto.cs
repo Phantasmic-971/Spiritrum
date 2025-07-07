@@ -53,7 +53,7 @@ namespace Spiritrum.Content.Items.Accessories
 			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.Book, 1);
 			recipe.AddIngredient(ItemID.FallenStar, 3);
-			recipe.AddIngredient(ItemID.Silk, 2);
+           		recipe.AddIngredient<Items.Materials.Paper>(2);
 			recipe.AddIngredient(ItemID.DiscountCard, 1);
 			recipe.AddIngredient(ItemID.AvengerEmblem, 1);
 			recipe.AddTile(TileID.Bookcases);
