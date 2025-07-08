@@ -20,23 +20,23 @@ namespace Spiritrum.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 35; // Base damage of the Laser Blaster
-            Item.DamageType = DamageClass.Magic; // Magic weapon
-            Item.mana = 10; // Mana cost per use
-            Item.width = 20; // Reduced sprite width
-            Item.height = 10; // Reduced sprite height
-            Item.useTime = 13; // Faster speed of use
-            Item.useAnimation = 13; // Faster animation speed
-            Item.useStyle = ItemUseStyleID.Shoot; // Gun style
-            Item.noMelee = true; // Does not deal melee damage
-            Item.knockBack = 1; // Knockback
-            Item.value = Item.buyPrice(gold: 2); // Value in coins
-            Item.rare = ItemRarityID.Green;
-            Item.UseSound = SoundID.Item33; // Laser sound
-            Item.autoReuse = true; // Automatically reuses
-            Item.shoot = ProjectileID.GreenLaser; // Shoots purple lasers
-            Item.shootSpeed = 8f; // Increased speed of the lasers
-            Item.scale = 0.6f; // Adjust scale to make the sprite more centered
+            Item.damage = 13;
+            Item.DamageType = DamageClass.Magic;
+            Item.mana = 5;
+            Item.width = 20;
+            Item.height = 10;
+            Item.useTime = 16;
+            Item.useAnimation = 16;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.noMelee = true;
+            Item.knockBack = 0.8f;
+            Item.value = Item.buyPrice(gold: 1);
+            Item.rare = ItemRarityID.Blue;
+            Item.UseSound = SoundID.Item33;
+            Item.autoReuse = true;
+            Item.shoot = ProjectileID.GreenLaser;
+            Item.shootSpeed = 7f;
+            Item.scale = 0.85f;
 
         }
         public override Vector2? HoldoutOffset()
@@ -47,8 +47,8 @@ namespace Spiritrum.Content.Items.Weapons
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.CobaltBar, 15); // Requires 1 Laser Rifle
-            recipe.AddTile(TileID.Anvils); // Crafted at a Mythril or Orichalcum Anvil
+            recipe.AddIngredient(ItemID.GoldBar, 10);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
     }

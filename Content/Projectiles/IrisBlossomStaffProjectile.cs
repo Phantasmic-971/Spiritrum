@@ -1,49 +1,47 @@
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.ID;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace Spiritrum.Content.Projectiles
 {
     public class IrisBlossomStaffProjectile : ModProjectile
     {
-        private int timeAlive = 0;
-
         public override void SetStaticDefaults()
         {
-            // DisplayName set in localization
+            // DisplayName.SetDefault("Iris Blossom");
         }
 
         public override void SetDefaults()
         {
-            Projectile.width = 12;
-            Projectile.height = 12;
+            Projectile.width = 16;
+            Projectile.height = 16;
+            Projectile.aiStyle = 0;
             Projectile.friendly = true;
-            Projectile.DamageType = DamageClass.Magic;
+            Projectile.hostile = false;
             Projectile.penetrate = 2;
-            Projectile.timeLeft = 420;
-            Projectile.ignoreWater = true;
+            Projectile.timeLeft = 300;
+            Projectile.DamageType = DamageClass.Magic;
+            Projectile.ignoreWater = false;
             Projectile.tileCollide = true;
-            Projectile.light = 0.2f;
-            Projectile.aiStyle = 0; // Custom movement
+            Projectile.light = 0.5f;
         }
 
         public override void AI()
         {
-            timeAlive++;
-            // Make the projectile rotate in the direction of travel
-            if (Projectile.velocity.LengthSquared() > 0.01f)
+            // Simple flower petal floaty movement
+            Projectile.velocity.Y += 0.05f; // gentle gravity
+            Projectile.rotation += 0.1f * (float)Projectile.direction;
+            if (Main.rand.NextBool(6))
             {
-                Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
+                Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, DustID.Grass, 0f, 0f, 150, default, 0.8f);
             }
-            if (timeAlive >= 180) // 3 seconds at 60 FPS
-            {
-                Projectile.velocity *= 0.4f; // Gradually slow down
-                if (Projectile.velocity.Length() < 0.1f)
-                {
-                    Projectile.velocity = Vector2.Zero;
-                }
-            }
+        }
+
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            // Optional: apply a debuff or effect
+            target.AddBuff(BuffID.Poisoned, 120);
         }
     }
 }

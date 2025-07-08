@@ -20,37 +20,33 @@ namespace Spiritrum.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 40; // Base damage of the Laser Blaster
-            Item.DamageType = DamageClass.Magic; // Magic weapon
+            Item.damage = 18;
+            Item.DamageType = DamageClass.Magic;
             Item.crit = 4;
-            Item.mana = 12; // Mana cost per use
-            Item.width = 20; // Reduced sprite width
-            Item.height = 10; // Reduced sprite height
-            Item.useTime = 12; // Faster speed of use
-            Item.useAnimation = 12; // Faster animation speed
-            Item.useStyle = ItemUseStyleID.Shoot; // Gun style
-            Item.noMelee = true; // Does not deal melee damage
-            Item.knockBack = 1; // Knockback
-            Item.value = Item.buyPrice(gold: 2); // Value in coins
+            Item.mana = 6;
+            Item.width = 20;
+            Item.height = 10;
+            Item.useTime = 13;
+            Item.useAnimation = 13;
+            Item.useStyle = ItemUseStyleID.Shoot;
+            Item.noMelee = true;
+            Item.knockBack = 1f;
+            Item.value = Item.buyPrice(gold: 1, silver: 50);
             Item.rare = ItemRarityID.Green;
-            Item.UseSound = SoundID.Item33; // Laser sound
-            Item.autoReuse = true; // Automatically reuses
-            Item.shoot = ProjectileID.GreenLaser; // Shoots purple lasers
-            Item.shootSpeed = 8f; // Increased speed of the lasers
-            Item.scale = 0.6f; // Adjust scale to make the sprite more centered
+            Item.UseSound = SoundID.Item33;
+            Item.autoReuse = true;
+            Item.shoot = ProjectileID.GreenLaser;
+            Item.shootSpeed = 9f;
+            Item.scale = 0.85f;
 
-        }
-        public override Vector2? HoldoutOffset()
-        {
-            return new Vector2(-4, 2); // Adjust the sprite position to be more inside the player
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.MythrilBar, 15); // Requires 1 Laser Rifle
-             recipe.AddIngredient(ModContent.ItemType<ArmBlaster>(), 1);
-            recipe.AddTile(TileID.MythrilAnvil); // Crafted at a Mythril or Orichalcum Anvil
+            recipe.AddIngredient(ModContent.ItemType<ArmBlaster>(), 1);
+            recipe.AddIngredient(ItemID.MeteoriteBar, 3);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
     }

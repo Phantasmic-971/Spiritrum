@@ -20,37 +20,37 @@ namespace Spiritrum.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 50; // Swapped: now uses ArmBlasterV3's stats
+            Item.damage = 16;
             Item.DamageType = DamageClass.Magic;
             Item.crit = 4;
-            Item.mana = 12;
+            Item.mana = 6;
             Item.width = 20;
             Item.height = 10;
-            Item.useTime = 10;
-            Item.useAnimation = 10;
+            Item.useTime = 22;
+            Item.useAnimation = 22;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 1;
-            Item.value = Item.buyPrice(gold: 2);
-            Item.rare = ItemRarityID.Green;
+            Item.knockBack = 1f;
+            Item.value = Item.buyPrice(gold: 1);
+            Item.rare = ItemRarityID.Blue;
             Item.UseSound = SoundID.Item33;
             Item.autoReuse = true;
             Item.shoot = ProjectileID.GreenLaser;
-            Item.shootSpeed = 12f;
-            Item.scale = 0.6f;
+            Item.shootSpeed = 8f;
+            Item.scale = 0.85f;
 
         }
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-45, 0); // Adjust the sprite position to be more inside the player
+            return new Vector2(-8, 0); // Adjust the sprite position to be more inside the player
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.PalladiumBar, 15); // Requires 1 Laser Rifle
-            
-            recipe.AddTile(TileID.Anvils); // Crafted at a Mythril or Orichalcum Anvil
+            recipe.AddIngredient(ItemID.GoldBar, 15);
+            recipe.AddIngredient(ItemID.SilverBar, 2);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
     }

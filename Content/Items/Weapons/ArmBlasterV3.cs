@@ -7,6 +7,7 @@ using Terraria.Localization; // Needed for tooltips
 using System.Collections.Generic; // Needed for List<TooltipLine>
 using static Terraria.ModLoader.ModContent;
 using System; // Needed for MathHelper.ToRadians
+using Spiritrum.Content.Items.Placeables; // Needed for BromiumBar
 
 namespace Spiritrum.Content.Items.Weapons
 {
@@ -20,37 +21,37 @@ namespace Spiritrum.Content.Items.Weapons
 
         public override void SetDefaults()
         {
-            Item.damage = 45; // Swapped: now uses Blaster's stats
+            Item.damage = 24;
             Item.DamageType = DamageClass.Magic;
-            Item.crit = 4;
-            Item.mana = 12;
+            Item.crit = 5;
+            Item.mana = 7;
             Item.width = 20;
             Item.height = 10;
-            Item.useTime = 16;
-            Item.useAnimation = 16;
+            Item.useTime = 10;
+            Item.useAnimation = 10;
             Item.useStyle = ItemUseStyleID.Shoot;
             Item.noMelee = true;
-            Item.knockBack = 1;
+            Item.knockBack = 1.2f;
             Item.value = Item.buyPrice(gold: 2);
-            Item.rare = ItemRarityID.Green;
+            Item.rare = ItemRarityID.Orange;
             Item.UseSound = SoundID.Item33;
             Item.autoReuse = true;
             Item.shoot = ProjectileID.GreenLaser;
-            Item.shootSpeed = 12f;
-            Item.scale = 0.6f;
+            Item.shootSpeed = 11f;
+            Item.scale = 0.85f;
 
         }
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-20, 2); // Adjust the sprite position to be more inside the player
+            return new Vector2(-1, 1); // Adjust the sprite position to be more inside the player
         }
 
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient(ItemID.AdamantiteBar, 15); // Requires 1 Laser Rifle
-             recipe.AddIngredient(ModContent.ItemType<ArmBlasterV2>(), 1);
-            recipe.AddTile(TileID.MythrilAnvil); // Crafted at a Mythril or Orichalcum Anvil
+            recipe.AddIngredient(ModContent.ItemType<ArmBlasterV2>(), 1);
+            recipe.AddIngredient(ModContent.ItemType<BromiumBar>(), 3);
+            recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
     }
