@@ -67,5 +67,14 @@ namespace Spiritrum.Content.Items.Weapons
             // (X, Y) offset from the player's hand
             return new Vector2(-2, 0);
         }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            var line = new TooltipLine(Mod, "SkullBow", "Replaces arrows with bone cross")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
+        }
     }
 }

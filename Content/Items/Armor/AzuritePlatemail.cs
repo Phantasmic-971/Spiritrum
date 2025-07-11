@@ -18,14 +18,11 @@ namespace Spiritrum.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            // If your head equipment should draw hair while drawn, use one of the following:
-            // ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false; // Don't draw the head at all. Used by Space Creature Mask
-            // ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true; // Draw hair as if a hat was covering the top. Used by Wizards Hat
-            // ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; // Draw all hair as normal. Used by Mime Mask, Sunglasses
-            // ArmorIDs.Head.Sets.DrawsBackHairWithoutHeadgear[Item.headSlot] = true;
+            // Set display name and tooltip directly in code
+            // DisplayName.SetDefault("Azurite Platemail");
+            // Tooltip.SetDefault("Magical armor infused with azurite crystals");
 
-
-            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs();
+            // SetBonusText is not needed unless using localization. Set bonus will be hardcoded in UpdateArmorSet.
         }
 
         public override void SetDefaults()
@@ -38,36 +35,9 @@ namespace Spiritrum.Content.Items.Armor
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            // Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
-            var line = new TooltipLine(Mod, "Face", "");
-            tooltips.Add(line);
-
-            line = new TooltipLine(Mod, "Face", "")
-            {
-                OverrideColor = new Color(255, 255, 255)
-            };
-            tooltips.Add(line);
-
-
-
-            // Here we will hide all tooltips whose title end with ':RemoveMe'
-            // One like that is added at the start of this method
-            foreach (var l in tooltips)
-            {
-                if (l.Name.EndsWith(":RemoveMe"))
-                {
-                    l.Hide();
-                }
-            }
-
-            // Another method of hiding can be done if you want to hide just one line.
-            // tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
+            // Add any custom tooltip lines here if needed in the future
         }
         // IsArmorSet determines what armor pieces are needed for the setbonus to take effect
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return head.type == ModContent.ItemType<AzuriteHat>() && legs.type == ModContent.ItemType<AzuriteGreaves>();
-        }
         // UpdateArmorSet allows you to give set bonuses to the armor.
         public override void AddRecipes()
         {
@@ -75,10 +45,6 @@ namespace Spiritrum.Content.Items.Armor
             recipe.AddIngredient<AzuriteBar>(20);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-        }
-        public override void UpdateArmorSet(Player player)
-        {
-            player.setBonus = SetBonusText.Value;
         }
     }
 }

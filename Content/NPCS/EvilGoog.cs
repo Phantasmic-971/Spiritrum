@@ -41,7 +41,7 @@ namespace Spiritrum.Content.NPCS
             // Spawn at night, on surface, not in town, not during events like blood moon for now
             if (spawnInfo.Player.ZoneOverworldHeight && !Main.dayTime && !spawnInfo.PlayerInTown && !Main.eclipse && !Main.bloodMoon && !Main.pumpkinMoon && !Main.snowMoon)
             {
-                return 0.08f; // Adjust spawn chance as needed
+                return 0.15f; // Adjust spawn chance as needed
             }
             return 0f;
         }
@@ -50,7 +50,7 @@ namespace Spiritrum.Content.NPCS
         {
             base.AI(); // Run the base AI (Zombie AI)
             // Randomly play sound
-            if (Main.rand.NextBool(300)) // Adjust frequency as desired, 300 is roughly every 5 seconds
+            if (Main.rand.NextBool(180)) // Adjust frequency as desired, 300 is roughly every 5 seconds
             {
                 SoundEngine.PlaySound(new SoundStyle("Spiritrum/Sounds/EvilGoog") { Volume = 1.5f }, NPC.position);
             }
@@ -66,7 +66,7 @@ namespace Spiritrum.Content.NPCS
         {
             bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
                 BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Times.NightTime,
-                new FlavorTextBestiaryInfoElement("A mischievous creature of the night, drawn to the glow of screens and the allure of endless information. Or maybe it just wants to bite you.")
+                new FlavorTextBestiaryInfoElement("A soggy cat named Goog... that was infected by zombies. Kill it to save it.")
             });
         }
 

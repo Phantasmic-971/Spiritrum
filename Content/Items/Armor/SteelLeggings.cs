@@ -8,8 +8,6 @@ using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Armor
 {
-    // The AutoloadEquip attribute automatically attaches an equip texture to this item.
-    // Providing the EquipType.Head value here will result in TML expecting a X_Head.png file to be placed next to the item's main texture.
     [AutoloadEquip(EquipType.Legs)]
     public class SteelLeggings : ModItem
     {
@@ -17,12 +15,6 @@ namespace Spiritrum.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            // If your head equipment should draw hair while drawn, use one of the following:
-            // ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false; // Don't draw the head at all. Used by Space Creature Mask
-            // ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true; // Draw hair as if a hat was covering the top. Used by Wizards Hat
-            // ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; // Draw all hair as normal. Used by Mime Mask, Sunglasses
-            // ArmorIDs.Head.Sets.DrawsBackHairWithoutHeadgear[Item.headSlot] = true;
-
 
             SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs();
         }
@@ -46,11 +38,6 @@ namespace Spiritrum.Content.Items.Armor
                 OverrideColor = new Color(255, 255, 255)
             };
             tooltips.Add(line);
-
-
-
-            // Here we will hide all tooltips whose title end with ':RemoveMe'
-            // One like that is added at the start of this method
             foreach (var l in tooltips)
             {
                 if (l.Name.EndsWith(":RemoveMe"))
@@ -62,12 +49,6 @@ namespace Spiritrum.Content.Items.Armor
             // Another method of hiding can be done if you want to hide just one line.
             // tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
         }
-        // IsArmorSet determines what armor pieces are needed for the setbonus to take effect
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return head.type == ModContent.ItemType<SteelHelmet>() && body.type == ModContent.ItemType<SteelBreastplate>();
-        }
-        // UpdateArmorSet allows you to give set bonuses to the armor.
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
@@ -80,12 +61,6 @@ namespace Spiritrum.Content.Items.Armor
             recipe.AddIngredient<SteelBar>(4);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-
-        }
-        public override void UpdateArmorSet(Player player)
-        {
-
-            player.setBonus = SetBonusText.Value;
         }
     }
 }

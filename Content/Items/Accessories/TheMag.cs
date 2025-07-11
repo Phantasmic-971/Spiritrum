@@ -8,17 +8,6 @@ namespace Spiritrum.Content.Items.Accessories
     
     public class TheMag : ModItem
     {
-        // In tModLoader, item names and tooltips are typically set in .hjson localization files.
-        // For example, in your Localization/en-US_Mods.Spiritrum.hjson, you would add:
-        //
-        // "Mods.Spiritrum.Items.TheMag.DisplayName": "The Mag",
-        // "Mods.Spiritrum.Items.TheMag.Tooltip": "Increases attack speed by 15% for bullet-using weapons\nDecreases damage by 8% and critical strike chance by 4% for bullet-using weapons"
-        //
-        // If you prefer to set them in code, you can uncomment the SetStaticDefaults() method:
-        // public override void SetStaticDefaults() {
-        //     DisplayName.SetDefault("The Mag");
-        //     Tooltip.SetDefault("Increases attack speed by 15% for bullet-using weapons\nDecreases damage by 8% and critical strike chance by 4% for bullet-using weapons");
-        // }
 
         public override void SetDefaults()
         {
@@ -36,16 +25,10 @@ namespace Spiritrum.Content.Items.Accessories
             // Check if the player is holding a valid item that uses bullets as ammunition
             if (heldItem != null && !heldItem.IsAir && heldItem.useAmmo == AmmoID.Bullet)
             {
-                // Increase attack speed by 15%
-                // This bonus applies to weapons of the Ranged damage class.
                 player.GetAttackSpeed(DamageClass.Ranged) += 0.15f;
 
-                // Decrease damage by 5%
-                // This penalty applies to weapons of the Ranged damage class.
                 player.GetDamage(DamageClass.Ranged) -= 0.05f;
 
-                // Decrease critical strike chance by 4 percentage points
-                // This penalty applies to weapons of the Ranged damage class.
                 player.GetCritChance(DamageClass.Ranged) -= 4;
             }
         }
@@ -69,7 +52,6 @@ namespace Spiritrum.Content.Items.Accessories
                 
             if (ModLoader.TryGetMod("gunrightsmod", out Mod TerMerica) && TerMerica.TryFind("UraniumBar", out ModItem UraniumBar))
             {
-                // If the UraniumBar is available, add it to the recipe
                 recipe.AddIngredient(UraniumBar.Type, 10);
             }
             

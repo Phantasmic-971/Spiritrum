@@ -4,40 +4,6 @@ Items: {
 	SpectreSword: {
 	}
 
-	Democracy: {
-	}
-
-	MapleSyrupBurner: {
-	}
-
-	LaserBlaster: {
-	}
-
-	GelaticCrown: {
-	}
-
-	Communism: {
-	}
-
-	Fascism: {
-	}
-
-	Politics: {
-		Tooltip:
-			'''
-			You are a politician: +5 defense, +15% movement speed, -10% damage taken
-			+4 life regeneration, +5% critical chance, and +12% damage
-			Allies gain +3 defense, +2 life regeneration, and +5% damage.
-			'''
-		DisplayName: Politics
-	}
-
-	TerMerica: {
-	}
-
-	Spectralite: {
-	}
-
 	Anarchy: {
 	}
 
@@ -71,6 +37,7 @@ Items: {
 	BromeMode: {
 		DisplayName: Brome Mode
 		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromeMode.SetBonus
 	}
 
 	Phantasmic: {
@@ -95,8 +62,9 @@ Items: {
 	}
 
 	GEoTMode: {
-		DisplayName: G Eo T Mode
+		DisplayName: GEoT Mode
 		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.GEoTMode.SetBonus
 	}
 
 	BromiumPickaxe: {
@@ -105,23 +73,25 @@ Items: {
 	}
 
 	BromiumHelmet: {
-		SetBonus: Mods.Spiritrum.Items.BromiumHelmet.SetBonus
 		DisplayName: Bromium Helmet
 		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromiumHelmet.SetBonus
 	}
 
 	BromiumChestplate: {
 		DisplayName: Bromium Chestplate
 		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromiumChestplate.SetBonus
 	}
 
 	BromiumLeggings: {
 		DisplayName: Bromium Leggings
 		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromiumLeggings.SetBonus
 	}
 
 	BromiumHamAxe: {
-		DisplayName: Bromium Ham Axe
+		DisplayName: Bromium HamAxe
 		Tooltip: ""
 	}
 
@@ -132,12 +102,7 @@ Items: {
 
 	HoneyPot: {
 		Tooltip: ""
-		DisplayName: Honey Pot
-	}
-
-	ChronoPulseEmitter: {
-		DisplayName: Chrono Pulse Emitter
-		Tooltip: ""
+		DisplayName: Bee Pillow Pet
 	}
 
 	TheGrimWraith: {
@@ -150,16 +115,7 @@ Items: {
 			Every third hit triggers a void explosion
 			The void hungers for souls at night
 			'''
-	}
-
-	ReborniumBar: {
-		Tooltip: ""
-		DisplayName: Rebornium Bar
-	}
-
-	ReborniumOre: {
-		DisplayName: Rebornium Ore
-		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.TheGrimWraith.SetBonus
 	}
 
 	Bolt: {
@@ -175,18 +131,21 @@ Items: {
 		Tooltip3: Right-click: Throws a boomerang that rapidly fires lasers in two directions
 		Tooltip4: Has infinite pierce and can pass through tiles
 		Tooltip5: 5% drop chance from The Twins
+		SetBonus: Mods.Spiritrum.Items.Twinarang.SetBonus
 	}
 
 	NamelessParasite: {
 		DisplayName: Nameless Parasite
 		Tooltip: Summons a crimson parasite to fight for you
 		Tooltip2: An otherworldly organism that seems to feed on your enemies' blood
+		SetBonus: Mods.Spiritrum.Items.NamelessParasite.SetBonus
 	}
 
 	FurryClaw: {
 		DisplayName: Furry Claw
 		Tooltip: "'Rapidly shreds through your enemies'"
 		Tooltip2: Very low damage but extremely fast attack speed
+		SetBonus: Mods.Spiritrum.Items.FurryClaw.SetBonus
 	}
 
 	SkullBow: {
@@ -194,40 +153,20 @@ Items: {
 		Tooltip: "'The bones of Skeletron, reforged into a deadly bow'"
 		Tooltip2: Uses arrows as ammunition
 		Tooltip3: A post-Skeletron weapon
-	}
-
-	ReborniumMask: {
-		DisplayName: Rebornium Mask
-		Tooltip: "'A mask forged from the mysterious green metal'"
-		Tooltip2: Increases maximum mana by 20
-		SetBonus:
-			'''
-			5% increased damage and critical strike chance
-			Small chance to heal when hitting enemies
-			'''
-	}
-
-	ReborniumChestplate: {
-		DisplayName: Rebornium Chestplate
-		Tooltip: "'Pulsing with the energy of rebirth'"
-		Tooltip2: Increases maximum life by 10
-	}
-
-	ReborniumLeggings: {
-		DisplayName: Rebornium Leggings
-		Tooltip: "'The metal feels almost alive against your skin'"
-		Tooltip2: Increases movement speed by 8%
+		SetBonus: Mods.Spiritrum.Items.SkullBow.SetBonus
 	}
 
 	RoPro9000: {
 		DisplayName: RoPro9000
 		Tooltip: "'An unstable magical device that creates concentrated dust explosions'"
 		Tooltip2: Creates a powerful close-range dust explosion
+		SetBonus: Mods.Spiritrum.Items.RoPro9000.SetBonus
 	}
 
 	Googling: {
 		DisplayName: Googling
 		Tooltip: Goog...
+		SetBonus: Mods.Spiritrum.Items.Googling.SetBonus
 	}
 
 	GoogBlast: {
@@ -241,9 +180,97 @@ Items: {
 	BromeBlaster: {
 		DisplayName: Brome Blaster
 		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromeBlaster.SetBonus
 	}
 
 	ElectromanBlade: {
+	}
+
+	SteelHelmet: {
+	}
+
+	SteelBreastplate: {
+	}
+
+	SteelLeggings: {
+	}
+
+	AzuriteHat: {
+	}
+
+	AzuritePlatemail: {
+	}
+
+	AzuriteGreaves: {
+	}
+
+	MintalHelmet: {
+	}
+
+	MintalBreastplate: {
+	}
+
+	MintalLeggings: {
+	}
+
+	MorbiumMask: {
+	}
+
+	MorbiumPlatemail: {
+	}
+
+	MorbiumGreaves: {
+	}
+
+	SnowyOwlStaff: {
+	}
+
+	GoogBlaster: {
+	}
+
+	IrisBlossomStaff: {
+	}
+
+	CrystallineCrown: {
+	}
+
+	IrisCrossShield: {
+	}
+
+	NamelessEmblem: {
+	}
+
+	TheyStoleEverythingFromUsMode: {
+	}
+
+	VoidEssence: {
+	}
+
+	VoidResonator: {
+	}
+
+	ShimmeringDust: {
+	}
+
+	SpectralBrew: {
+	}
+
+	VoidCatalyst: {
+	}
+
+	BromiumStaff: {
+	}
+
+	LaserBlaster: {
+	}
+
+	MapleSyrupBurner: {
+	}
+
+	Equinox: {
+	}
+
+	BottledShimmer: {
 	}
 }
 
@@ -254,6 +281,35 @@ Buffs: {
 	}
 
 	SkiDooBuff: {
+	}
+
+	BulletEvidence: {
+	}
+
+	CharmingEcho: {
+	}
+
+	ElementalBlades: {
+	}
+
+	ShimmeredDust: {
+	}
+
+	SnowyOwlStaffBuff: {
+	}
+
+	Spectral: {
+	}
+}
+
+NPCs: {
+	EvilGoog: {
+	}
+
+	VoidHarbinger: {
+	}
+
+	NamelessNPC: {
 	}
 }
 

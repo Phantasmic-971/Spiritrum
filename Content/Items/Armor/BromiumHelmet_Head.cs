@@ -3,7 +3,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using System.Collections.Generic; // Needed for List<TooltipLine>
-// using Terraria.Localization; // No longer needed for SetBonusText if we define it directly
 using static Terraria.ModLoader.ModContent; // This line is crucial for ItemType<T>()
 using Spiritrum.Content.Items.Placeables;
 
@@ -12,26 +11,16 @@ namespace Spiritrum.Content.Items.Armor // Make sure this matches your folder st
     [AutoloadEquip(EquipType.Head)]
     public class BromiumHelmet : ModItem
     {
-        // Constants for the helmet's individual bonuses
+
         public const int MeleeSpeedBonus = 15; // 10%
         public const int MeleeDamageBonus = 10;  // 5%
 
-        // Constant for the set bonus
         public const int SetBonusCritChance = 15; // 10%
-
-        // REMOVED: LocalizedText for Set Bonus - we'll define it directly in UpdateArmorSet
-        // public static LocalizedText SetBonusText { get; private set; }
 
         public override void SetStaticDefaults()
         {
-            // Tooltip.SetDefault("Basic tooltip info if needed"); // Optional: Basic description
-
-            // Armor rendering settings
-            // Keep head hidden since it's a full helmet
             ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false;
 
-            // REMOVED: SetBonusText initialization using localization
-            // SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(SetBonusCritChance);
         }
 
         public override void SetDefaults()

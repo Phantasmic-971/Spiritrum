@@ -1,0 +1,395 @@
+# This file will automatically update with entries for new content after a build and reload.
+
+Items: {
+	SpectreSword: {
+	}
+
+	Anarchy: {
+	}
+
+	BasicPolitics: {
+	}
+
+	Conservatism: {
+	}
+
+	Liberalism: {
+	}
+
+	Socialism: {
+	}
+
+	Centralism: {
+	}
+
+	LMG: {
+	}
+
+	GEoT: {
+	}
+
+	Autism: {
+	}
+
+	Manifesto: {
+	}
+
+	BromeMode: {
+		DisplayName: Brome Mode
+		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromeMode.SetBonus
+	}
+
+	Phantasmic: {
+	}
+
+	BromiumBar: {
+	}
+
+	BromiumOre: {
+	}
+
+	BromiumSlayer: {
+	}
+
+	AncientKatana: {
+	}
+
+	Bromecalibur: {
+	}
+
+	TeBromeBlade: {
+	}
+
+	GEoTMode: {
+		DisplayName: GEoT Mode
+		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.GEoTMode.SetBonus
+	}
+
+	BromiumPickaxe: {
+		DisplayName: Bromium Pickaxe
+		Tooltip: ""
+	}
+
+	BromiumHelmet: {
+		DisplayName: Bromium Helmet
+		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromiumHelmet.SetBonus
+	}
+
+	BromiumChestplate: {
+		DisplayName: Bromium Chestplate
+		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromiumChestplate.SetBonus
+	}
+
+	BromiumLeggings: {
+		DisplayName: Bromium Leggings
+		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromiumLeggings.SetBonus
+	}
+
+	BromiumHamAxe: {
+		DisplayName: Bromium Ham Axe
+		Tooltip: ""
+	}
+
+	BromiumBlaster: {
+		DisplayName: Bromium Blaster
+		Tooltip: ""
+	}
+
+	HoneyPot: {
+		Tooltip: ""
+		DisplayName: Honey Pot
+	}
+
+	ChronoPulseEmitter: {
+		DisplayName: Chrono Pulse Emitter
+		Tooltip: ""
+	}
+
+	TheGrimWraith: {
+		DisplayName: The Grim Wraith
+		Tooltip:
+			'''
+			A blade forged from the very essence of darkness
+			Drops from the Void Harbinger
+			Builds up a combo counter with each hit
+			Every third hit triggers a void explosion
+			The void hungers for souls at night
+			'''
+		SetBonus: Mods.Spiritrum.Items.TheGrimWraith.SetBonus
+	}
+
+	Bolt: {
+		DisplayName: Bolt
+		Tooltip: Standard ammunition for the Bolter
+		Tooltip2: Explodes on impact, dealing additional damage to nearby enemies
+	}
+
+	Twinarang: {
+		DisplayName: Twinarang
+		Tooltip: "'A powerful boomerang infused with the essence of The Twins'"
+		Tooltip2: Left-click: Throws a boomerang that fires cursed flames in four directions
+		Tooltip3: Right-click: Throws a boomerang that rapidly fires lasers in two directions
+		Tooltip4: Has infinite pierce and can pass through tiles
+		Tooltip5: 5% drop chance from The Twins
+		SetBonus: Mods.Spiritrum.Items.Twinarang.SetBonus
+	}
+
+	NamelessParasite: {
+		DisplayName: Nameless Parasite
+		Tooltip: Summons a crimson parasite to fight for you
+		Tooltip2: An otherworldly organism that seems to feed on your enemies' blood
+		SetBonus: Mods.Spiritrum.Items.NamelessParasite.SetBonus
+	}
+
+	FurryClaw: {
+		DisplayName: Furry Claw
+		Tooltip: "'Rapidly shreds through your enemies'"
+		Tooltip2: Very low damage but extremely fast attack speed
+		SetBonus: Mods.Spiritrum.Items.FurryClaw.SetBonus
+	}
+
+	SkullBow: {
+		DisplayName: Skull Bow
+		Tooltip: "'The bones of Skeletron, reforged into a deadly bow'"
+		Tooltip2: Uses arrows as ammunition
+		Tooltip3: A post-Skeletron weapon
+		SetBonus: Mods.Spiritrum.Items.SkullBow.SetBonus
+	}
+
+	RoPro9000: {
+		DisplayName: RoPro9000
+		Tooltip: "'An unstable magical device that creates concentrated dust explosions'"
+		Tooltip2: Creates a powerful close-range dust explosion
+		SetBonus: Mods.Spiritrum.Items.RoPro9000.SetBonus
+	}
+
+	Googling: {
+		DisplayName: Googling
+		Tooltip: Goog...
+		SetBonus: Mods.Spiritrum.Items.Googling.SetBonus
+	}
+
+	GoogBlast: {
+		DisplayName: Goog Blast
+		Tooltip: Goog...
+	}
+
+	TheMag: {
+	}
+
+	BromeBlaster: {
+		DisplayName: Brome Blaster
+		Tooltip: ""
+		SetBonus: Mods.Spiritrum.Items.BromeBlaster.SetBonus
+	}
+
+	ElectromanBlade: {
+	}
+
+	SteelHelmet: {
+		DisplayName: Steel Helmet
+		Tooltip: Made of steel
+		SetBonus: Mods.Spiritrum.Items.SteelHelmet.SetBonus
+	}
+
+	SteelBreastplate: {
+		DisplayName: Steel Breastplate
+		Tooltip: Made of steel
+		SetBonus: Mods.Spiritrum.Items.SteelBreastplate.SetBonus
+	}
+
+	SteelLeggings: {
+		DisplayName: Steel Leggings
+		Tooltip: Made of steel
+		SetBonus: Mods.Spiritrum.Items.SteelLeggings.SetBonus
+	}
+
+	AzuriteHat: {
+		DisplayName: Azurite Hat
+		Tooltip: ""
+		SetBonus: +10% magic and summon damage
+	}
+
+	AzuritePlatemail: {
+		DisplayName: Azurite Platemail
+		Tooltip: ""
+		SetBonus: +10% magic and summon damage
+	}
+
+	AzuriteGreaves: {
+		DisplayName: Azurite Greaves
+		Tooltip: ""
+		SetBonus: +10% magic and summon damage
+	}
+
+	MintalHelmet: {
+		DisplayName: Mintal Helmet
+		Tooltip: ""
+		SetBonus: Increases ranged damage by 20%, critical strike chance by 8%, and endurance by 7.5%
+	}
+
+	MintalBreastplate: {
+		DisplayName: Mintal Breastplate
+		Tooltip: ""
+		SetBonus: Increases ranged damage by 20%, critical strike chance by 8%, and endurance by 7.5%
+	}
+
+	MintalLeggings: {
+		DisplayName: Mintal Leggings
+		Tooltip: ""
+		SetBonus: Increases ranged damage by 20%, critical strike chance by 8%, and endurance by 7.5%
+	}
+
+	MorbiumMask: {
+		DisplayName: Morbium Mask
+		Tooltip: ""
+		SetBonus: Melee weapons and whips inflict venom for 5 seconds and +15 life regen
+	}
+
+	MorbiumPlatemail: {
+		DisplayName: Morbium Platemail
+		Tooltip: ""
+		SetBonus: Melee weapons and whips inflict venom for 5 seconds and +15 life regen
+	}
+
+	MorbiumGreaves: {
+		DisplayName: MorbiumGreaves
+		Tooltip: ""
+		SetBonus: Melee weapons and whips inflict venom for 5 seconds and +15 life regen
+	}
+
+	SnowyOwlStaff: {
+	}
+
+	GoogBlaster: {
+	}
+
+	IrisBlossomStaff: {
+	}
+
+	CrystallineCrown: {
+	}
+
+	IrisCrossShield: {
+	}
+
+	NamelessEmblem: {
+	}
+
+	TheyStoleEverythingFromUsMode: {
+	}
+
+	VoidEssence: {
+	}
+
+	VoidResonator: {
+	}
+
+	ShimmeringDust: {
+	}
+
+	SpectralBrew: {
+	}
+
+	VoidCatalyst: {
+	}
+
+	BromiumStaff: {
+	}
+
+	LaserBlaster: {
+	}
+
+	MapleSyrupBurner: {
+	}
+
+	Equinox: {
+	}
+
+	BottledShimmer: {
+	}
+}
+
+Buffs: {
+	NamelessParasiteBuff: {
+		DisplayName: Nameless Parasite
+		Description: The crimson parasite will fight for you
+	}
+
+	SkiDooBuff: {
+	}
+
+	BulletEvidence: {
+	}
+
+	CharmingEcho: {
+	}
+
+	ElementalBlades: {
+	}
+
+	ShimmeredDust: {
+	}
+
+	SnowyOwlStaffBuff: {
+	}
+
+	Spectral: {
+	}
+}
+
+NPCs: {
+	EvilGoog: {
+	}
+
+	VoidHarbinger: {
+	}
+
+	NamelessNPC: {
+	}
+}
+
+Projectiles: {
+	NamelessParasiteMinion.DisplayName: Nameless Parasite
+	CrimsonDart.DisplayName: Crimson Dart
+}
+
+Prefixes: {
+	AbsoluteCinema.DisplayName: Absolute Cinema
+	AbsoluteCinemaPrefix.DisplayName: Absolute Cinema Prefix
+	Accelerated.DisplayName: Accelerated
+	Temporal.DisplayName: Temporal
+	Chronos.DisplayName: Chronos
+}
+
+Configs: {
+	SpiritrumConfig: {
+		DisplayName: Spiritrum Configuration
+		Headers.UIPositioning: UI Positioning
+
+		IdeologySlotXPosition: {
+			Label: Ideology Slot X Position
+			Tooltip: Horizontal position of the Ideology slot UI element
+		}
+
+		ModeSlotXPosition: {
+			Label: Mode Slot X Position
+			Tooltip: Horizontal position of the Mode slot UI element
+		}
+
+		IdeologySlotXPositionPercent: {
+			Label: Ideology Slot X Position (% of screen width)
+			Tooltip: ""
+		}
+
+		ModeSlotXPositionPercent: {
+			Label: Mode Slot X Position (% of screen width)
+			Tooltip: ""
+		}
+	}
+}

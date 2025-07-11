@@ -18,12 +18,9 @@ namespace Spiritrum.Content.Items.Armor
 
         public override void SetStaticDefaults()
         {
-            // If your head equipment should draw hair while drawn, use one of the following:
-            // ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false; // Don't draw the head at all. Used by Space Creature Mask
-            // ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true; // Draw hair as if a hat was covering the top. Used by Wizards Hat
-            // ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; // Draw all hair as normal. Used by Mime Mask, Sunglasses
-            // ArmorIDs.Head.Sets.DrawsBackHairWithoutHeadgear[Item.headSlot] = true;
-
+            // Set display name and tooltip directly in code
+            // DisplayName.SetDefault("Azurite Greaves");
+            // Tooltip.SetDefault("Crystalline leg armor that enhances magical abilities");
 
             SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs();
         }
@@ -63,23 +60,13 @@ namespace Spiritrum.Content.Items.Armor
             // Another method of hiding can be done if you want to hide just one line.
             // tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
         }
-        // IsArmorSet determines what armor pieces are needed for the setbonus to take effect
-        public override bool IsArmorSet(Item head, Item body, Item legs)
-        {
-            return head.type == ModContent.ItemType<AzuriteHat>() && body.type == ModContent.ItemType<AzuritePlatemail>();
-        }
-        // UpdateArmorSet allows you to give set bonuses to the armor.
+
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
             recipe.AddIngredient<AzuriteBar>(15);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
-        }
-        public override void UpdateArmorSet(Player player)
-        {
-
-            player.setBonus = SetBonusText.Value;
         }
     }
 }

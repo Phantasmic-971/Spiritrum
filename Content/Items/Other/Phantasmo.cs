@@ -67,7 +67,7 @@ namespace Spiritrum.Content.Items.Other
             tooltips.Add(new TooltipLine(Mod, "PhantasmoTooltip2", "Sometimes, a little hope comes with a big risk."));
             tooltips.Add(new TooltipLine(Mod, "PhantasmoTooltip3", "Use at your own peril (and amusement)."));
             tooltips.Add(new TooltipLine(Mod, "PhantasmoTooltip4", "Caution: May cause unexpected outcomes."));
-            tooltips.Add(new TooltipLine(Mod, "PhantasmoTooltip5", "Handle with care!"));
+            tooltips.Add(new TooltipLine(Mod, "PhantasmoTooltip5", "A label mentions: Made in Spiritrum"));
             tooltips.Add(new TooltipLine(Mod, "PhantasmoTooltip6", "Developer Item"));
         }
     }

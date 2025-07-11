@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Spiritrum.Content.Items.Consumables
 {
@@ -29,6 +31,15 @@ namespace Spiritrum.Content.Items.Consumables
             player.AddBuff(BuffID.Ironskin, 1800);
             player.AddBuff(BuffID.Endurance, 1800);
             return true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            var line = new TooltipLine(Mod, "PeanutButter", "Provides Ironskin and Endurance for 30 seconds")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
         }
     }
 }

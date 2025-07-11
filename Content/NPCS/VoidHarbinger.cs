@@ -17,8 +17,8 @@ namespace Spiritrum.Content.NPCS
     public class VoidHarbinger : ModNPC
     {
         // Boss variables
-        private const int PhaseOneMaxLife = 80000;
-        private const int PhaseTwoMaxLife = 40000; // 50% health threshold
+        private const int PhaseOneMaxLife = 60000;
+        private const int PhaseTwoMaxLife = 30000; // 50% health threshold
         private bool secondPhase = false;
           // AI variables
         private int attackCounter = 0;

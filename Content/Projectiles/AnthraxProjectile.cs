@@ -35,7 +35,7 @@ namespace Spiritrum.Content.Projectiles
         }
 
         [System.Obsolete]
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             // Gas cloud effect (visuals and debuff)
             for (int i = 0; i < 30; i++)

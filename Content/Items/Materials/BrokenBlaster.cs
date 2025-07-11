@@ -24,5 +24,14 @@ namespace Spiritrum.Content.Items.Materials
 			Item.value = Item.sellPrice(gold: 20);
 			Item.rare = ItemRarityID.Yellow;
 		}
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            var line = new TooltipLine(Mod, "BrokenBlaster", "A damaged weapon component")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
+        }
 	}
 }

@@ -121,5 +121,12 @@ namespace Spiritrum.Content.Items.Modes
 
             return false;
         }
+        public override bool CanEquipAccessory(Player player, int slot, bool modded)
+		{
+			// Only allow equipping in the custom mode slot
+			if (player.GetModPlayer<Spiritrum.Players.ModeSlotPlayer>().modeSlotItem == Item)
+				return true;
+			return false;
+		}
     }
 }

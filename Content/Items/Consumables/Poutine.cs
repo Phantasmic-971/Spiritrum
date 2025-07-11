@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Spiritrum.Content.Items.Consumables
 {
@@ -28,6 +30,15 @@ namespace Spiritrum.Content.Items.Consumables
             // Add Plenty Satisfied buff for 8 minutes
             player.AddBuff(BuffID.WellFed3, 28800); // Using WellFed3 as "Plenty Satisfied"
             return true;
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            var line = new TooltipLine(Mod, "Poutine", "A hearty dish that keeps you well fed")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
         }
     }
 }

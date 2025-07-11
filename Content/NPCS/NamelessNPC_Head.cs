@@ -97,11 +97,16 @@ namespace Spiritrum.Content.NPCS
 
         public override string GetChat()
         {
-            return Main.rand.Next(3) switch
+            return Main.rand.Next(8) switch
             {
-                0 => "Greetings. I deal in things beyond your wildest imaginings.",
-                1 => "My wares change as the world does.",
-                _ => "Power lies in the shadows—and I have plenty."
+                0 => "I wonder if my father will arrive some day. He is the [UNKNOWN DATA]",
+                1 => "There is this weird story that happened before my arrival. I do wonder what was it.",
+                2 => "KYS? What does that stand for? Kelaga, Yolga and Spiritrum? They are the 3 creators.",
+                3 => "Wrath of the Gods? Do you mean Wrath of the Creators?",
+                4 => "Some may say, my father is a nameless deity, but he is something else.",
+                5 => "Did you know, that before you came to this world, it was a total calamity.",
+                6 => "Shimmer is a very powerful tool that I need access.",
+                _ => "This dimension is the best out of all 11 as most say, but I am not sure."
             };
         }
 
@@ -155,6 +160,16 @@ namespace Spiritrum.Content.NPCS
             multiplier = 1.1f; // Slightly faster than default
             gravityCorrection = 0f;
             randomOffset = 0f;
+        }
+        public override void SetBestiary(BestiaryDatabase database, BestiaryEntry bestiaryEntry)
+        {
+            // Sets the description of this NPC that is listed in the bestiary
+            bestiaryEntry.Info.AddRange(new IBestiaryInfoElement[] {
+                // Use boss category instead of biome categories               // It's a boss
+                BestiaryDatabaseNPCsPopulator.CommonTags.SpawnConditions.Biomes.Underground,
+                // Updated flavor text to reflect boss status
+                new FlavorTextBestiaryInfoElement("No one knows from where he comes from... except him and himself, but doesn't want to tell.")
+            });
         }
     }
 }

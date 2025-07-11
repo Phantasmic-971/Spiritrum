@@ -1,6 +1,8 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
 
 namespace Spiritrum.Content.Items.Consumables
 {
@@ -37,6 +39,15 @@ namespace Spiritrum.Content.Items.Consumables
                 .AddIngredient(ItemID.Acorn, 5)
                 .AddTile(TileID.Campfire)
                 .Register();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            var line = new TooltipLine(Mod, "MapleSyrup", "Gives Sugar Rush for 30 seconds")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
         }
     }
 }

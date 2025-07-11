@@ -48,7 +48,7 @@ public class EquinoxSpear : ModProjectile
         }
 
         [System.Obsolete]
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             bonusStacks = 0;
         }

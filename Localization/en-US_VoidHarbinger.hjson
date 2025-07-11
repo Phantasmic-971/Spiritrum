@@ -20,11 +20,6 @@ Items: {
 			'''
 	}
 
-	VoidHarbingerBanner: {
-		DisplayName: Void Harbinger Banner
-		Tooltip: Nearby players get a bonus against: Void Harbinger
-	}
-
 	VoidHarbingerTrophy: {
 		DisplayName: Void Harbinger Trophy
 		Tooltip: "'A testament to your victory over the cosmic horror'"

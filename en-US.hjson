@@ -82,6 +82,7 @@ Mods: {
 			LaserBlaster: {
 				DisplayName: Laser Blaster
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.LaserBlaster.SetBonus
 			}
 
 			Liberalism: {
@@ -102,6 +103,7 @@ Mods: {
 			MapleSyrupBurner: {
 				DisplayName: Maple Syrup Burner
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.MapleSyrupBurner.SetBonus
 			}
 
 			MapleSyrup: {
@@ -157,6 +159,7 @@ Mods: {
 			BromiumStaff: {
 				DisplayName: Bromium Staff
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.BromiumStaff.SetBonus
 			}
 
 			WhisperingBlade: {
@@ -167,6 +170,7 @@ Mods: {
 			NamelessEmblem: {
 				Tooltip: ""
 				DisplayName: Nameless Emblem
+				SetBonus: Mods.Spiritrum.Items.NamelessEmblem.SetBonus
 			}
 
 			EchoCharm: {
@@ -177,6 +181,7 @@ Mods: {
 			ShimmeringDust: {
 				Tooltip: ""
 				DisplayName: Shimmering Dust
+				SetBonus: Mods.Spiritrum.Items.ShimmeringDust.SetBonus
 			}
 
 			BrokenBlaster: {
@@ -322,11 +327,13 @@ Mods: {
 			SpectralBrew: {
 				DisplayName: Spectral Brew
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.SpectralBrew.SetBonus
 			}
 
 			VoidCatalyst: {
 				DisplayName: Void Catalyst
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.VoidCatalyst.SetBonus
 			}
 
 			Futurism: {
@@ -347,6 +354,7 @@ Mods: {
 			VoidEssence: {
 				DisplayName: Void Essence
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.VoidEssence.SetBonus
 			}
 
 			ChronoDisruptor: {
@@ -357,6 +365,7 @@ Mods: {
 			VoidResonator: {
 				DisplayName: Void Resonator
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.VoidResonator.SetBonus
 			}
 
 			AquaEssence: {
@@ -492,12 +501,16 @@ Mods: {
 			TheMag: {
 				Tooltip: ""
 				DisplayName: The Mag
+				SetBonus: Mods.Spiritrum.Items.TheMag.SetBonus
 			}
 
 			GoogBlaster: {
 				Tooltip: ""
 				DisplayName: Goog Blaster
+				SetBonus: Mods.Spiritrum.Items.GoogBlaster.SetBonus
 			}
+
+			GoogBlast.SetBonus: Mods.Spiritrum.Items.GoogBlast.SetBonus
 
 			PeanutButter: {
 				DisplayName: Peanut Butter
@@ -562,26 +575,31 @@ Mods: {
 			TheyStoleEverythingFromUsMode: {
 				DisplayName: They Stole Everything From Us Mode
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.TheyStoleEverythingFromUsMode.SetBonus
 			}
 
 			IrisBlossomStaff: {
 				Tooltip: ""
 				DisplayName: Iris Blossom Staff
+				SetBonus: Mods.Spiritrum.Items.IrisBlossomStaff.SetBonus
 			}
 
 			IrisCrossShield: {
 				DisplayName: Iris Cross Shield
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.IrisCrossShield.SetBonus
 			}
 
 			SnowyOwlStaff: {
 				DisplayName: Snowy Owl Staff
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.SnowyOwlStaff.SetBonus
 			}
 
 			Equinox: {
 				DisplayName: Equinox
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.Equinox.SetBonus
 			}
 
 			FrozoniteChestplate: {
@@ -612,6 +630,7 @@ Mods: {
 			ElectromanBlade: {
 				Tooltip: ""
 				DisplayName: Electroman Blade
+				SetBonus: Mods.Spiritrum.Items.ElectromanBlade.SetBonus
 			}
 
 			LoreStone: {
@@ -699,6 +718,7 @@ Mods: {
 			BottledShimmer: {
 				DisplayName: Bottled Shimmer
 				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.BottledShimmer.SetBonus
 			}
 
 			DefenseShield: {
@@ -1475,6 +1495,37 @@ Mods: {
 				DisplayName: Granite Grenade
 				Tooltip: ""
 			}
+
+			CrystallineCrown: {
+				DisplayName: Crystalline Crown
+				Tooltip: ""
+				SetBonus: Mods.Spiritrum.Items.CrystallineCrown.SetBonus
+			}
+
+			AbyssalSniper: {
+				DisplayName: Abyssal Sniper
+				Tooltip: ""
+			}
+
+			BoneCaster: {
+				DisplayName: Bone Caster
+				Tooltip: ""
+			}
+
+			NutCracker: {
+				DisplayName: Nut Cracker
+				Tooltip: ""
+			}
+
+			StrawmanRevenge: {
+				DisplayName: Strawman Revenge
+				Tooltip: ""
+			}
+
+			TimCharm: {
+				DisplayName: Tim Charm
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -1529,6 +1580,11 @@ Mods: {
 			ElementalBladeProjectile.DisplayName: Elemental Blade Projectile
 			MegaMixel.DisplayName: Mega Mixel
 			GraniteGrenadeProjectile.DisplayName: Granite Grenade Projectile
+			AbyssalBall.DisplayName: Abyssal Ball
+			CrystallineCrownSpike.DisplayName: Crystalline Crown Spike
+			NutShrapnel.DisplayName: Nut Shrapnel
+			StrawmanRevengeSlash.DisplayName: Strawman Revenge Slash
+			AbyssalBallProjectile.DisplayName: Abyssal Ball Projectile
 		}
 
 		NPCs: {

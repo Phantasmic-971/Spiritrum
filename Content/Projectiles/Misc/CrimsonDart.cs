@@ -100,7 +100,7 @@ namespace Spiritrum.Content.Projectiles.Misc
                 Main.rand.NextFloat(-0.05f, 0.05f),
                 Main.rand.NextFloat(-0.05f, 0.05f));
         }        [System.Obsolete]
-        public override void Kill(int timeLeft)
+        public override void OnKill(int timeLeft)
         {
             // Play sound when the projectile is destroyed
             SoundEngine.PlaySound(SoundID.NPCDeath13, Projectile.position);

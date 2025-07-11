@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using static Terraria.ModLoader.ModContent;
 using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Items.Armor
@@ -14,18 +14,10 @@ namespace Spiritrum.Content.Items.Armor
     public class AzuriteHat : ModItem
     {
         public static readonly int MaxMinionIncrease = 1;
-        public static LocalizedText SetBonusText { get; private set; }
 
         public override void SetStaticDefaults()
         {
-            // If your head equipment should draw hair while drawn, use one of the following:
-            // ArmorIDs.Head.Sets.DrawHead[Item.headSlot] = false; // Don't draw the head at all. Used by Space Creature Mask
-            // ArmorIDs.Head.Sets.DrawHatHair[Item.headSlot] = true; // Draw hair as if a hat was covering the top. Used by Wizards Hat
-            // ArmorIDs.Head.Sets.DrawFullHair[Item.headSlot] = true; // Draw all hair as normal. Used by Mime Mask, Sunglasses
-            // ArmorIDs.Head.Sets.DrawsBackHairWithoutHeadgear[Item.headSlot] = true;
-
-
-            SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs();
+            // No SetDefault calls needed in modern tModLoader
         }
 
         public override void UpdateEquip(Player player)
@@ -43,47 +35,34 @@ namespace Spiritrum.Content.Items.Armor
         }
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            // Here we add a tooltipline that will later be removed, showcasing how to remove tooltips from an item
-            var line = new TooltipLine(Mod, "Face", "+1 Minion Slots");
-            tooltips.Add(line);
-
-            line = new TooltipLine(Mod, "Face", "")
+            // Add tooltip for minion increase
+            TooltipLine minionLine = new TooltipLine(Mod, "AzuriteHatMinion", "+1 Minion Slots")
             {
-                OverrideColor = new Color(255, 255, 255)
+                IsModifier = true
             };
-            tooltips.Add(line);
-
-
-
-            // Here we will hide all tooltips whose title end with ':RemoveMe'
-            // One like that is added at the start of this method
-            foreach (var l in tooltips)
-            {
-                if (l.Name.EndsWith(":RemoveMe"))
-                {
-                    l.Hide();
-                }
-            }
-
-            // Another method of hiding can be done if you want to hide just one line.
-            // tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
+            tooltips.Add(minionLine);
         }
         // IsArmorSet determines what armor pieces are needed for the setbonus to take effect
         public override bool IsArmorSet(Item head, Item body, Item legs)
         {
-            return body.type == ModContent.ItemType<AzuritePlatemail>() && legs.type == ModContent.ItemType<AzuriteGreaves>();
+            return body.type == ItemType<AzuritePlatemail>() && legs.type == ItemType<AzuriteGreaves>();
         }
         // UpdateArmorSet allows you to give set bonuses to the armor.
         public override void AddRecipes()
         {
             Recipe recipe = CreateRecipe();
-            recipe.AddIngredient<AzuriteBar>(10);
+            recipe.AddIngredient(ItemType<AzuriteBar>(), 10);
             recipe.AddTile(TileID.Anvils);
             recipe.Register();
         }
         public override void UpdateArmorSet(Player player)
         {
-            player.setBonus = SetBonusText.Value;
+            // Set the tooltip displayed below the armor items directly
+            player.setBonus = "+10% magic and summon damage";
+
+            // Apply the actual bonus: +10% magic and summon damage
+            player.GetDamage(DamageClass.Magic) += 0.10f;
+            player.GetDamage(DamageClass.Summon) += 0.10f;
         }
     }
 }

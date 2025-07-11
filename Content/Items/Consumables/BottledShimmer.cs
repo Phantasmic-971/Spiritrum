@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Collections.Generic;
 
 namespace Spiritrum.Content.Items.Consumables
 {
@@ -42,6 +43,15 @@ namespace Spiritrum.Content.Items.Consumables
             recipe.AddIngredient(ItemID.Bottle, 1);
             recipe.AddCondition(Condition.NearShimmer);
             recipe.Register();
+        }
+
+        public override void ModifyTooltips(List<TooltipLine> tooltips)
+        {
+            var line = new TooltipLine(Mod, "BottledShimmer", "Why would you drink this?")
+            {
+                OverrideColor = new Color(255, 255, 255)
+            };
+            tooltips.Add(line);
         }
     }
 }
