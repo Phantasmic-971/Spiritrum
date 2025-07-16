@@ -1,4 +1,0 @@
-# Placeholder file for ElementalBladeProjectile.png
-# This is a text file that you should replace with an actual PNG image
-# The image should be approximately 40x40 pixels and represent the elemental blade projectile
-# It should have a clear orientation where the "right" side is the blade's end

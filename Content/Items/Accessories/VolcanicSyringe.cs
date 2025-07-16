@@ -28,14 +28,12 @@ namespace Spiritrum.Content.Items.Accessories
             player.buffImmune[BuffID.Frostburn] = true;
             player.buffImmune[BuffID.Burning] = true;
             player.buffImmune[BuffID.OnFire3] = true;
-            player.AddBuff(BuffID.Warmth, 2);
             player.GetModPlayer<Spiritrum.Players.VolcanicSyringePlayer>().volcanicSyringeEquipped = true;
         }
 
         public override void AddRecipes()
         {
             CreateRecipe()
-                .AddIngredient(ModContent.ItemType<CryoCoth>(), 1)
                 .AddIngredient(ItemID.HellstoneBar, 15)
                 .AddIngredient(ItemID.LavaBucket, 1)
                 .AddIngredient(ItemID.ObsidianRose, 1)

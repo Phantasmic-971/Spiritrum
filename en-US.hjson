@@ -1526,6 +1526,31 @@ Mods: {
 				DisplayName: Tim Charm
 				Tooltip: ""
 			}
+
+			RoyalFrozenGem: {
+				Tooltip: ""
+				DisplayName: Royal Frozen Gem
+			}
+
+			GoogMask: {
+				DisplayName: Goog Mask
+				Tooltip: ""
+			}
+
+			GoogBody: {
+				Tooltip: ""
+				DisplayName: Goog Body
+			}
+
+			GoogPaws: {
+				DisplayName: Goog Paws
+				Tooltip: ""
+			}
+
+			AdminBlade: {
+				Tooltip: ""
+				DisplayName: Admin Blade
+			}
 		}
 
 		Projectiles: {
@@ -1612,6 +1637,9 @@ Mods: {
 			PearlsandSlime.DisplayName: Pearlsand Slime
 			PoisonSlime.DisplayName: Poison Slime
 			VoidBat.DisplayName: Void Bat
+			FrostEmperor.DisplayName: Frost Emperor
+			FrostEmpire.DisplayName: Frost Empire
+			FrostEmpress.DisplayName: Frost Empress
 		}
 
 		Buffs: {

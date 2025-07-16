@@ -23,7 +23,7 @@ namespace Spiritrum.Content.Items.Weapons
             Item.useTime = 12;
             Item.UseSound = SoundID.Item1;
             Item.autoReuse = true;
-            Item.consumable = true;
+            Item.consumable = false;
 
             // Weapon Properties			
             Item.damage = 33;

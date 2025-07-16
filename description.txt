@@ -1,4 +1,4 @@
-The Spectrum Mod started as a joke mod that adds a bit of content with old sprites I made in the past years.
+The Spiritrum Mod started as a joke mod that adds a bit of content with old sprites I made in the past years.
 but it soon changed to a regular mod with lore.
 
 Hotfix:
@@ -23,7 +23,7 @@ Adds:
 3 ammunition
 7 tiles
 1 Town NPC
-1 post Lunatic Boss (Still in the works)
+1 Boss
 1 enemy
 
 Compatible mods:

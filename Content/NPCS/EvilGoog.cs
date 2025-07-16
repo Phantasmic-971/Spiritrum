@@ -13,7 +13,7 @@ namespace Spiritrum.Content.NPCS
     {
         public override void SetStaticDefaults()
         {
-            Main.npcFrameCount[Type] = Main.npcFrameCount[NPCID.Zombie]; // Use Zombie's frame count
+            Main.npcFrameCount[Type] = 4; // Use Zombie's frame count
             //DisplayName.SetDefault("Evil Goog"); // Not needed for tModLoader 1.4.4+
         }
 

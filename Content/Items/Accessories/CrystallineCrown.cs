@@ -12,8 +12,6 @@ namespace Spiritrum.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            // DisplayName.SetDefault("Crystalline Crown");
-            // Tooltip.SetDefault("Creates a shield of crystal spikes around you");
         }
 
         public override void SetDefaults()

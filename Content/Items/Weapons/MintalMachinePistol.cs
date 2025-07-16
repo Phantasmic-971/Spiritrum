@@ -114,7 +114,7 @@ namespace Spiritrum.Content.Items.Weapons
         }
         public override Vector2? HoldoutOffset()
         {
-            return new Vector2(-10f, -1f);
+            return new Vector2(-3f, 1f);
         }
     }
 

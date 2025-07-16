@@ -14,9 +14,6 @@ namespace Spiritrum.Content.Items.Accessories
         public static readonly int MaxManaIncrease = 40;
         public override void SetDefaults()
         {
-            // Modders can use Item.DefaultToRangedWeapon to quickly set many common properties, such as: useTime, useAnimation, useStyle, autoReuse, DamageType, shoot, shootSpeed, useAmmo, and noMelee. These are all shown individually here for teaching purposes.
-
-            // Common Properties
             Item.width = 32; // Hitbox width of the item.
             Item.height = 32; // Hitbox height of the item.
             Item.rare = ItemRarityID.Green; // The color that the item's name will be in-game.
@@ -44,10 +41,6 @@ namespace Spiritrum.Content.Items.Accessories
             };
             tooltips.Add(line);
 
-
-
-            // Here we will hide all tooltips whose title end with ':RemoveMe'
-            // One like that is added at the start of this method
             foreach (var l in tooltips)
             {
                 if (l.Name.EndsWith(":RemoveMe"))
@@ -55,9 +48,6 @@ namespace Spiritrum.Content.Items.Accessories
                     l.Hide();
                 }
             }
-
-            // Another method of hiding can be done if you want to hide just one line.
-            // tooltips.FirstOrDefault(x => x.Mod == "ExampleMod" && x.Name == "Verbose:RemoveMe")?.Hide();
         }
         public override void AddRecipes()
         {

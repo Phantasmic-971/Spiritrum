@@ -62,8 +62,6 @@ namespace Spiritrum.Players
 					Random rand = new Random();
 					string message = bromemodeMessages[rand.Next(bromemodeMessages.Length)];
 
-					// Display the message in the chat
-					// Ensure this only happens on the local client in multiplayer to avoid spam
 					if (Main.netMode != NetmodeID.Server || Player.whoAmI == Main.myPlayer)
 					{
 						Main.NewText(message, Color.White); // Use a color, e.g., White
@@ -87,17 +85,6 @@ namespace Spiritrum.Players
 				Player.AddBuff(BuffID.PotionSickness, 300);
 			}
 		}
-
-		// Reset timer when the player dies or leaves the world
-		public override void ResetEffects()
-		{
-			// This method is called when player effects are reset.
-			// The logic in PostUpdateEquips already handles unequip, but this is a safe place
-			// to ensure timer is reset if needed on other effect changes.
-		}
-
-		// This hook runs when the player spawns or loads
-		// CORRECTED SIGNATURE for tModLoader 1.4.4+
 		public override void OnRespawn()
 		{
 			// Reset timer on respawn

@@ -69,7 +69,7 @@ namespace Spiritrum.Content.Items.Weapons
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
             // Add a lore tooltip
-            TooltipLine lore = new TooltipLine(Mod, "VoidResonatorLore", "A powerful staff crafted from the essence of a defeated Void Harbinger")
+            TooltipLine lore = new TooltipLine(Mod, "VoidResonatorLore", "While having 2 or more accesories, gain the ability to knockback target dummies")
             {
                 OverrideColor = new Color(150, 80, 255)
             };

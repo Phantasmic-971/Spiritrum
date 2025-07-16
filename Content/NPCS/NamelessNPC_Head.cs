@@ -19,7 +19,7 @@ namespace Spiritrum.Content.NPCS
         // ... (Keep your SetStaticDefaults and SetDefaults methods as they are) ...
         public override void SetStaticDefaults()
         {
-           Main.npcFrameCount[NPC.type] = 25;
+           Main.npcFrameCount[NPC.type] = 28;
            // Consider adding display name and head map data here if not done elsewhere
            // DisplayName.SetDefault("Nameless One"); // Example display name
            // NPCID.Sets.NPCBestiaryDrawModifiers drawModifiers = new NPCID.Sets.NPCBestiaryDrawModifiers(0) { Velocity = 1f };
@@ -101,7 +101,7 @@ namespace Spiritrum.Content.NPCS
             {
                 0 => "I wonder if my father will arrive some day. He is the [UNKNOWN DATA]",
                 1 => "There is this weird story that happened before my arrival. I do wonder what was it.",
-                2 => "KYS? What does that stand for? Kelaga, Yolga and Spiritrum? They are the 3 creators.",
+                2 => "You don't know about the KAS council? They are the 3 creators. Konetrum, Anlatrum and Spiritrum.",
                 3 => "Wrath of the Gods? Do you mean Wrath of the Creators?",
                 4 => "Some may say, my father is a nameless deity, but he is something else.",
                 5 => "Did you know, that before you came to this world, it was a total calamity.",
