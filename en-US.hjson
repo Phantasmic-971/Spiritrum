@@ -1551,6 +1551,31 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Admin Blade
 			}
+
+			AbyssalScope: {
+				Tooltip: ""
+				DisplayName: Abyssal Scope
+			}
+
+			WitchLocket: {
+				DisplayName: Witch Locket
+				Tooltip: ""
+			}
+
+			VoidPendant: {
+				DisplayName: Void Pendant
+				Tooltip: ""
+			}
+
+			WitheredBloom: {
+				DisplayName: Withered Bloom
+				Tooltip: ""
+			}
+
+			VoidClaws: {
+				DisplayName: Void Claws
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {
@@ -1697,6 +1722,11 @@ Mods: {
 				Description: Mods.Spiritrum.Buffs.ElementalBlades.Description
 				DisplayName: Elemental Blades
 			}
+
+			VoidFlames: {
+				DisplayName: Void Flames
+				Description: Mods.Spiritrum.Buffs.VoidFlames.Description
+			}
 		}
 
 		DamageClasses: {
@@ -1704,7 +1734,10 @@ Mods: {
 			TimeDamage.DisplayName: Time Damage
 		}
 
-		"Keybinds.Temporal Shift Dash.DisplayName": Temporal  Shift  Dash
+		Keybinds: {
+			"Temporal Shift Dash.DisplayName": Temporal  Shift  Dash
+			"AbyssalScope Target Lock.DisplayName": Abyssal Scope  Target  Lock
+		}
 
 		WorldGen: {
 			MagnoliaOrePassMessage: Mods.Spiritrum.WorldGen.MagnoliaOrePassMessage
