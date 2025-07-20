@@ -1576,6 +1576,56 @@ Mods: {
 				DisplayName: Void Claws
 				Tooltip: ""
 			}
+
+			AbyssalEmblem: {
+				DisplayName: Abyssal Emblem
+				Tooltip: ""
+			}
+
+			SpiderSyringe: {
+				DisplayName: Spider Syringe
+				Tooltip: ""
+			}
+
+			VoidHunterHelmet: {
+				DisplayName: Void Hunter Helmet
+				Tooltip: ""
+			}
+
+			VoidHunterHeadgear: {
+				Tooltip: ""
+				DisplayName: Void Hunter Headgear
+			}
+
+			VoidHunterLeggings: {
+				DisplayName: Void Hunter Leggings
+				Tooltip: ""
+			}
+
+			VoidHunterMask: {
+				DisplayName: Void Hunter Mask
+				Tooltip: ""
+			}
+
+			VoidHunterPlate: {
+				DisplayName: Void Hunter Plate
+				Tooltip: ""
+			}
+
+			VoidHunterVisor: {
+				DisplayName: Void Hunter Visor
+				Tooltip: ""
+			}
+
+			SkywarePanel: {
+				DisplayName: Skyware Panel
+				Tooltip: ""
+			}
+
+			CommanderManual: {
+				DisplayName: Commander Manual
+				Tooltip: ""
+			}
 		}
 
 		Projectiles: {

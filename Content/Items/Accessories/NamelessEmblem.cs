@@ -10,18 +10,6 @@ namespace Spiritrum.Content.Items.Accessories
     {
         public override void SetStaticDefaults()
         {
-            // Localization via .hjson; no code-based SetDefault calls
-            // Example .hjson entries:
-            // Mods: {
-            // 	Spiritrum: {
-            // 		Items: {
-            // 			NamelessEmblem: {
-            // 				DisplayName: "Nameless Emblem"
-            // 				Tooltip: "Placeholder tooltip line 1\nPlaceholder tooltip line 2" // You can override this with ModifyTooltips
-            // 			}
-            // 		}
-            // 	}
-            // }
         }
 
         public override void SetDefaults()
@@ -48,9 +36,6 @@ namespace Spiritrum.Content.Items.Accessories
         // --- Add the ModifyTooltips method ---
         public override void ModifyTooltips(List<TooltipLine> tooltips)
         {
-            // Add your custom tooltip lines describing the item's effects
-            // Use standard Terraria tooltip formats where applicable (e.g., "+10% generic damage")
-            // Add damage/crit/mana lines first, as they often appear near the top
             tooltips.Add(new TooltipLine(Mod, "NamelessEmblemTooltipDamage", "+10% generic damage"));
             tooltips.Add(new TooltipLine(Mod, "NamelessEmblemTooltipCrit", "+8% generic critical strike chance"));
             tooltips.Add(new TooltipLine(Mod, "NamelessEmblemTooltipManaCost", "-5% mana usage")); // Note: Negative value shows as a reduction

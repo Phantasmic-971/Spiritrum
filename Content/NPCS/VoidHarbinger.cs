@@ -661,56 +661,6 @@ namespace Spiritrum.Content.NPCS
                     }
                 }
             }
-            else if (attackCounter == 80)
-            {
-                // Summon 3 void bats with warning
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    for (int i = 0; i < 3; i++)
-                    {
-                        // Spawn bats at different positions around the boss
-                        float angle = MathHelper.TwoPi * i / 3f;
-                        Vector2 spawnOffset = new Vector2(
-                            (float)Math.Cos(angle) * 120f,
-                            (float)Math.Sin(angle) * 80f
-                        );
-                        Vector2 spawnPos = NPC.Center + spawnOffset;
-                        
-                        // Ensure spawn position is valid
-                        if (!Collision.SolidCollision(spawnPos, 32, 32))
-                        {
-                            int voidBat = NPC.NewNPC(NPC.GetSource_FromAI(), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<VoidBat>());
-                            
-                            if (voidBat < Main.maxNPCs)
-                            {
-                                Main.npc[voidBat].target = NPC.target;
-                                Main.npc[voidBat].netUpdate = true;
-                            }
-                        }
-                        
-                        // Create spawn effect
-                        for (int d = 0; d < 25; d++)
-                        {
-                            Dust dust = Dust.NewDustDirect(spawnPos - new Vector2(16, 16), 32, 32, 
-                                DustID.PurpleTorch, 0f, 0f, 0, default, 2f);
-                            dust.noGravity = true;
-                            dust.velocity = Main.rand.NextVector2Circular(4f, 4f);
-                        }
-                    }
-                    
-                    // Play summoning sound
-                    SoundEngine.PlaySound(SoundID.NPCDeath52, NPC.position);
-                }
-                
-                // Create dramatic summoning effect
-                for (int i = 0; i < 50; i++)
-                {
-                    Vector2 velocity = Main.rand.NextVector2Circular(8f, 8f);
-                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
-                        DustID.PurpleTorch, velocity.X, velocity.Y, 0, default, 2.5f);
-                    dust.noGravity = true;
-                }
-            }
             else
             {
                 // After summoning, retreat and move defensively
@@ -785,59 +735,6 @@ namespace Spiritrum.Content.NPCS
                         Dust dust = Dust.NewDustPerfect(dustPos, DustID.PurpleTorch, dustVel, 0, default, 2.2f);
                         dust.noGravity = true;
                     }
-                }
-            }
-            else if (attackCounter == 70)
-            {
-                // Summon 4 void bats with enhanced warning
-                if (Main.netMode != NetmodeID.MultiplayerClient)
-                {
-                    for (int i = 0; i < 4; i++)
-                    {
-                        // Spawn bats at different positions around the boss
-                        float angle = MathHelper.TwoPi * i / 4f;
-                        Vector2 spawnOffset = new Vector2(
-                            (float)Math.Cos(angle) * 140f,
-                            (float)Math.Sin(angle) * 90f
-                        );
-                        Vector2 spawnPos = NPC.Center + spawnOffset;
-                        
-                        // Ensure spawn position is valid
-                        if (!Collision.SolidCollision(spawnPos, 32, 32))
-                        {
-                            int voidBat = NPC.NewNPC(NPC.GetSource_FromAI(), (int)spawnPos.X, (int)spawnPos.Y, ModContent.NPCType<VoidBat>());
-                            
-                            if (voidBat < Main.maxNPCs)
-                            {
-                                Main.npc[voidBat].target = NPC.target;
-                                Main.npc[voidBat].netUpdate = true;
-                                // In phase 2, give bats slightly more health
-                                Main.npc[voidBat].lifeMax = (int)(Main.npc[voidBat].lifeMax * 1.2f);
-                                Main.npc[voidBat].life = Main.npc[voidBat].lifeMax;
-                            }
-                        }
-                        
-                        // Create enhanced spawn effect
-                        for (int d = 0; d < 30; d++)
-                        {
-                            Dust dust = Dust.NewDustDirect(spawnPos - new Vector2(16, 16), 32, 32, 
-                                DustID.PurpleTorch, 0f, 0f, 0, default, 2.3f);
-                            dust.noGravity = true;
-                            dust.velocity = Main.rand.NextVector2Circular(5f, 5f);
-                        }
-                    }
-                    
-                    // Play enhanced summoning sound
-                    SoundEngine.PlaySound(SoundID.Roar, NPC.position);
-                }
-                
-                // Create dramatic enhanced summoning effect
-                for (int i = 0; i < 70; i++)
-                {
-                    Vector2 velocity = Main.rand.NextVector2Circular(10f, 10f);
-                    Dust dust = Dust.NewDustDirect(NPC.position, NPC.width, NPC.height, 
-                        DustID.PurpleTorch, velocity.X, velocity.Y, 0, default, 3f);
-                    dust.noGravity = true;
                 }
             }
             else

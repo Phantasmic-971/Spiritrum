@@ -60,6 +60,7 @@ namespace Spiritrum.Content.Items.Accessories
         {
             CreateRecipe()
                 .AddIngredient(ModContent.ItemType<WitchLocket>())
+                .AddIngredient(ModContent.ItemType<CommanderManual>())
                 .AddIngredient(ModContent.ItemType<VoidEssence>(), 10)
                 .AddTile(TileID.TinkerersWorkbench)
                 .Register();

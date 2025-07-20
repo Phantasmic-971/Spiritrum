@@ -90,27 +90,6 @@ namespace Spiritrum.Content.Items.Weapons // Using the namespace you provided
             tooltips.Add(new TooltipLine(Mod, "WhisperingBladeTooltip1", "Each strike has 40% chance to inflict confusion."));
             tooltips.Add(new TooltipLine(Mod, "WhisperingBladeTooltip2", "Releases a piercing shadowy projectile that inflicts Shadowflame."));
         }
-           public override void AddRecipes()
-  {
-      Recipe recipe = CreateRecipe();
-
-      if (ModLoader.TryGetMod("gunrightsmod", out Mod TerMerica) && TerMerica.TryFind<ModItem>("DeliriantDagger", out ModItem DeliriantDagger))
-      {
-          recipe = CreateRecipe();
-
-          recipe.AddIngredient(DeliriantDagger.Type);
-
-          recipe.AddTile(TileID.MythrilAnvil);
-          recipe.Register();
-
-      }
-      else
-      {
-
-
-      }
-
-  }
 }
 }
 

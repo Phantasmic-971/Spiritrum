@@ -194,7 +194,7 @@ namespace Spiritrum.Content.NPCS
                 {
                     Vector2 toPlayer = (Target.Center - NPC.Center).SafeNormalize(Vector2.UnitX);
                     float spread = MathHelper.ToRadians(20);
-                    int numProjectiles = 3;
+                    int numProjectiles = 3; 
                     for (int i = 0; i < numProjectiles; i++)
                     {
                         float rotation = spread * (i - (numProjectiles - 1) / 2f);

@@ -63,8 +63,6 @@ namespace Spiritrum.Content.Items.Weapons
 			recipe.AddIngredient(ModContent.ItemType<BrokenBlaster>(), 1);
 			recipe.AddTile(TileID.MythrilAnvil); // Crafted at a Mythril or Orichalcum Anvil
 			recipe.Register();
-			if (ModLoader.TryGetMod("gunrightsmod", out Mod TerMerica) && TerMerica.TryFind("CyberneticGunParts", out ModItem CyberneticGunParts))
-    recipe.AddIngredient(CyberneticGunParts.Type);
 		}
 		public override bool CanConsumeAmmo(Item ammo, Player player)
 		{

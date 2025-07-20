@@ -23,7 +23,7 @@ namespace Spiritrum.Systems
                 // 3 seconds = 180 ticks (60 ticks per second)
                 if (notificationTimer >= 180)
                 {
-                    Main.NewText("Make sure to join the Spiritrum discord server: https://discord.gg/mNwZWRDJrr", Color.LightBlue);
+                    Main.NewText("Make sure to join the discord server: https://discord.gg/mNwZWRDJrr", Color.LightBlue);
                     shouldShowNotification = false;
                     notificationTimer = 0;
                 }

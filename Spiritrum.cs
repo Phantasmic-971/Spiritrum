@@ -9,6 +9,10 @@ using System.IO;
 using Terraria.ModLoader.IO;
 using Spiritrum.Systems;
 using Spiritrum.Config;
+using ReLogic.Content;
+using Microsoft.Xna.Framework.Graphics;
+using Terraria.GameContent.Bestiary;
+using Terraria.GameContent.Bestiary;
 
 namespace Spiritrum
 {
@@ -140,6 +144,19 @@ namespace Spiritrum
         public bool GetDownedVoidHarbinger()
         {
             return downedVoidHarbinger;
+        }
+
+        public static string BestiaryFilterKey => "Mods.Spiritrum.BestiaryFilter.Spiritrum";
+        public static string BestiaryIconPath => "Spiritrum/icon_small";
+
+        public override void Load()
+        {
+            // Load the mod icon for UI and bestiary
+            if (!Main.dedServ)
+            {
+                ModContent.Request<Texture2D>(BestiaryIconPath, AssetRequestMode.ImmediateLoad);
+                // You can now use BestiaryFilterKey and BestiaryIconPath in your NPCs' SetBestiary methods
+            }
         }
     }
 
