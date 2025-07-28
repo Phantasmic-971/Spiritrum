@@ -7,6 +7,7 @@ Mods: {
 			IBISTile.MapEntry: I B I S Tile
 			ThePhoneTile.MapEntry: The Phone Tile
 			FrozoniteOreTile.MapEntry: Frozonite Ore Tile
+			FrozoniteOre.MapEntry: Frozonite Ore
 			AzuriteOrePlaced.MapEntry: Azurite Ore Placed
 			MintalOrePlaced.MapEntry: Mintal Ore Placed
 			MorbiumOrePlaced.MapEntry: Morbium Ore Placed
@@ -1626,6 +1627,36 @@ Mods: {
 				DisplayName: Commander Manual
 				Tooltip: ""
 			}
+
+			CopiumOre: {
+				Tooltip: ""
+				DisplayName: Copium Ore
+			}
+
+			PenumbriumOre: {
+				DisplayName: Penumbrium Ore
+				Tooltip: ""
+			}
+
+			Penumbrium: {
+				DisplayName: Penumbrium
+				Tooltip: ""
+			}
+
+			NoteAboutHardMode: {
+				DisplayName: Note About Hard Mode
+				Tooltip: ""
+			}
+
+			CopiumBar: {
+				Tooltip: ""
+				DisplayName: Copium Bar
+			}
+
+			NocturnalLance: {
+				Tooltip: ""
+				DisplayName: Nocturnal Lance
+			}
 		}
 
 		Projectiles: {
@@ -1685,6 +1716,7 @@ Mods: {
 			NutShrapnel.DisplayName: Nut Shrapnel
 			StrawmanRevengeSlash.DisplayName: Strawman Revenge Slash
 			AbyssalBallProjectile.DisplayName: Abyssal Ball Projectile
+			NocturnalLance.DisplayName: Nocturnal Lance
 		}
 
 		NPCs: {

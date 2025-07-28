@@ -19,20 +19,20 @@ namespace Spiritrum.Content.Items.Weapons // Using the namespace you provided
 
         public override void SetDefaults()
         {
-            Item.damage = 100; // Base damage (adjust for Hardmode, Post-Plantera)
+            Item.damage = 124; // Base damage (adjust for Hardmode, Post-Plantera)
             Item.DamageType = DamageClass.Melee; // Set damage type to melee
             Item.width = 40; // Item texture width (adjust)
             Item.height = 40; // Item texture height (adjust)
-            Item.useTime = 15; // Use time (how fast it swings)
-            Item.useAnimation = 15; // Use animation time
+            Item.useTime = 14; // Use time (how fast it swings)
+            Item.useAnimation = 14; // Use animation time
             Item.useStyle = ItemUseStyleID.Swing; // Use a swinging animation
             Item.knockBack = 6; // Knockback value
-            Item.crit = 4; // Base critical strike chance
+            Item.crit = 8; // Base critical strike chance
             Item.rare = ItemRarityID.Lime; // Set rarity (Lime is typically Post-Plantera)
             Item.value = Item.sellPrice(gold: 20); // Set sell price (adjust)
             Item.UseSound = SoundID.Item1; // Sound when used (swinging sound)
             Item.autoReuse = true; // Can hold down to swing continuously
-            Item.scale = 1.4f; // Adjust scale to make the sprite more centered
+            Item.scale = 1.6f; // Adjust scale to make the sprite more centered
 
             // Projectile properties
             // Ensure WhisperingBladeProjectile is in its own file and has the correct namespace and using directives
@@ -51,6 +51,10 @@ namespace Spiritrum.Content.Items.Weapons // Using the namespace you provided
             {
                 target.AddBuff(BuffID.Confused, 180); // Apply Confused debuff for 3 seconds (180 ticks)
             }
+            if (Main.rand.NextFloat() < 0.2f) // 0.5f = 50% chance
+            {
+                target.AddBuff(ModContent.BuffType<Content.Debuffs.VoidFlames>(), 180);
+            }
         }
 
         // This method is called when the weapon is used, allowing custom projectile spawning
@@ -58,7 +62,7 @@ namespace Spiritrum.Content.Items.Weapons // Using the namespace you provided
         	const int NumProjectiles = 1; // The number of projectiles that this bow will shoot.
         {
             // Occasionally release a shadowy projectile (e.g., 10% chance)
-            if (Main.rand.NextFloat() < 0.10f) // 0.10f = 10% chance
+            if (Main.rand.NextFloat() < 0.25f) // 0.10f = 10% chance
             {
                 // Spawn the projectile
                 // Make sure the projectile type is correct (it should be the 'type' parameter passed in, which is ModContent.ProjectileType<WhisperingBladeProjectile>())
@@ -88,6 +92,7 @@ namespace Spiritrum.Content.Items.Weapons // Using the namespace you provided
         {
             // Add your custom tooltip lines
             tooltips.Add(new TooltipLine(Mod, "WhisperingBladeTooltip1", "Each strike has 40% chance to inflict confusion."));
+            tooltips.Add(new TooltipLine(Mod, "WhisperingBladeTooltip3", "Each strike has 20% chance to inflict Void Flames."));
             tooltips.Add(new TooltipLine(Mod, "WhisperingBladeTooltip2", "Releases a piercing shadowy projectile that inflicts Shadowflame."));
         }
 }

@@ -26,7 +26,7 @@ namespace Spiritrum.Content.Projectiles
             Projectile.friendly = true;
             Projectile.hostile = false;
             Projectile.DamageType = DamageClass.Magic;
-            Projectile.penetrate = 1; // Only hits one enemy before being destroyed
+            Projectile.penetrate = 2; // Only hits one enemy before being destroyed
             Projectile.timeLeft = 600; // 10 seconds
             Projectile.alpha = 100; // Slightly transparent
             Projectile.light = 0.5f; // Emits light

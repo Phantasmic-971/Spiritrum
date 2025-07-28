@@ -16,12 +16,12 @@ namespace Spiritrum.Content.Items.Placeables
 
         public override void SetDefaults() {
             // Links this item to the ReborniumOre tile
-            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.FrozoniteOreTile>());
+            Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.FrozoniteOre>());
             Item.width = 12; // Item sprite width
             Item.height = 12; // Item sprite height
             Item.value = 3000; // Item sell value (3000 copper = 30 silver)
             Item.rare = ItemRarityID.Cyan; // Common rarity as it's a pre-boss ore
-            Item.createTile = ModContent.TileType<Tiles.FrozoniteOreTile>();
+            Item.createTile = ModContent.TileType<Tiles.FrozoniteOre>();
         }
     }
 }

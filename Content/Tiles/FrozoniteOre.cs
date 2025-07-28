@@ -7,7 +7,7 @@ using Spiritrum.Content.Items.Placeables;
 
 namespace Spiritrum.Content.Tiles
 {
-    public class FrozoniteOreTile : ModTile
+    public class FrozoniteOre : ModTile
     {
         public override void SetStaticDefaults()
         {
